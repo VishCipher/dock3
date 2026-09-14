@@ -1,4 +1,4 @@
-# Docking Pipeline (Snakemake) — multi-target, multi-engine, cofactor-aware
+# Docking Pipeline (Snakemake) - multi-target, multi-engine, cofactor-aware
 
 Screen a ligand library against **one or more protein targets**, using
 **three docking engines** (Vina, smina, AutoDock4), with **automatic
@@ -7,7 +7,7 @@ PandaDock) wherever a target's receptor contains one, plus independent
 geometry validation, drug-likeness filtering, and run provenance tracking.
 
 DiffDock (blind docking) lives in a **separate, standalone pipeline**
-(`diffdock-pipeline/`) — its dependencies proved too heavy/fragile to
+(`diffdock-pipeline/`), its dependencies proved too heavy/fragile to
 safely integrate here. See that project's own README for status.
 
 ## What this pipeline actually does
@@ -17,7 +17,7 @@ For every protein listed under `targets:` in `config.yaml`:
 1. Cleans the raw receptor PDB (strips waters/crystallization salts, keeps
    protein + any functional metal cofactor).
 2. Docks your entire ligand library against it with **Vina**, **smina**,
-   and **AutoDock4** — three independent scoring functions, so you can
+   and **AutoDock4**; three independent scoring functions, so you can
    look for agreement across engines rather than trusting a single number.
 3. **Auto-detects** whether that target's receptor contains a functional
    metal (Ca, Zn, Mg, Mn, Fe, Cu, Ni, Co) and, if so, **automatically**
@@ -25,7 +25,7 @@ For every protein listed under `targets:` in `config.yaml`:
    coordination geometry explicitly.
 4. **Independently re-checks** PandaDock's own coordination-geometry call
    by measuring actual atomic distances from the metal to each ligand's
-   top Vina pose — a second, from-scratch verification rather than trusting
+   top Vina pose, a second, from-scratch verification rather than trusting
    any single engine's internal score.
 5. Computes basic **drug-likeness (ADMET) descriptors** for every ligand
    (Lipinski's Rule of Five and extensions), independent of docking.
@@ -186,23 +186,23 @@ ranking* across engines, not to average the numbers together.
 For metal sites, cross-reference two independent checks:
 - `results/{target}/summary/metal_site_scores.tsv` — PandaDock's own
   coordination/binding scores
-- `results/{target}/summary/metal_geometry_validation.tsv` — an
+- `results/{target}/summary/metal_geometry_validation.tsv` - an
   independently computed coordination number and distance check from
   Vina's pose
 
 Agreement between the two is real evidence a hit is chemically sensible;
 disagreement tells you exactly where to look closer. Known chelators
 (EDTA, EGTA, citric acid, if in your library) should score meaningfully
-better than unrelated compounds on both checks — if everything comes back
+better than unrelated compounds on both checks, if everything comes back
 identical or flagged, re-check that target's box coordinates first.
 
 Check `results/summary/admet_properties.tsv` before getting attached to
-any hit — a strong docking score means little if `lipinski_violations` is
+any hit. A strong docking score means little if `lipinski_violations` is
 high.
 
 ## If something looks wrong
 
-See **`TROUBLESHOOTING.md`** — a checklist built directly from real bugs
+See **`TROUBLESHOOTING.md`** - a checklist built directly from real bugs
 hit during this project's development (wrong box coordinates, silent
 fallback parameters, files landing in the wrong folder, and more). Work
 through it before assuming a docking engine itself is broken; in every
@@ -212,24 +212,24 @@ case so far, it wasn't.
 
 - `IDEAL_DISTANCE_RANGES` and `TYPICAL_COORDINATION_NUMBERS` in
   `validate_metal_geometry.py` are literature-informed defaults, not
-  calibrated per target — treat flags as "worth a closer look," not a
+  calibrated per target, treat flags as "worth a closer look," not a
   certified verdict.
 - Geometry validation currently only checks **Vina's** pose. Extending to
   smina/AD4 poses is a natural next step.
 - PandaDock's coordination scores were computed using **fallback/generic
-  metal parameters** in testing (its own log warns about this) — the
+  metal parameters** in testing (its own log warns about this) the
   independent geometry check exists specifically because that score alone
   isn't fully trustworthy yet.
 
 ## Next steps to extend
 
 - **PLIP interaction fingerprinting**: broader than the metal-geometry
-  filter — automatically tabulate H-bonds, salt bridges, hydrophobic
+  filter - automatically tabulate H-bonds, salt bridges, hydrophobic
   contacts, π-stacking for any pocket, not just metal sites.
 - **Pharmacophore pre-filter**: cheaply screen a large library against a
   pharmacophore built from known actives before docking everything blind.
 - **Auto-generated visual reports**: PyMOL/ChimeraX session files or
-  rendered images per top hit — right now every result is a TSV, nothing
+  rendered images per top hit - right now every result is a TSV, nothing
   shows you what the pose actually looks like.
 - **Regression/self-test suite**: bake in validated cases (1HSG/indinavir
   RMSD, a hand-checked calcium site) as an automated check on every change.
