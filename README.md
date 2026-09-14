@@ -197,12 +197,12 @@ better than unrelated compounds on both checks, if everything comes back
 identical or flagged, re-check that target's box coordinates first.
 
 Check `results/summary/admet_properties.tsv` before getting attached to
-any hit — a strong docking score means little if `lipinski_violations` is
+any hit. A strong docking score means little if `lipinski_violations` is
 high.
 
 ## If something looks wrong
 
-See **`TROUBLESHOOTING.md`** — a checklist built directly from real bugs
+See **`TROUBLESHOOTING.md`** - a checklist built directly from real bugs
 hit during this project's development (wrong box coordinates, silent
 fallback parameters, files landing in the wrong folder, and more). Work
 through it before assuming a docking engine itself is broken; in every
