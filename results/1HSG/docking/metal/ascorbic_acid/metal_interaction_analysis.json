@@ -1,0 +1,82 @@
+{
+  "summary": {
+    "n_poses": 20,
+    "avg_coordination_score": 0.0,
+    "avg_metal_binding_score": 0.0,
+    "best_coordination_score": 0.0,
+    "poses_with_violations": 20,
+    "violation_rate": 1.0
+  },
+  "pose_details": [
+    {
+      "pose_id": 1,
+      "energy": 230.77903671161062,
+      "confidence": 0.5345281430130183,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -9.220963288389395
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 240.00"
+      ]
+    },
+    {
+      "pose_id": 2,
+      "energy": 231.7654424495014,
+      "confidence": 0.7928162732579156,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -8.234557550498613
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 240.00"
+      ]
+    },
+    {
+      "pose_id": 3,
+      "energy": 232.0708469349441,
+      "confidence": 0.6422105219287886,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -7.929153065055913
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 240.00"
+      ]
+    },
+    {
+      "pose_id": 4,
+      "energy": 232.1145912229279,
+      "confidence": 0.6391292972973424,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -7.8854087770720955
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 240.00"
+      ]
+    },
+    {
+      "pose_id": 5,
+      "energy": 232.18865611116706,
+      "confidence": 0.6139709584936743,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -7.811343888832925
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 240.00"
+      ]
+    }
+  ]
+}

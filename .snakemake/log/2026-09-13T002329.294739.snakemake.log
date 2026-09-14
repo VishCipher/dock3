@@ -1,0 +1,221 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-13 00:23:29
+  Workflow ID: 8b18d455-0824-42ef-8842-79b5c278a77d
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 results/3BH4/summary/metal_site_scores.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+detect_cofactors            1
+prep_receptor_clean         1
+dock_metal_site            11
+collect_metal_scores        1
+total                      14
+
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep 13 00:23:29 2026]
+localrule prep_receptor_clean:
+    input: data/3BH4_receptor.pdb
+    output: results/3BH4/receptor/receptor_clean.pdb
+    jobid: 2
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:23:29 2026]
+localcheckpoint detect_cofactors:
+    input: data/3BH4_receptor.pdb
+    output: results/3BH4/cofactors/cofactor_report.json
+    jobid: 3
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+DAG of jobs will be updated after completion.
+[Sun Sep 13 00:23:30 2026]
+Finished jobid: 3 (Rule: detect_cofactors)
+1 of 14 steps (7%) done
+Updating checkpoint dependencies.
+[Sun Sep 13 00:23:30 2026]
+Finished jobid: 2 (Rule: prep_receptor_clean)
+2 of 14 steps (14%) done
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep 13 00:23:30 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/caffeine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/caffeine
+    log: logs/3BH4_dock_metal_caffeine.log
+    jobid: 7
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:23:30 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/malonic_acid
+    log: logs/3BH4_dock_metal_malonic_acid.log
+    jobid: 10
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:23:30 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EDTA.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/EDTA
+    log: logs/3BH4_dock_metal_EDTA.log
+    jobid: 1
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:23:30 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/ascorbic_acid
+    log: logs/3BH4_dock_metal_ascorbic_acid.log
+    jobid: 5
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:24:10 2026]
+Finished jobid: 7 (Rule: dock_metal_site)
+3 of 14 steps (21%) done
+Execute 1 jobs...
+[Sun Sep 13 00:24:10 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/tartaric_acid
+    log: logs/3BH4_dock_metal_tartaric_acid.log
+    jobid: 13
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:26:02 2026]
+Finished jobid: 10 (Rule: dock_metal_site)
+4 of 14 steps (29%) done
+Execute 1 jobs...
+[Sun Sep 13 00:26:02 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EGTA.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/EGTA
+    log: logs/3BH4_dock_metal_EGTA.log
+    jobid: 4
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:26:07 2026]
+Finished jobid: 5 (Rule: dock_metal_site)
+5 of 14 steps (36%) done
+Execute 1 jobs...
+[Sun Sep 13 00:26:07 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/oxalic_acid
+    log: logs/3BH4_dock_metal_oxalic_acid.log
+    jobid: 11
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:27:37 2026]
+Finished jobid: 13 (Rule: dock_metal_site)
+6 of 14 steps (43%) done
+Execute 1 jobs...
+[Sun Sep 13 00:27:37 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/glycine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/glycine
+    log: logs/3BH4_dock_metal_glycine.log
+    jobid: 9
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:28:28 2026]
+Finished jobid: 11 (Rule: dock_metal_site)
+7 of 14 steps (50%) done
+Execute 1 jobs...
+[Sun Sep 13 00:28:28 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/citric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/citric_acid
+    log: logs/3BH4_dock_metal_citric_acid.log
+    jobid: 8
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:28:46 2026]
+Finished jobid: 9 (Rule: dock_metal_site)
+8 of 14 steps (57%) done
+Execute 1 jobs...
+[Sun Sep 13 00:28:46 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/aspirin.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/aspirin
+    log: logs/3BH4_dock_metal_aspirin.log
+    jobid: 6
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 00:33:24 2026]
+Finished jobid: 6 (Rule: dock_metal_site)
+9 of 14 steps (64%) done
+Execute 1 jobs...
+[Sun Sep 13 00:33:25 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/salicylic_acid
+    log: logs/3BH4_dock_metal_salicylic_acid.log
+    jobid: 12
+    reason: Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:34:48 2026]
+Finished jobid: 12 (Rule: dock_metal_site)
+10 of 14 steps (71%) done
+[Sun Sep 13 00:35:07 2026]
+Finished jobid: 8 (Rule: dock_metal_site)
+11 of 14 steps (79%) done
+[Sun Sep 13 00:43:43 2026]
+Finished jobid: 1 (Rule: dock_metal_site)
+12 of 14 steps (86%) done
+[Sun Sep 13 00:55:56 2026]
+Finished jobid: 4 (Rule: dock_metal_site)
+13 of 14 steps (93%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 00:55:57 2026]
+localrule collect_metal_scores:
+    input: results/3BH4/docking/metal/EDTA, results/3BH4/docking/metal/EGTA, results/3BH4/docking/metal/ascorbic_acid, results/3BH4/docking/metal/aspirin, results/3BH4/docking/metal/caffeine, results/3BH4/docking/metal/citric_acid, results/3BH4/docking/metal/glycine, results/3BH4/docking/metal/malonic_acid, results/3BH4/docking/metal/oxalic_acid, results/3BH4/docking/metal/salicylic_acid, results/3BH4/docking/metal/tartaric_acid, logs/3BH4_dock_metal_EDTA.log, logs/3BH4_dock_metal_EGTA.log, logs/3BH4_dock_metal_ascorbic_acid.log, logs/3BH4_dock_metal_aspirin.log, logs/3BH4_dock_metal_caffeine.log, logs/3BH4_dock_metal_citric_acid.log, logs/3BH4_dock_metal_glycine.log, logs/3BH4_dock_metal_malonic_acid.log, logs/3BH4_dock_metal_oxalic_acid.log, logs/3BH4_dock_metal_salicylic_acid.log, logs/3BH4_dock_metal_tartaric_acid.log
+    output: results/3BH4/summary/metal_site_scores.tsv
+    jobid: 0
+    reason: Input files updated by another job: results/3BH4/docking/metal/oxalic_acid, results/3BH4/docking/metal/citric_acid, logs/3BH4_dock_metal_citric_acid.log, logs/3BH4_dock_metal_malonic_acid.log, results/3BH4/docking/metal/tartaric_acid, results/3BH4/docking/metal/ascorbic_acid, logs/3BH4_dock_metal_aspirin.log, results/3BH4/docking/metal/aspirin, results/3BH4/docking/metal/EGTA, logs/3BH4_dock_metal_glycine.log, results/3BH4/docking/metal/salicylic_acid, logs/3BH4_dock_metal_ascorbic_acid.log, logs/3BH4_dock_metal_salicylic_acid.log, logs/3BH4_dock_metal_EGTA.log, logs/3BH4_dock_metal_oxalic_acid.log, results/3BH4/docking/metal/glycine, logs/3BH4_dock_metal_tartaric_acid.log, logs/3BH4_dock_metal_caffeine.log, logs/3BH4_dock_metal_EDTA.log, results/3BH4/docking/metal/caffeine, results/3BH4/docking/metal/malonic_acid, results/3BH4/docking/metal/EDTA
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 00:55:57 2026]
+Finished jobid: 0 (Rule: collect_metal_scores)
+14 of 14 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-13T002329.294739.snakemake.log
+Elapsed time: 0:32:27.978503

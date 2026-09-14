@@ -1,0 +1,22 @@
+Prediction of noncovalent interactions for PDB structure CAFFEINE_COMPLEX_PROTEIN
+=================================================================================
+Created on 2026/09/14 using PLIP v3.0.1
+
+If you are using PLIP in your work, please cite:
+Schake,P. Bolz,SN. et al. PLIP 2025: introducing protein–protein interactions to the protein–ligand interaction profiler. Nucl. Acids Res. (10 May 2025), gkaf361. doi: 10.1093/nar/gkaf361
+Analysis was done on model 1.
+
+LIG:Z:1 (LIG) - SMALLMOLECULE
+-----------------------------
+Interacting chain(s): A
+
+
+**Hydrogen Bonds**
++-------+---------+----------+-----------+-------------+--------------+-----------+----------+----------+-----------+-----------+----------+-----------+-------------+--------------+----------------------+-----------------------+
+| RESNR | RESTYPE | RESCHAIN | RESNR_LIG | RESTYPE_LIG | RESCHAIN_LIG | SIDECHAIN | DIST_H-A | DIST_D-A | DON_ANGLE | PROTISDON | DONORIDX | DONORTYPE | ACCEPTORIDX | ACCEPTORTYPE | LIGCOO               | PROTCOO               | 
++=======+=========+==========+===========+=============+==============+===========+==========+==========+===========+===========+==========+===========+=============+==============+======================+=======================+
+| 29    | ASP     | A        | 1         | LIG         | Z            | False     | 2.32     | 3.27     | 162.08    | True      | 216      | Nam       | 1520        | Nar          | 8.547, 27.860, 6.199 | 10.296, 30.560, 5.587 | 
++-------+---------+----------+-----------+-------------+--------------+-----------+----------+----------+-----------+-----------+----------+-----------+-------------+--------------+----------------------+-----------------------+
+
+
+

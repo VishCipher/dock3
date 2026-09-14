@@ -1,0 +1,47 @@
+Running redocking benchmark on 6 complexes...
+
+=== 1HSG ===
+  [1HSG] Detected native ligand: MK1 chain B resnum 902 (45 atoms)
+  [1HSG] Box center=(13.07, 22.47, 5.56), size=(22.85, 18.21, 16.63)
+  [1HSG] FAILED: RDKit molecule has implicit Hs. Need explicit Hs.
+
+
+=== 3PTB ===
+  [3PTB] Detected native ligand: BEN chain A resnum 1 (9 atoms)
+  [3PTB] Box center=(-1.76, 14.46, 16.92), size=(9.88, 11.95, 12.51)
+  [3PTB] FAILED: RDKit molecule has implicit Hs. Need explicit Hs.
+
+
+=== 1STP ===
+  [1STP] Detected native ligand: BTN chain A resnum 300 (16 atoms)
+  [1STP] Box center=(11.12, 1.68, -10.75), size=(14.54, 14.0, 15.52)
+  [1STP] FAILED: RDKit molecule has implicit Hs. Need explicit Hs.
+
+
+=== 4DFR ===
+  [4DFR] Detected native ligand: MTX chain A resnum 161 (33 atoms)
+  [4DFR] Box center=(19.74, 62.6, 25.0), size=(16.57, 20.03, 16.52)
+  [4DFR] FAILED: No template matched for residue_key='A:66'
+tried 3 templates for residue_key='A:66'excess_H_ok=False
+PRO        heavy_miss=3 heavy_excess=0 H_excess=[] bond_miss=set() bond_excess=set()
+NPRO       heavy_miss=3 heavy_excess=0 H_excess=[] bond_miss=set() bond_excess={4}
+CPRO       heavy_miss=4 heavy_e
+
+=== 1HVR ===
+  [1HVR] Detected native ligand: XK2 chain A resnum 263 (46 atoms)
+  [1HVR] Box center=(-9.19, 15.91, 27.95), size=(17.97, 15.46, 25.1)
+  [1HVR] FAILED: RDKit molecule has implicit Hs. Need explicit Hs.
+
+
+=== 2CPP ===
+  [2CPP] Detected native ligand: HEM chain A resnum 417 (43 atoms)
+  [2CPP] Box center=(47.35, 45.79, 9.1), size=(22.87, 20.42, 12.87)
+  [2CPP] FAILED: No template matched for residue_key='A:214'
+tried 6 templates for residue_key='A:214'excess_H_ok=False
+LYS        heavy_miss=4 heavy_excess=0 H_excess=[] bond_miss=set() bond_excess=set()
+NLYS       heavy_miss=4 heavy_excess=0 H_excess=[] bond_miss=set() bond_excess={4}
+CLYS       heavy_miss=5 heavy
+
+==================================================
+No complexes completed successfully.
+Full results written to benchmark_results.tsv

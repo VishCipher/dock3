@@ -1,0 +1,82 @@
+{
+  "summary": {
+    "n_poses": 20,
+    "avg_coordination_score": 0.07615380353041878,
+    "avg_metal_binding_score": 0.0,
+    "best_coordination_score": 0.0,
+    "poses_with_violations": 20,
+    "violation_rate": 1.0
+  },
+  "pose_details": [
+    {
+      "pose_id": 1,
+      "energy": 147.43957729518823,
+      "confidence": 0.3641756101755763,
+      "metal_interactions": {
+        "coordination_score": 1.5230760706083757,
+        "binding_score": 0.0,
+        "base_score": -4.083498775420134
+      },
+      "coordination_score": 1.5230760706083757,
+      "constraint_violations": [
+        "Geometry constraint violation: 150.00"
+      ]
+    },
+    {
+      "pose_id": 2,
+      "energy": 152.99514366330712,
+      "confidence": 0.5145255365256878,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -7.004856336692869
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 160.00"
+      ]
+    },
+    {
+      "pose_id": 3,
+      "energy": 153.07445272290747,
+      "confidence": 0.7899658042455118,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -6.925547277092538
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 160.00"
+      ]
+    },
+    {
+      "pose_id": 4,
+      "energy": 153.44572847086965,
+      "confidence": 0.5229844990829445,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -6.554271529130335
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 160.00"
+      ]
+    },
+    {
+      "pose_id": 5,
+      "energy": 153.7232184682258,
+      "confidence": 0.5211368999528679,
+      "metal_interactions": {
+        "coordination_score": 0.0,
+        "binding_score": 0.0,
+        "base_score": -6.276781531774187
+      },
+      "coordination_score": 0.0,
+      "constraint_violations": [
+        "Geometry constraint violation: 160.00"
+      ]
+    }
+  ]
+}

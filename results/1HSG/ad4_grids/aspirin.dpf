@@ -1,0 +1,44 @@
+autodock_parameter_version 4.2
+outlev 1
+intelec
+seed pid time
+ligand_types A C HD OA
+fld receptor.maps.fld
+map receptor.A.map
+map receptor.C.map
+map receptor.HD.map
+map receptor.OA.map
+elecmap receptor.e.map
+desolvmap receptor.d.map
+move aspirin.pdbqt
+about 4.4222857142857155 0.8767857142857143 1.2232142857142858
+tran0 random
+quat0 random
+dihe0 random
+tstep 2.0
+qstep 50.0
+dstep 50.0
+torsdof 4
+rmstol 2.0
+extnrg 1000.0
+e0max 0.0 10000
+ga_pop_size 150
+ga_num_evals 2500000
+ga_num_generations 27000
+ga_elitism 1
+ga_mutation_rate 0.02
+ga_crossover_rate 0.8
+ga_window_size 10
+ga_cauchy_alpha 0.0
+ga_cauchy_beta 1.0
+set_ga
+sw_max_its 300
+sw_max_succ 4
+sw_max_fail 4
+sw_rho 1.0
+sw_lb_rho 0.01
+ls_search_freq 0.06
+set_psw1
+unbound_model bound
+ga_run 10
+analysis

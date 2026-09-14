@@ -1,0 +1,68 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-14 00:31:45
+  Workflow ID: 607f1fc6-877c-4bd1-8926-c45b839ec7e2
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 --forcerun compute_consensus_ranking results/3BH4/summary/consensus_ranking.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                          count
+-------------------------  -------
+compute_consensus_ranking        2
+all                              1
+total                            3
+
+Select jobs to execute...
+Execute 2 jobs...
+[Mon Sep 14 00:31:46 2026]
+localrule compute_consensus_ranking:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv
+    output: results/3BH4/summary/consensus_ranking.tsv
+    jobid: 2
+    reason: Forced execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:31:46 2026]
+localrule compute_consensus_ranking:
+    input: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv, results/1HSG/summary/plip_interactions.tsv
+    output: results/1HSG/summary/consensus_ranking.tsv
+    jobid: 80
+    reason: Forced execution
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:31:46 2026]
+Finished jobid: 2 (Rule: compute_consensus_ranking)
+1 of 3 steps (33%) done
+[Mon Sep 14 00:31:46 2026]
+Finished jobid: 80 (Rule: compute_consensus_ranking)
+2 of 3 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:31:46 2026]
+localrule all:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/1HSG/summary/plip_interactions.tsv, results/1HSG/summary/consensus_ranking.tsv, results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/consensus_ranking.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv, results/summary/protein_ligand_matrix.tsv, results/summary/admet_properties.tsv, results/summary/run_provenance.json
+    jobid: 0
+    reason: Input files updated by another job: results/3BH4/summary/consensus_ranking.tsv, results/1HSG/summary/consensus_ranking.tsv
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:31:46 2026]
+Finished jobid: 0 (Rule: all)
+3 of 3 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-14T003145.306463.snakemake.log
+Elapsed time: 0:00:00.958887

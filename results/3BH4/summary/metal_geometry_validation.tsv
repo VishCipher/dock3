@@ -1,0 +1,12 @@
+ligand_id	coordination_number	expected_range	closest_atom_distance_A	coordinating_atoms	flag
+EDTA	1	6-8	2.59	OA@2.59A	LOW_COORDINATION
+EGTA	1	6-8	2.2	OA@2.2A	LOW_COORDINATION
+ascorbic_acid	1	6-8	2.17	OA@2.17A	LOW_COORDINATION
+glycine	1	6-8	2.31	NA@2.31A	LOW_COORDINATION
+malonic_acid	1	6-8	2.2	OA@2.2A	LOW_COORDINATION
+oxalic_acid	1	6-8	2.2	OA@2.2A	LOW_COORDINATION
+aspirin	0	6-8	7.21		LOW_COORDINATION
+caffeine	0	6-8	8.36		LOW_COORDINATION
+citric_acid	0	6-8	7.37		LOW_COORDINATION
+salicylic_acid	0	6-8	7.39		LOW_COORDINATION
+tartaric_acid	0	6-8	10.09		LOW_COORDINATION

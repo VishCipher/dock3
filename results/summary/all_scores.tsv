@@ -1,0 +1,13 @@
+rank	ligand_id	best_affinity_kcal_mol
+1	aspirin	-5.50
+2	caffeine	-5.40
+3	EGTA	-5.20
+4	salicylic_acid	-5.20
+5	EDTA	-5.10
+6	ascorbic_acid	-5.10
+7	citric_acid	-4.10
+8	tartaric_acid	-4.10
+9	malonic_acid	-3.40
+10	phosphoric_acid	-3.20
+11	glycine	-2.90
+12	oxalic_acid	-2.90

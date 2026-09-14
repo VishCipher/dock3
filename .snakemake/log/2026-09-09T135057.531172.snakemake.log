@@ -1,0 +1,67 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-09 13:50:57
+  Workflow ID: 7b948903-fc86-4e64-bb22-9e81d4016f1a
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                        count
+-----------------------  -------
+validate_metal_geometry        1
+write_run_provenance           1
+all                            1
+total                          3
+
+Select jobs to execute...
+Execute 2 jobs...
+[Wed Sep  9 13:50:57 2026]
+localrule write_run_provenance:
+    input: results/summary/protein_ligand_matrix.tsv
+    output: results/summary/run_provenance.json
+    jobid: 111
+    reason: Params have changed since last execution: Union of exclusive params before and now across all output: before: False now: <nothing exclusive> 
+    resources: tmpdir=/tmp
+[Wed Sep  9 13:50:57 2026]
+localrule validate_metal_geometry:
+    input: results/3BH4/cofactors/cofactor_report.json, results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/EGTA_out.pdbqt, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt, results/3BH4/docking/vina/aspirin_out.pdbqt, results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/malonic_acid_out.pdbqt, results/3BH4/docking/vina/oxalic_acid_out.pdbqt, results/3BH4/docking/vina/salicylic_acid_out.pdbqt, results/3BH4/docking/vina/tartaric_acid_out.pdbqt
+    output: results/3BH4/summary/metal_geometry_validation.tsv
+    jobid: 108
+    reason: Missing output files: results/3BH4/summary/metal_geometry_validation.tsv
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 641:
+Command 'set -euo pipefail;  /home/vishishtaapandit28/anaconda3/envs/docking/bin/python3.11 /home/vishishtaapandit28/docking-pipeline-project/.snakemake/scripts/tmpw8deazua.write_run_provenance.py' returned non-zero exit status 1.
+[Wed Sep  9 13:50:58 2026]
+Error in rule write_run_provenance:
+    message: None
+    jobid: 111
+    input: results/summary/protein_ligand_matrix.tsv
+    output: results/summary/run_provenance.json
+[Wed Sep  9 13:50:58 2026]
+Finished jobid: 108 (Rule: validate_metal_geometry)
+1 of 3 steps (33%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-09T135057.531172.snakemake.log
+Elapsed time: 0:00:00.534364
+WorkflowError:
+At least one job did not complete successfully.

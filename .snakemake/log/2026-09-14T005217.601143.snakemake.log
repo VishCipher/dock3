@@ -1,0 +1,22 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-14 00:52:17
+  Workflow ID: fc79f760-5499-41b6-bf12-5d3ae3577987
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake redocking_benchmark --cores 1
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/workflow/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project/workflow
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+MissingRuleException:
+No rule to produce redocking_benchmark (if you use input functions make sure that they don't raise unexpected exceptions).

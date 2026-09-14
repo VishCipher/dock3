@@ -1,0 +1,28 @@
+{
+  "run_timestamp": "2026-09-14T00:24:38.815874",
+  "targets": [
+    "1HSG",
+    "3BH4"
+  ],
+  "n_ligands": 11,
+  "ligand_ids": [
+    "EDTA",
+    "EGTA",
+    "ascorbic_acid",
+    "aspirin",
+    "caffeine",
+    "citric_acid",
+    "glycine",
+    "malonic_acid",
+    "oxalic_acid",
+    "salicylic_acid",
+    "tartaric_acid"
+  ],
+  "engines_active": {
+    "vina": true,
+    "smina": true,
+    "ad4": true,
+    "pandadock_metal": "auto-detected per target (see each target's cofactor_report.json)"
+  },
+  "git": null
+}

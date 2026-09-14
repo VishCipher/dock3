@@ -1,0 +1,8 @@
+{
+  "n_poses": 20,
+  "avg_coordination_score": 0.0,
+  "avg_metal_binding_score": 0.0,
+  "best_coordination_score": 0.0,
+  "poses_with_violations": 20,
+  "violation_rate": 1.0
+}

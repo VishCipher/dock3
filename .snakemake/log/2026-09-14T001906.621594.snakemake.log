@@ -1,0 +1,950 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-14 00:19:06
+  Workflow ID: 801f61c0-d2b1-4be2-b2ab-596addb3411a
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 --forcerun compute_consensus_ranking results/3BH4/summary/consensus_ranking.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                          count
+-------------------------  -------
+compute_consensus_ranking        1
+detect_cofactors                 1
+all                              1
+total                            3
+
+Select jobs to execute...
+Execute 2 jobs...
+[Mon Sep 14 00:19:07 2026]
+localcheckpoint detect_cofactors:
+    input: data/1HSG_receptor.pdb
+    output: results/1HSG/cofactors/cofactor_report.json
+    jobid: 1
+    reason: Code has changed since last execution
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+DAG of jobs will be updated after completion.
+[Mon Sep 14 00:19:07 2026]
+localrule compute_consensus_ranking:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv
+    output: results/3BH4/summary/consensus_ranking.tsv
+    jobid: 2
+    reason: Forced execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:07 2026]
+Finished jobid: 1 (Rule: detect_cofactors)
+1 of 3 steps (33%) done
+Updating checkpoint dependencies.
+Select jobs to execute...
+Execute 3 jobs...
+[Mon Sep 14 00:19:07 2026]
+localrule merge_engine_scores:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv
+    output: results/3BH4/summary/merged_all_engines.tsv
+    jobid: 158
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:08 2026]
+localrule prep_receptor_clean:
+    input: data/1HSG_receptor.pdb
+    output: results/1HSG/receptor/receptor_clean.pdb
+    jobid: 98
+    reason: Code has changed since last execution
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:08 2026]
+localrule compute_admet:
+    input: ligands/EDTA.sdf, ligands/EGTA.sdf, ligands/ascorbic_acid.sdf, ligands/aspirin.sdf, ligands/caffeine.sdf, ligands/citric_acid.sdf, ligands/glycine.sdf, ligands/malonic_acid.sdf, ligands/oxalic_acid.sdf, ligands/salicylic_acid.sdf, ligands/tartaric_acid.sdf
+    output: results/summary/admet_properties.tsv
+    jobid: 160
+    reason: Code has changed since last execution
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:08 2026]
+Finished jobid: 2 (Rule: compute_consensus_ranking)
+2 of 71 steps (3%) done
+[Mon Sep 14 00:19:08 2026]
+Finished jobid: 98 (Rule: prep_receptor_clean)
+3 of 71 steps (4%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:19:08 2026]
+localrule prep_receptor:
+    input: results/1HSG/receptor/receptor_clean.pdb
+    output: results/1HSG/receptor/receptor.pdbqt
+    log: logs/1HSG_prep_receptor.log
+    jobid: 97
+    reason: Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:08 2026]
+Finished jobid: 158 (Rule: merge_engine_scores)
+4 of 71 steps (6%) done
+[Mon Sep 14 00:19:08 2026]
+Finished jobid: 160 (Rule: compute_admet)
+5 of 71 steps (7%) done
+[Mon Sep 14 00:19:10 2026]
+Finished jobid: 97 (Rule: prep_receptor)
+6 of 71 steps (8%) done
+Select jobs to execute...
+Execute 4 jobs...
+[Mon Sep 14 00:19:10 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    output: results/1HSG/docking/vina/ascorbic_acid_out.pdbqt, results/1HSG/docking/vina/ascorbic_acid_log.txt
+    jobid: 100
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:10 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    output: results/1HSG/docking/vina/tartaric_acid_out.pdbqt, results/1HSG/docking/vina/tartaric_acid_log.txt
+    jobid: 108
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:10 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/1HSG/docking/smina/glycine_out.pdbqt, results/1HSG/docking/smina/glycine_log.txt
+    jobid: 116
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:10 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/1HSG/docking/vina/malonic_acid_out.pdbqt, results/1HSG/docking/vina/malonic_acid_log.txt
+    jobid: 105
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:12 2026]
+Finished jobid: 116 (Rule: dock_smina)
+7 of 71 steps (10%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:12 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    output: results/1HSG/docking/smina/aspirin_out.pdbqt, results/1HSG/docking/smina/aspirin_log.txt
+    jobid: 113
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:14 2026]
+Finished jobid: 113 (Rule: dock_smina)
+8 of 71 steps (11%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:14 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    output: results/1HSG/docking/smina/tartaric_acid_out.pdbqt, results/1HSG/docking/smina/tartaric_acid_log.txt
+    jobid: 120
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:15 2026]
+Finished jobid: 120 (Rule: dock_smina)
+9 of 71 steps (13%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:15 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    output: results/1HSG/docking/vina/salicylic_acid_out.pdbqt, results/1HSG/docking/vina/salicylic_acid_log.txt
+    jobid: 107
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:19 2026]
+Finished jobid: 100 (Rule: dock_vina)
+10 of 71 steps (14%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:19 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    output: results/1HSG/docking/smina/ascorbic_acid_out.pdbqt, results/1HSG/docking/smina/ascorbic_acid_log.txt
+    jobid: 112
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:20 2026]
+Finished jobid: 108 (Rule: dock_vina)
+11 of 71 steps (15%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:20 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/1HSG/docking/smina/EGTA_out.pdbqt, results/1HSG/docking/smina/EGTA_log.txt
+    jobid: 111
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:20 2026]
+Finished jobid: 105 (Rule: dock_vina)
+12 of 71 steps (17%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:20 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/1HSG/docking/smina/citric_acid_out.pdbqt, results/1HSG/docking/smina/citric_acid_log.txt
+    jobid: 115
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:21 2026]
+Finished jobid: 112 (Rule: dock_smina)
+13 of 71 steps (18%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:21 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    output: results/1HSG/docking/smina/EDTA_out.pdbqt, results/1HSG/docking/smina/EDTA_log.txt
+    jobid: 110
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:26 2026]
+Finished jobid: 115 (Rule: dock_smina)
+14 of 71 steps (20%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:26 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/1HSG/docking/vina/oxalic_acid_out.pdbqt, results/1HSG/docking/vina/oxalic_acid_log.txt
+    jobid: 106
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:29 2026]
+Finished jobid: 107 (Rule: dock_vina)
+15 of 71 steps (21%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:30 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    output: results/1HSG/docking/smina/caffeine_out.pdbqt, results/1HSG/docking/smina/caffeine_log.txt
+    jobid: 114
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:34 2026]
+Finished jobid: 114 (Rule: dock_smina)
+16 of 71 steps (23%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:34 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/1HSG/docking/vina/citric_acid_out.pdbqt, results/1HSG/docking/vina/citric_acid_log.txt
+    jobid: 103
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:41 2026]
+Finished jobid: 110 (Rule: dock_smina)
+17 of 71 steps (24%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:41 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/malonic_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/malonic_acid_complex.pdb
+    jobid: 150
+    reason: Missing output files: results/1HSG/plip_complexes/malonic_acid_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/malonic_acid_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:42 2026]
+Finished jobid: 150 (Rule: prepare_plip_complex)
+18 of 71 steps (25%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:42 2026]
+localrule ad4_prep_grids:
+    input: results/1HSG/receptor/receptor.pdbqt
+    output: results/1HSG/ad4_grids/receptor.gpf, results/1HSG/ad4_grids/receptor.glg, results/1HSG/ad4_grids/.grids_done
+    jobid: 123
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:51 2026]
+Finished jobid: 106 (Rule: dock_vina)
+19 of 71 steps (27%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:51 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/tartaric_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/tartaric_acid_complex.pdb
+    jobid: 156
+    reason: Missing output files: results/1HSG/plip_complexes/tartaric_acid_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/tartaric_acid_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:51 2026]
+Finished jobid: 123 (Rule: ad4_prep_grids)
+20 of 71 steps (28%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:51 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    output: results/1HSG/docking/vina/caffeine_out.pdbqt, results/1HSG/docking/vina/caffeine_log.txt
+    jobid: 102
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:19:51 2026]
+Finished jobid: 156 (Rule: prepare_plip_complex)
+21 of 71 steps (30%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:19:51 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/1HSG/docking/vina/glycine_out.pdbqt, results/1HSG/docking/vina/glycine_log.txt
+    jobid: 104
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:55 2026]
+Finished jobid: 111 (Rule: dock_smina)
+22 of 71 steps (31%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:55 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/malonic_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/malonic_acid.dlg
+    jobid: 130
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:19:58 2026]
+Finished jobid: 102 (Rule: dock_vina)
+23 of 71 steps (32%) done
+Execute 1 jobs...
+[Mon Sep 14 00:19:58 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/EDTA.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/EDTA.dlg
+    jobid: 122
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:00 2026]
+Finished jobid: 104 (Rule: dock_vina)
+24 of 71 steps (34%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:00 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/glycine_out.pdbqt
+    output: results/1HSG/plip_complexes/glycine_complex.pdb
+    jobid: 148
+    reason: Missing output files: results/1HSG/plip_complexes/glycine_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/glycine_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:00 2026]
+Finished jobid: 148 (Rule: prepare_plip_complex)
+25 of 71 steps (35%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:00 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    output: results/1HSG/docking/vina/aspirin_out.pdbqt, results/1HSG/docking/vina/aspirin_log.txt
+    jobid: 101
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:20:00 2026]
+Finished jobid: 103 (Rule: dock_vina)
+26 of 71 steps (37%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:20:00 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/ascorbic_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/ascorbic_acid_complex.pdb
+    jobid: 140
+    reason: Missing output files: results/1HSG/plip_complexes/ascorbic_acid_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/ascorbic_acid_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:00 2026]
+Finished jobid: 140 (Rule: prepare_plip_complex)
+27 of 71 steps (38%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:00 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/glycine_complex.pdb
+    output: results/1HSG/plip/glycine
+    log: logs/1HSG_plip_glycine.log
+    jobid: 147
+    reason: Missing output files: results/1HSG/plip/glycine; Input files updated by another job: results/1HSG/plip_complexes/glycine_complex.pdb
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:01 2026]
+Finished jobid: 147 (Rule: run_plip)
+28 of 71 steps (39%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:01 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/oxalic_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/oxalic_acid.dlg
+    jobid: 131
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:06 2026]
+Finished jobid: 101 (Rule: dock_vina)
+29 of 71 steps (41%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:06 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/EGTA.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/EGTA.dlg
+    jobid: 124
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:53 2026]
+Finished jobid: 130 (Rule: dock_ad4)
+30 of 71 steps (42%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:53 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/oxalic_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/oxalic_acid_complex.pdb
+    jobid: 152
+    reason: Missing output files: results/1HSG/plip_complexes/oxalic_acid_complex.pdb; Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/oxalic_acid_out.pdbqt
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:53 2026]
+Finished jobid: 152 (Rule: prepare_plip_complex)
+31 of 71 steps (44%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:53 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/aspirin_out.pdbqt
+    output: results/1HSG/plip_complexes/aspirin_complex.pdb
+    jobid: 142
+    reason: Missing output files: results/1HSG/plip_complexes/aspirin_complex.pdb; Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/aspirin_out.pdbqt
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:54 2026]
+Finished jobid: 142 (Rule: prepare_plip_complex)
+32 of 71 steps (45%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:54 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/malonic_acid_complex.pdb
+    output: results/1HSG/plip/malonic_acid
+    log: logs/1HSG_plip_malonic_acid.log
+    jobid: 149
+    reason: Missing output files: results/1HSG/plip/malonic_acid; Input files updated by another job: results/1HSG/plip_complexes/malonic_acid_complex.pdb
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:20:54 2026]
+Finished jobid: 149 (Rule: run_plip)
+33 of 71 steps (46%) done
+Execute 1 jobs...
+[Mon Sep 14 00:20:54 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/salicylic_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/salicylic_acid.dlg
+    jobid: 132
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:05 2026]
+Finished jobid: 131 (Rule: dock_ad4)
+34 of 71 steps (48%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:05 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/glycine.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/glycine.dlg
+    jobid: 129
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:47 2026]
+Finished jobid: 132 (Rule: dock_ad4)
+35 of 71 steps (49%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:47 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/caffeine_out.pdbqt
+    output: results/1HSG/plip_complexes/caffeine_complex.pdb
+    jobid: 144
+    reason: Missing output files: results/1HSG/plip_complexes/caffeine_complex.pdb; Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/caffeine_out.pdbqt
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:47 2026]
+Finished jobid: 144 (Rule: prepare_plip_complex)
+36 of 71 steps (51%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:47 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/oxalic_acid_complex.pdb
+    output: results/1HSG/plip/oxalic_acid
+    log: logs/1HSG_plip_oxalic_acid.log
+    jobid: 151
+    reason: Missing output files: results/1HSG/plip/oxalic_acid; Input files updated by another job: results/1HSG/plip_complexes/oxalic_acid_complex.pdb
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:48 2026]
+Finished jobid: 151 (Rule: run_plip)
+37 of 71 steps (52%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:48 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/citric_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/citric_acid_complex.pdb
+    jobid: 146
+    reason: Missing output files: results/1HSG/plip_complexes/citric_acid_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/citric_acid_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:48 2026]
+Finished jobid: 146 (Rule: prepare_plip_complex)
+38 of 71 steps (54%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:48 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/tartaric_acid_complex.pdb
+    output: results/1HSG/plip/tartaric_acid
+    log: logs/1HSG_plip_tartaric_acid.log
+    jobid: 155
+    reason: Missing output files: results/1HSG/plip/tartaric_acid; Input files updated by another job: results/1HSG/plip_complexes/tartaric_acid_complex.pdb
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:49 2026]
+Finished jobid: 155 (Rule: run_plip)
+39 of 71 steps (55%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:49 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/ascorbic_acid_complex.pdb
+    output: results/1HSG/plip/ascorbic_acid
+    log: logs/1HSG_plip_ascorbic_acid.log
+    jobid: 139
+    reason: Missing output files: results/1HSG/plip/ascorbic_acid; Input files updated by another job: results/1HSG/plip_complexes/ascorbic_acid_complex.pdb
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:49 2026]
+Finished jobid: 122 (Rule: dock_ad4)
+40 of 71 steps (56%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:49 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/ascorbic_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/ascorbic_acid.dlg
+    jobid: 125
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:49 2026]
+Finished jobid: 139 (Rule: run_plip)
+41 of 71 steps (58%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:49 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/caffeine_complex.pdb
+    output: results/1HSG/plip/caffeine
+    log: logs/1HSG_plip_caffeine.log
+    jobid: 143
+    reason: Missing output files: results/1HSG/plip/caffeine; Input files updated by another job: results/1HSG/plip_complexes/caffeine_complex.pdb
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:50 2026]
+Finished jobid: 143 (Rule: run_plip)
+42 of 71 steps (59%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:50 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/salicylic_acid_out.pdbqt
+    output: results/1HSG/plip_complexes/salicylic_acid_complex.pdb
+    jobid: 154
+    reason: Missing output files: results/1HSG/plip_complexes/salicylic_acid_complex.pdb; Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/salicylic_acid_out.pdbqt
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:50 2026]
+Finished jobid: 154 (Rule: prepare_plip_complex)
+43 of 71 steps (61%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:50 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/salicylic_acid_complex.pdb
+    output: results/1HSG/plip/salicylic_acid
+    log: logs/1HSG_plip_salicylic_acid.log
+    jobid: 153
+    reason: Missing output files: results/1HSG/plip/salicylic_acid; Input files updated by another job: results/1HSG/plip_complexes/salicylic_acid_complex.pdb
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:51 2026]
+Finished jobid: 153 (Rule: run_plip)
+44 of 71 steps (62%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:51 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/caffeine.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/caffeine.dlg
+    jobid: 127
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:56 2026]
+Finished jobid: 129 (Rule: dock_ad4)
+45 of 71 steps (63%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:56 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/1HSG/docking/smina/oxalic_acid_out.pdbqt, results/1HSG/docking/smina/oxalic_acid_log.txt
+    jobid: 118
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:21:57 2026]
+Finished jobid: 118 (Rule: dock_smina)
+46 of 71 steps (65%) done
+Execute 1 jobs...
+[Mon Sep 14 00:21:57 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    output: results/1HSG/docking/vina/EDTA_out.pdbqt, results/1HSG/docking/vina/EDTA_log.txt
+    jobid: 96
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:27 2026]
+Finished jobid: 96 (Rule: dock_vina)
+47 of 71 steps (66%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:27 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/EDTA_out.pdbqt
+    output: results/1HSG/plip_complexes/EDTA_complex.pdb
+    jobid: 136
+    reason: Missing output files: results/1HSG/plip_complexes/EDTA_complex.pdb; Input files updated by another job: results/1HSG/docking/vina/EDTA_out.pdbqt, results/1HSG/receptor/receptor_clean.pdb
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:27 2026]
+Finished jobid: 136 (Rule: prepare_plip_complex)
+48 of 71 steps (68%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:27 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    output: results/1HSG/docking/smina/salicylic_acid_out.pdbqt, results/1HSG/docking/smina/salicylic_acid_log.txt
+    jobid: 119
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:30 2026]
+Finished jobid: 119 (Rule: dock_smina)
+49 of 71 steps (69%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:30 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/citric_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/citric_acid.dlg
+    jobid: 128
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:57 2026]
+Finished jobid: 127 (Rule: dock_ad4)
+50 of 71 steps (70%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:57 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/1HSG/docking/smina/malonic_acid_out.pdbqt, results/1HSG/docking/smina/malonic_acid_log.txt
+    jobid: 117
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:59 2026]
+Finished jobid: 117 (Rule: dock_smina)
+51 of 71 steps (72%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:59 2026]
+localrule collect_smina_scores:
+    input: results/1HSG/docking/smina/EDTA_log.txt, results/1HSG/docking/smina/EGTA_log.txt, results/1HSG/docking/smina/ascorbic_acid_log.txt, results/1HSG/docking/smina/aspirin_log.txt, results/1HSG/docking/smina/caffeine_log.txt, results/1HSG/docking/smina/citric_acid_log.txt, results/1HSG/docking/smina/glycine_log.txt, results/1HSG/docking/smina/malonic_acid_log.txt, results/1HSG/docking/smina/oxalic_acid_log.txt, results/1HSG/docking/smina/salicylic_acid_log.txt, results/1HSG/docking/smina/tartaric_acid_log.txt
+    output: results/1HSG/summary/smina_scores.tsv
+    jobid: 109
+    reason: Input files updated by another job: results/1HSG/docking/smina/oxalic_acid_log.txt, results/1HSG/docking/smina/citric_acid_log.txt, results/1HSG/docking/smina/malonic_acid_log.txt, results/1HSG/docking/smina/EDTA_log.txt, results/1HSG/docking/smina/salicylic_acid_log.txt, results/1HSG/docking/smina/aspirin_log.txt, results/1HSG/docking/smina/glycine_log.txt, results/1HSG/docking/smina/caffeine_log.txt, results/1HSG/docking/smina/tartaric_acid_log.txt, results/1HSG/docking/smina/EGTA_log.txt, results/1HSG/docking/smina/ascorbic_acid_log.txt
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:22:59 2026]
+Finished jobid: 109 (Rule: collect_smina_scores)
+52 of 71 steps (73%) done
+Execute 1 jobs...
+[Mon Sep 14 00:22:59 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/citric_acid_complex.pdb
+    output: results/1HSG/plip/citric_acid
+    log: logs/1HSG_plip_citric_acid.log
+    jobid: 145
+    reason: Missing output files: results/1HSG/plip/citric_acid; Input files updated by another job: results/1HSG/plip_complexes/citric_acid_complex.pdb
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:23:00 2026]
+Finished jobid: 145 (Rule: run_plip)
+53 of 71 steps (75%) done
+Execute 1 jobs...
+[Mon Sep 14 00:23:00 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/aspirin.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/aspirin.dlg
+    jobid: 126
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:23:11 2026]
+Finished jobid: 125 (Rule: dock_ad4)
+54 of 71 steps (76%) done
+Execute 1 jobs...
+[Mon Sep 14 00:23:11 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/EDTA_complex.pdb
+    output: results/1HSG/plip/EDTA
+    log: logs/1HSG_plip_EDTA.log
+    jobid: 135
+    reason: Missing output files: results/1HSG/plip/EDTA; Input files updated by another job: results/1HSG/plip_complexes/EDTA_complex.pdb
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:23:11 2026]
+Finished jobid: 135 (Rule: run_plip)
+55 of 71 steps (77%) done
+Execute 1 jobs...
+[Mon Sep 14 00:23:11 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/aspirin_complex.pdb
+    output: results/1HSG/plip/aspirin
+    log: logs/1HSG_plip_aspirin.log
+    jobid: 141
+    reason: Missing output files: results/1HSG/plip/aspirin; Input files updated by another job: results/1HSG/plip_complexes/aspirin_complex.pdb
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:23:12 2026]
+Finished jobid: 141 (Rule: run_plip)
+56 of 71 steps (79%) done
+Execute 1 jobs...
+[Mon Sep 14 00:23:12 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/tartaric_acid.pdbqt, results/1HSG/ad4_grids/.grids_done
+    output: results/1HSG/docking/ad4/tartaric_acid.dlg
+    jobid: 133
+    reason: Input files updated by another job: results/1HSG/ad4_grids/.grids_done
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Mon Sep 14 00:23:35 2026]
+Finished jobid: 128 (Rule: dock_ad4)
+57 of 71 steps (80%) done
+Execute 1 jobs...
+[Mon Sep 14 00:23:35 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/1HSG/docking/vina/EGTA_out.pdbqt, results/1HSG/docking/vina/EGTA_log.txt
+    jobid: 99
+    reason: Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:23:47 2026]
+Finished jobid: 124 (Rule: dock_ad4)
+58 of 71 steps (82%) done
+[Mon Sep 14 00:24:05 2026]
+Finished jobid: 126 (Rule: dock_ad4)
+59 of 71 steps (83%) done
+[Mon Sep 14 00:24:25 2026]
+Finished jobid: 99 (Rule: dock_vina)
+60 of 71 steps (85%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Mon Sep 14 00:24:25 2026]
+localrule prepare_plip_complex:
+    input: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/EGTA_out.pdbqt
+    output: results/1HSG/plip_complexes/EGTA_complex.pdb
+    jobid: 138
+    reason: Missing output files: results/1HSG/plip_complexes/EGTA_complex.pdb; Input files updated by another job: results/1HSG/receptor/receptor_clean.pdb, results/1HSG/docking/vina/EGTA_out.pdbqt
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:25 2026]
+localrule collect_scores:
+    input: results/1HSG/docking/vina/EDTA_log.txt, results/1HSG/docking/vina/EGTA_log.txt, results/1HSG/docking/vina/ascorbic_acid_log.txt, results/1HSG/docking/vina/aspirin_log.txt, results/1HSG/docking/vina/caffeine_log.txt, results/1HSG/docking/vina/citric_acid_log.txt, results/1HSG/docking/vina/glycine_log.txt, results/1HSG/docking/vina/malonic_acid_log.txt, results/1HSG/docking/vina/oxalic_acid_log.txt, results/1HSG/docking/vina/salicylic_acid_log.txt, results/1HSG/docking/vina/tartaric_acid_log.txt
+    output: results/1HSG/summary/all_scores.tsv
+    jobid: 95
+    reason: Input files updated by another job: results/1HSG/docking/vina/EGTA_log.txt, results/1HSG/docking/vina/caffeine_log.txt, results/1HSG/docking/vina/ascorbic_acid_log.txt, results/1HSG/docking/vina/citric_acid_log.txt, results/1HSG/docking/vina/salicylic_acid_log.txt, results/1HSG/docking/vina/malonic_acid_log.txt, results/1HSG/docking/vina/EDTA_log.txt, results/1HSG/docking/vina/oxalic_acid_log.txt, results/1HSG/docking/vina/aspirin_log.txt, results/1HSG/docking/vina/tartaric_acid_log.txt, results/1HSG/docking/vina/glycine_log.txt
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:25 2026]
+Finished jobid: 95 (Rule: collect_scores)
+61 of 71 steps (86%) done
+[Mon Sep 14 00:24:25 2026]
+Finished jobid: 138 (Rule: prepare_plip_complex)
+62 of 71 steps (87%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:25 2026]
+localrule run_plip:
+    input: results/1HSG/plip_complexes/EGTA_complex.pdb
+    output: results/1HSG/plip/EGTA
+    log: logs/1HSG_plip_EGTA.log
+    jobid: 137
+    reason: Missing output files: results/1HSG/plip/EGTA; Input files updated by another job: results/1HSG/plip_complexes/EGTA_complex.pdb
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:26 2026]
+Finished jobid: 137 (Rule: run_plip)
+63 of 71 steps (89%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:26 2026]
+localrule collect_plip_interactions:
+    input: results/1HSG/plip/EDTA, results/1HSG/plip/EGTA, results/1HSG/plip/ascorbic_acid, results/1HSG/plip/aspirin, results/1HSG/plip/caffeine, results/1HSG/plip/citric_acid, results/1HSG/plip/glycine, results/1HSG/plip/malonic_acid, results/1HSG/plip/oxalic_acid, results/1HSG/plip/salicylic_acid, results/1HSG/plip/tartaric_acid
+    output: results/1HSG/summary/plip_interactions.tsv
+    jobid: 134
+    reason: Missing output files: results/1HSG/summary/plip_interactions.tsv; Input files updated by another job: results/1HSG/plip/caffeine, results/1HSG/plip/oxalic_acid, results/1HSG/plip/salicylic_acid, results/1HSG/plip/EDTA, results/1HSG/plip/EGTA, results/1HSG/plip/glycine, results/1HSG/plip/malonic_acid, results/1HSG/plip/aspirin, results/1HSG/plip/tartaric_acid, results/1HSG/plip/citric_acid, results/1HSG/plip/ascorbic_acid
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:26 2026]
+Finished jobid: 134 (Rule: collect_plip_interactions)
+64 of 71 steps (90%) done
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 133 (Rule: dock_ad4)
+65 of 71 steps (92%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:38 2026]
+localrule collect_ad4_scores:
+    input: results/1HSG/docking/ad4/EDTA.dlg, results/1HSG/docking/ad4/EGTA.dlg, results/1HSG/docking/ad4/ascorbic_acid.dlg, results/1HSG/docking/ad4/aspirin.dlg, results/1HSG/docking/ad4/caffeine.dlg, results/1HSG/docking/ad4/citric_acid.dlg, results/1HSG/docking/ad4/glycine.dlg, results/1HSG/docking/ad4/malonic_acid.dlg, results/1HSG/docking/ad4/oxalic_acid.dlg, results/1HSG/docking/ad4/salicylic_acid.dlg, results/1HSG/docking/ad4/tartaric_acid.dlg
+    output: results/1HSG/summary/ad4_scores.tsv
+    jobid: 121
+    reason: Input files updated by another job: results/1HSG/docking/ad4/tartaric_acid.dlg, results/1HSG/docking/ad4/citric_acid.dlg, results/1HSG/docking/ad4/EDTA.dlg, results/1HSG/docking/ad4/EGTA.dlg, results/1HSG/docking/ad4/ascorbic_acid.dlg, results/1HSG/docking/ad4/caffeine.dlg, results/1HSG/docking/ad4/oxalic_acid.dlg, results/1HSG/docking/ad4/malonic_acid.dlg, results/1HSG/docking/ad4/salicylic_acid.dlg, results/1HSG/docking/ad4/aspirin.dlg, results/1HSG/docking/ad4/glycine.dlg
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 121 (Rule: collect_ad4_scores)
+66 of 71 steps (93%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Mon Sep 14 00:24:38 2026]
+localrule compute_consensus_ranking:
+    input: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv, results/1HSG/summary/plip_interactions.tsv
+    output: results/1HSG/summary/consensus_ranking.tsv
+    jobid: 157
+    reason: Missing output files: results/1HSG/summary/consensus_ranking.tsv; Input files updated by another job: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/plip_interactions.tsv, results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+localrule merge_engine_scores:
+    input: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv
+    output: results/1HSG/summary/merged_all_engines.tsv
+    jobid: 94
+    reason: Input files updated by another job: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/ad4_scores.tsv, results/1HSG/summary/smina_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 94 (Rule: merge_engine_scores)
+67 of 71 steps (94%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:38 2026]
+localrule build_protein_ligand_matrix:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/3BH4/summary/merged_all_engines.tsv
+    output: results/summary/protein_ligand_matrix.tsv
+    jobid: 159
+    reason: Input files updated by another job: results/3BH4/summary/merged_all_engines.tsv, results/1HSG/summary/merged_all_engines.tsv
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 157 (Rule: compute_consensus_ranking)
+68 of 71 steps (96%) done
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 159 (Rule: build_protein_ligand_matrix)
+69 of 71 steps (97%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:38 2026]
+localrule write_run_provenance:
+    input: results/summary/protein_ligand_matrix.tsv
+    output: results/summary/run_provenance.json
+    jobid: 161
+    reason: Input files updated by another job: results/summary/protein_ligand_matrix.tsv
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 161 (Rule: write_run_provenance)
+70 of 71 steps (99%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep 14 00:24:38 2026]
+localrule all:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/1HSG/summary/plip_interactions.tsv, results/1HSG/summary/consensus_ranking.tsv, results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/consensus_ranking.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv, results/summary/protein_ligand_matrix.tsv, results/summary/admet_properties.tsv, results/summary/run_provenance.json
+    jobid: 0
+    reason: Input files updated by another job: results/1HSG/summary/consensus_ranking.tsv, results/summary/run_provenance.json, results/summary/protein_ligand_matrix.tsv, results/1HSG/summary/merged_all_engines.tsv, results/1HSG/summary/plip_interactions.tsv, results/summary/admet_properties.tsv, results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/consensus_ranking.tsv
+    resources: tmpdir=/tmp
+[Mon Sep 14 00:24:38 2026]
+Finished jobid: 0 (Rule: all)
+71 of 71 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-14T001906.621594.snakemake.log
+Elapsed time: 0:05:32.281348

@@ -1,0 +1,45 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-13 19:36:23
+  Workflow ID: 2d19b110-0b04-492e-9a7c-bd63dd9fbdaf
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 results/3BH4/summary/consensus_ranking.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                          count
+-------------------------  -------
+compute_consensus_ranking        1
+total                            1
+
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 19:36:23 2026]
+localrule compute_consensus_ranking:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv
+    output: results/3BH4/summary/consensus_ranking.tsv
+    jobid: 0
+    reason: Missing output files: results/3BH4/summary/consensus_ranking.tsv
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:36:23 2026]
+Finished jobid: 0 (Rule: compute_consensus_ranking)
+1 of 1 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-13T193623.385876.snakemake.log
+Elapsed time: 0:00:00.498996

@@ -1,0 +1,5 @@
+2026-09-13 12:01:03,132 [INFO] [plipcmd.py:151] plip.plipcmd: Protein-Ligand Interaction Profiler (PLIP) 3.0.1
+2026-09-13 12:01:03,132 [INFO] [plipcmd.py:152] plip.plipcmd: brought to you by: PharmAI GmbH (2020-2021) - www.pharm.ai - hello@pharm.ai
+2026-09-13 12:01:03,132 [INFO] [plipcmd.py:153] plip.plipcmd: please cite: Schake,P. Bolz,SN. et al. PLIP 2025: introducing protein–protein interactions to the protein–ligand interaction profiler. Nucl. Acids Res. (10 May 2025), gkaf361. doi: 10.1093/nar/gkaf361
+2026-09-13 12:01:03,132 [INFO] [plipcmd.py:70] plip.plipcmd: starting analysis of salicylic_acid_complex.pdb
+2026-09-13 12:01:04,247 [INFO] [plipcmd.py:188] plip.plipcmd: finished analysis, find the result files in results/3BH4/plip/salicylic_acid/

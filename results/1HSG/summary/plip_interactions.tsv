@@ -1,0 +1,12 @@
+rank	ligand_id	total_interactions	hydrogen_bonds	salt_bridges	hydrophobic_interactions	direct_metal_coordination	contacted_residues
+1	aspirin	11	4	1	6	0	ARG8;ASP29;ASP30
+2	salicylic_acid	11	7	0	4	0	ARG8;ASP29;ASP30;GLY48
+3	EGTA	10	7	3	0	0	ARG8;ASP29;ASP30
+4	EDTA	6	4	2	0	0	ASP25;GLY27
+5	malonic_acid	5	5	0	0	0	ASP29;ASP30;GLY48
+6	ascorbic_acid	3	3	0	0	0	ASP25;ILE50
+7	citric_acid	3	3	0	0	0	ASP25;GLY27
+8	tartaric_acid	2	2	0	0	0	ASP25;GLY27
+9	caffeine	1	1	0	0	0	ASP29
+10	glycine	1	1	0	0	0	ASP25
+11	oxalic_acid	1	1	0	0	0	ASP25

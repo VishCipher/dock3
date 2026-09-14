@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<report>
+  <plipversion>3.0.1</plipversion>
+  <bindingsite id="1" has_interactions="True">
+    <identifiers>
+      <longname>LIG</longname>
+      <ligtype>SMALLMOLECULE</ligtype>
+      <hetid>LIG</hetid>
+      <chain>Z</chain>
+      <position>1</position>
+      <composite>False</composite>
+      <members>
+        <member id="1">LIG:Z:1</member>
+      </members>
+      <smiles>[O][C@H]([C@@H](C(=O)[O])[O])C(=O)[O]</smiles>
+      <inchikey>CURCMOMHSRXFRY-XIXRPRMCSA-N
+</inchikey>
+    </identifiers>
+    <lig_properties>
+      <num_heavy_atoms>10</num_heavy_atoms>
+      <num_hbd>4</num_hbd>
+      <num_unpaired_hbd>2</num_unpaired_hbd>
+      <num_hba>6</num_hba>
+      <num_unpaired_hba>4</num_unpaired_hba>
+      <num_hal>0</num_hal>
+      <num_unpaired_hal>0</num_unpaired_hal>
+      <num_aromatic_rings>0</num_aromatic_rings>
+      <num_rotatable_bonds>3</num_rotatable_bonds>
+      <molweight>146.05508</molweight>
+      <logp>-1.5012</logp>
+    </lig_properties>
+    <interacting_chains>
+      <interacting_chain id="1">A</interacting_chain>
+    </interacting_chains>
+    <bs_residues>
+      <bs_residue id="1" contact="False" min_dist="6.8" aa="GLY">48B</bs_residue>
+      <bs_residue id="2" contact="False" min_dist="6.2" aa="ASP">29A</bs_residue>
+      <bs_residue id="3" contact="False" min_dist="5.9" aa="THR">26B</bs_residue>
+      <bs_residue id="4" contact="False" min_dist="3.8" aa="LEU">23B</bs_residue>
+      <bs_residue id="5" contact="False" min_dist="6.0" aa="ASP">29B</bs_residue>
+      <bs_residue id="6" contact="False" min_dist="5.3" aa="THR">26A</bs_residue>
+      <bs_residue id="7" contact="False" min_dist="3.9" aa="ALA">28B</bs_residue>
+      <bs_residue id="8" contact="False" min_dist="3.4" aa="ALA">28A</bs_residue>
+      <bs_residue id="9" contact="False" min_dist="6.2" aa="VAL">82A</bs_residue>
+      <bs_residue id="10" contact="False" min_dist="4.1" aa="ILE">50B</bs_residue>
+      <bs_residue id="11" contact="True" min_dist="2.8" aa="ASP">25A</bs_residue>
+      <bs_residue id="12" contact="False" min_dist="4.8" aa="ILE">84B</bs_residue>
+      <bs_residue id="13" contact="False" min_dist="6.1" aa="GLY">49B</bs_residue>
+      <bs_residue id="14" contact="False" min_dist="4.6" aa="GLY">49A</bs_residue>
+      <bs_residue id="15" contact="False" min_dist="7.4" aa="ASP">30A</bs_residue>
+      <bs_residue id="16" contact="False" min_dist="6.7" aa="PRO">81B</bs_residue>
+      <bs_residue id="17" contact="False" min_dist="4.4" aa="LEU">23A</bs_residue>
+      <bs_residue id="18" contact="True" min_dist="3.0" aa="GLY">27A</bs_residue>
+      <bs_residue id="19" contact="False" min_dist="5.2" aa="GLY">48A</bs_residue>
+      <bs_residue id="20" contact="False" min_dist="2.9" aa="ASP">25B</bs_residue>
+      <bs_residue id="21" contact="False" min_dist="7.5" aa="GLY">51A</bs_residue>
+      <bs_residue id="22" contact="False" min_dist="2.9" aa="GLY">27B</bs_residue>
+      <bs_residue id="23" contact="False" min_dist="5.4" aa="VAL">82B</bs_residue>
+      <bs_residue id="24" contact="False" min_dist="6.8" aa="VAL">32A</bs_residue>
+      <bs_residue id="25" contact="False" min_dist="4.7" aa="ILE">50A</bs_residue>
+      <bs_residue id="26" contact="False" min_dist="4.2" aa="ILE">84A</bs_residue>
+    </bs_residues>
+    <interactions>
+      <hydrophobic_interactions/>
+      <hydrogen_bonds>
+        <hydrogen_bond id="1">
+          <resnr>25</resnr>
+          <restype>ASP</restype>
+          <reschain>A</reschain>
+          <resnr_lig>1</resnr_lig>
+          <restype_lig>LIG</restype_lig>
+          <reschain_lig>Z</reschain_lig>
+          <sidechain>True</sidechain>
+          <dist_h-a>2.60</dist_h-a>
+          <dist_d-a>3.19</dist_d-a>
+          <don_angle>118.36</don_angle>
+          <protisdon>False</protisdon>
+          <donoridx>1522</donoridx>
+          <donortype>O3</donortype>
+          <acceptoridx>199</acceptoridx>
+          <acceptortype>O3</acceptortype>
+          <ligcoo>
+            <x>13.740</x>
+            <y>24.302</y>
+            <z>7.482</z>
+          </ligcoo>
+          <protcoo>
+            <x>15.762</x>
+            <y>26.696</y>
+            <z>6.882</z>
+          </protcoo>
+        </hydrogen_bond>
+        <hydrogen_bond id="2">
+          <resnr>27</resnr>
+          <restype>GLY</restype>
+          <reschain>A</reschain>
+          <resnr_lig>1</resnr_lig>
+          <restype_lig>LIG</restype_lig>
+          <reschain_lig>Z</reschain_lig>
+          <sidechain>False</sidechain>
+          <dist_h-a>2.70</dist_h-a>
+          <dist_d-a>3.50</dist_d-a>
+          <don_angle>139.39</don_angle>
+          <protisdon>False</protisdon>
+          <donoridx>1525</donoridx>
+          <donortype>O3</donortype>
+          <acceptoridx>210</acceptoridx>
+          <acceptortype>O2</acceptortype>
+          <ligcoo>
+            <x>14.122</x>
+            <y>25.696</y>
+            <z>4.451</z>
+          </ligcoo>
+          <protcoo>
+            <x>11.832</x>
+            <y>28.015</y>
+            <z>3.171</z>
+          </protcoo>
+        </hydrogen_bond>
+      </hydrogen_bonds>
+      <water_bridges/>
+      <salt_bridges/>
+      <pi_stacks/>
+      <pi_cation_interactions/>
+      <halogen_bonds/>
+      <metal_complexes/>
+    </interactions>
+    <mappings>
+      <smiles_to_pdb>2:1517,8:1518,9:1519,10:1520,1:1522,3:1524,7:1525,4:1527,5:1528,6:1529</smiles_to_pdb>
+    </mappings>
+  </bindingsite>
+  <date_of_creation>2026/09/14</date_of_creation>
+  <citation_information>Schake,P. Bolz,SN. et al. PLIP 2025: introducing protein–protein interactions to the protein–ligand interaction profiler. Nucl. Acids Res. (10 May 2025), gkaf361. doi: 10.1093/nar/gkaf361</citation_information>
+  <maintainer_information>PharmAI GmbH (2020-2021) - www.pharm.ai - hello@pharm.ai</maintainer_information>
+  <mode>default</mode>
+  <pdbid>TARTARIC_ACID_COMPLEX_PROTEIN</pdbid>
+  <model>1</model>
+  <filetype>PDB</filetype>
+  <pdbfile>results/1HSG/plip/tartaric_acid/plipfixed.tartaric_acid_complex_ulatx7nc.pdb</pdbfile>
+  <pdbfixes>True</pdbfixes>
+  <filename>plipfixed.tartaric_acid_complex_ulatx7nc.pdb</filename>
+  <excluded_ligands/>
+  <covlinkages/>
+</report>

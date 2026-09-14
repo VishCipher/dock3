@@ -1,0 +1,198 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-06 02:23:54
+  Workflow ID: af1f7b97-645f-4920-a3b1-fbb0f352fc16
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                            count
+---------------------------  -------
+dock_metal_site                    1
+prep_ligand                       12
+prep_receptor                      2
+ad4_prep_grids                     2
+collect_metal_scores               1
+dock_smina                        24
+dock_vina                         24
+collect_scores                     2
+collect_smina_scores               2
+dock_ad4                          24
+collect_ad4_scores                 2
+merge_engine_scores                2
+build_protein_ligand_matrix        1
+all                                1
+total                            100
+
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep  6 02:23:54 2026]
+localrule prep_receptor:
+    input: results/3BH4/receptor/receptor_clean.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log
+    jobid: 63
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep  6 02:23:54 2026]
+localrule prep_ligand:
+    input: ligands/caffeine.sdf
+    output: results/ligands_pdbqt/caffeine.pdbqt
+    log: logs/prep_ligand_caffeine.log
+    jobid: 18
+    reason: Code has changed since last execution
+    wildcards: ligand=caffeine
+    resources: tmpdir=/tmp
+[Sun Sep  6 02:23:54 2026]
+localrule prep_ligand:
+    input: ligands/citric_acid.sdf
+    output: results/ligands_pdbqt/citric_acid.pdbqt
+    log: logs/prep_ligand_citric_acid.log
+    jobid: 20
+    reason: Code has changed since last execution
+    wildcards: ligand=citric_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 02:23:54 2026]
+localrule prep_receptor:
+    input: results/1HSG/receptor/receptor_clean.pdb
+    output: results/1HSG/receptor/receptor.pdbqt
+    log: logs/1HSG_prep_receptor.log
+    jobid: 8
+    reason: Code has changed since last execution
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep  6 02:23:55 2026]
+Finished jobid: 20 (Rule: prep_ligand)
+1 of 100 steps (1%) done
+Execute 1 jobs...
+[Sun Sep  6 02:23:55 2026]
+localrule prep_ligand:
+    input: ligands/oxalic_acid.sdf
+    output: results/ligands_pdbqt/oxalic_acid.pdbqt
+    log: logs/prep_ligand_oxalic_acid.log
+    jobid: 26
+    reason: Code has changed since last execution
+    wildcards: ligand=oxalic_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 02:23:55 2026]
+Finished jobid: 18 (Rule: prep_ligand)
+2 of 100 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 02:23:55 2026]
+localrule prep_ligand:
+    input: ligands/EGTA.sdf
+    output: results/ligands_pdbqt/EGTA.pdbqt
+    log: logs/prep_ligand_EGTA.log
+    jobid: 12
+    reason: Code has changed since last execution
+    wildcards: ligand=EGTA
+    resources: tmpdir=/tmp
+[Sun Sep  6 02:23:56 2026]
+Finished jobid: 8 (Rule: prep_receptor)
+3 of 100 steps (3%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 02:23:56 2026]
+localrule prep_ligand:
+    input: ligands/phosphoric_acid.sdf
+    output: results/ligands_pdbqt/phosphoric_acid.pdbqt
+    log: logs/prep_ligand_phosphoric_acid.log
+    jobid: 28
+    reason: Code has changed since last execution
+    wildcards: ligand=phosphoric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep  6 02:23:56 2026]
+Finished jobid: 12 (Rule: prep_ligand)
+4 of 100 steps (4%) done
+Execute 1 jobs...
+[Sun Sep  6 02:23:56 2026]
+localrule prep_ligand:
+    input: ligands/ascorbic_acid.sdf
+    output: results/ligands_pdbqt/ascorbic_acid.pdbqt
+    log: logs/prep_ligand_ascorbic_acid.log
+    jobid: 14
+    reason: Code has changed since last execution
+    wildcards: ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep  6 02:23:57 2026]
+Finished jobid: 26 (Rule: prep_ligand)
+5 of 100 steps (5%) done
+Execute 1 jobs...
+[Sun Sep  6 02:23:57 2026]
+localrule ad4_prep_grids:
+    input: results/1HSG/receptor/receptor.pdbqt
+    output: results/1HSG/ad4_grids/receptor.gpf, results/1HSG/ad4_grids/receptor.glg, results/1HSG/ad4_grids/.grids_done
+    jobid: 48
+    reason: Missing output files: results/1HSG/ad4_grids/.grids_done; Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 224:
+Command 'set -euo pipefail;  
+        mkdir -p results/ligands_pdbqt logs
+        mk_prepare_ligand.py -i ligands/phosphoric_acid.sdf -o results/ligands_pdbqt/phosphoric_acid.pdbqt > logs/prep_ligand_phosphoric_acid.log 2>&1' returned non-zero exit status 3.
+[Sun Sep  6 02:23:57 2026]
+Error in rule prep_ligand:
+    message: None
+    jobid: 28
+    input: ligands/phosphoric_acid.sdf
+    output: results/ligands_pdbqt/phosphoric_acid.pdbqt
+    log: logs/prep_ligand_phosphoric_acid.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/ligands_pdbqt logs
+        mk_prepare_ligand.py -i ligands/phosphoric_acid.sdf -o results/ligands_pdbqt/phosphoric_acid.pdbqt > logs/prep_ligand_phosphoric_acid.log 2>&1
+        
+        (command exited with non-zero exit code)
+[Sun Sep  6 02:23:57 2026]
+Finished jobid: 14 (Rule: prep_ligand)
+6 of 100 steps (6%) done
+[Sun Sep  6 02:23:59 2026]
+Finished jobid: 48 (Rule: ad4_prep_grids)
+7 of 100 steps (7%) done
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 268:
+Command 'set -euo pipefail;  
+        mkdir -p results/3BH4/receptor logs
+        mk_prepare_receptor.py --read_pdb results/3BH4/receptor/receptor_clean.pdb -p results/3BH4/receptor/receptor.pdbqt > logs/3BH4_prep_receptor.log 2>&1' returned non-zero exit status 1.
+[Sun Sep  6 02:24:00 2026]
+Error in rule prep_receptor:
+    message: None
+    jobid: 63
+    input: results/3BH4/receptor/receptor_clean.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/3BH4/receptor logs
+        mk_prepare_receptor.py --read_pdb results/3BH4/receptor/receptor_clean.pdb -p results/3BH4/receptor/receptor.pdbqt > logs/3BH4_prep_receptor.log 2>&1
+        
+        (command exited with non-zero exit code)
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-06T022354.293129.snakemake.log
+Elapsed time: 0:00:06.014441
+WorkflowError:
+At least one job did not complete successfully.

@@ -1,0 +1,95 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-13 19:31:37
+  Workflow ID: 72f81f7f-090f-4e0e-8084-1abc9fb9272d
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 results/3BH4/summary/consensus_ranking.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                          count
+-------------------------  -------
+collect_ad4_scores               1
+collect_scores                   1
+collect_smina_scores             1
+validate_metal_geometry          1
+compute_consensus_ranking        1
+total                            5
+
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep 13 19:31:38 2026]
+localrule collect_ad4_scores:
+    input: results/3BH4/docking/ad4/EDTA.dlg, results/3BH4/docking/ad4/EGTA.dlg, results/3BH4/docking/ad4/ascorbic_acid.dlg, results/3BH4/docking/ad4/aspirin.dlg, results/3BH4/docking/ad4/caffeine.dlg, results/3BH4/docking/ad4/citric_acid.dlg, results/3BH4/docking/ad4/glycine.dlg, results/3BH4/docking/ad4/malonic_acid.dlg, results/3BH4/docking/ad4/oxalic_acid.dlg, results/3BH4/docking/ad4/salicylic_acid.dlg, results/3BH4/docking/ad4/tartaric_acid.dlg
+    output: results/3BH4/summary/ad4_scores.tsv
+    jobid: 40
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:31:38 2026]
+localrule validate_metal_geometry:
+    input: results/3BH4/cofactors/cofactor_report.json, results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/EGTA_out.pdbqt, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt, results/3BH4/docking/vina/aspirin_out.pdbqt, results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/malonic_acid_out.pdbqt, results/3BH4/docking/vina/oxalic_acid_out.pdbqt, results/3BH4/docking/vina/salicylic_acid_out.pdbqt, results/3BH4/docking/vina/tartaric_acid_out.pdbqt
+    output: results/3BH4/summary/metal_geometry_validation.tsv
+    jobid: 88
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:31:38 2026]
+localrule collect_scores:
+    input: results/3BH4/docking/vina/EDTA_log.txt, results/3BH4/docking/vina/EGTA_log.txt, results/3BH4/docking/vina/ascorbic_acid_log.txt, results/3BH4/docking/vina/aspirin_log.txt, results/3BH4/docking/vina/caffeine_log.txt, results/3BH4/docking/vina/citric_acid_log.txt, results/3BH4/docking/vina/glycine_log.txt, results/3BH4/docking/vina/malonic_acid_log.txt, results/3BH4/docking/vina/oxalic_acid_log.txt, results/3BH4/docking/vina/salicylic_acid_log.txt, results/3BH4/docking/vina/tartaric_acid_log.txt
+    output: results/3BH4/summary/all_scores.tsv
+    jobid: 3
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:31:38 2026]
+localrule collect_smina_scores:
+    input: results/3BH4/docking/smina/EDTA_log.txt, results/3BH4/docking/smina/EGTA_log.txt, results/3BH4/docking/smina/ascorbic_acid_log.txt, results/3BH4/docking/smina/aspirin_log.txt, results/3BH4/docking/smina/caffeine_log.txt, results/3BH4/docking/smina/citric_acid_log.txt, results/3BH4/docking/smina/glycine_log.txt, results/3BH4/docking/smina/malonic_acid_log.txt, results/3BH4/docking/smina/oxalic_acid_log.txt, results/3BH4/docking/smina/salicylic_acid_log.txt, results/3BH4/docking/smina/tartaric_acid_log.txt
+    output: results/3BH4/summary/smina_scores.tsv
+    jobid: 28
+    reason: Code has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:31:38 2026]
+Finished jobid: 28 (Rule: collect_smina_scores)
+1 of 5 steps (20%) done
+[Sun Sep 13 19:31:38 2026]
+Finished jobid: 3 (Rule: collect_scores)
+2 of 5 steps (40%) done
+[Sun Sep 13 19:31:38 2026]
+Finished jobid: 40 (Rule: collect_ad4_scores)
+3 of 5 steps (60%) done
+[Sun Sep 13 19:31:38 2026]
+Finished jobid: 88 (Rule: validate_metal_geometry)
+4 of 5 steps (80%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 19:31:38 2026]
+localrule compute_consensus_ranking:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv, results/3BH4/summary/plip_interactions.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv
+    output: results/3BH4/summary/consensus_ranking.tsv
+    jobid: 0
+    reason: Input files updated by another job: results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv, results/3BH4/summary/all_scores.tsv, results/3BH4/summary/ad4_scores.tsv
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 19:31:39 2026]
+Finished jobid: 0 (Rule: compute_consensus_ranking)
+5 of 5 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-13T193137.533313.snakemake.log
+Elapsed time: 0:00:01.576101

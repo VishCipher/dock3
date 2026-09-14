@@ -1,0 +1,12 @@
+rank	ligand_id	best_energy_kcal_mol
+1	caffeine	-3.47
+2	aspirin	-3.40
+3	salicylic_acid	-3.25
+4	glycine	-2.93
+5	malonic_acid	-2.80
+6	ascorbic_acid	-2.79
+7	oxalic_acid	-2.32
+8	tartaric_acid	-1.91
+9	citric_acid	-1.32
+10	EDTA	-0.11
+11	EGTA	NA

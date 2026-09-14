@@ -1,0 +1,73 @@
+# -----------------------------------------------------------------------------
+# Docking pipeline configuration — multi-target
+# -----------------------------------------------------------------------------
+# Each entry under `targets` is one protein: its own receptor PDB and its own
+# docking box. The SAME ligand library (below) gets screened against every
+# target listed here in one pipeline run.
+
+targets:
+  1HSG:
+    receptor_pdb: "data/1HSG_receptor.pdb"
+    box:
+      center_x: 13.073
+      center_y: 22.467
+      center_z: 5.557
+      size_x: 23
+      size_y: 18
+      size_z: 17
+
+  3BH4:
+    receptor_pdb: "data/3BH4_receptor.pdb"
+    box:
+      center_x: 53.838
+      center_y: 11.958
+      center_z: 13.914
+      size_x: 20
+      size_y: 20
+      size_z: 20
+
+  # Add more targets the same way:
+  # MY_TARGET:
+  #   receptor_pdb: "data/my_target_receptor.pdb"
+  #   box:
+  #     center_x: ...
+  #     center_y: ...
+  #     center_z: ...
+  #     size_x: ...
+  #     size_y: ...
+  #     size_z: ...
+
+# Directory containing one .sdf file per ligand (filename stem = ligand ID).
+# Screened against every target listed above.
+ligand_dir: "ligands"
+
+# Vina/smina search thoroughness. Higher = slower but more reliable.
+exhaustiveness: 8
+
+# -----------------------------------------------------------------------------
+# AutoDock4
+# -----------------------------------------------------------------------------
+# No MGLTools needed. The pipeline writes AD4's grid/docking parameter files
+# (GPF/DPF) itself in plain Python -- you only need the autodock4/autogrid4
+# binaries on PATH (conda install -c bioconda autodock).
+
+# Atom types AutoGrid should compute maps for. The default below covers
+# plain organic ligands (C, N, O, halogens, S, P, aromatic carbon, polar H).
+# Only widen this if a ligand in your library contains an element outside
+# this list (autodock4 will error clearly if a needed map is missing).
+ad4_ligand_types: "C,A,N,NA,OA,SA,HD,F,Cl,Br,I,S,P"
+
+# AutoDockTools' standard default GA-LS search settings. Lower ad4_ga_run
+# and/or ad4_ga_num_evals for a faster, lower-thoroughness screen.
+ad4_ga_run: 10
+ad4_ga_num_evals: 2500000
+
+# -----------------------------------------------------------------------------
+# PandaDock metal parameters
+# -----------------------------------------------------------------------------
+# Real, official AutoDock4 atomic parameter file (ccsb-scripps/AutoDock4 on
+# GitHub, GPL-licensed) -- without this, PandaDock silently falls back to
+# generic approximations and its coordination/binding scores come back as a
+# flat 0.000 for every ligand regardless of actual chemistry. Path is
+# relative to the project root; place AD4.1_bound.dat there (or update this).
+metal_params_file: "AD4.1_bound.dat"

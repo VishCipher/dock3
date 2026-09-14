@@ -1,0 +1,134 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-06 12:58:54
+  Workflow ID: 21a2bcaf-3c95-47a8-b278-011296f3482a
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 --keep-going
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                            count
+---------------------------  -------
+collect_ad4_scores                 2
+collect_metal_scores               1
+collect_scores                     2
+collect_smina_scores               2
+prep_receptor                      1
+ad4_prep_grids                     1
+dock_smina                        11
+dock_vina                         11
+merge_engine_scores                2
+dock_ad4                          11
+build_protein_ligand_matrix        1
+all                                1
+total                             46
+
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep  6 12:58:55 2026]
+localrule prep_receptor:
+    input: results/3BH4/receptor/receptor_clean.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log
+    jobid: 59
+    reason: Missing output files: results/3BH4/receptor/receptor.pdbqt
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+localrule collect_ad4_scores:
+    input: results/1HSG/docking/ad4/EDTA.dlg, results/1HSG/docking/ad4/EGTA.dlg, results/1HSG/docking/ad4/ascorbic_acid.dlg, results/1HSG/docking/ad4/aspirin.dlg, results/1HSG/docking/ad4/caffeine.dlg, results/1HSG/docking/ad4/citric_acid.dlg, results/1HSG/docking/ad4/glycine.dlg, results/1HSG/docking/ad4/malonic_acid.dlg, results/1HSG/docking/ad4/oxalic_acid.dlg, results/1HSG/docking/ad4/salicylic_acid.dlg, results/1HSG/docking/ad4/tartaric_acid.dlg
+    output: results/1HSG/summary/ad4_scores.tsv
+    jobid: 43
+    reason: Missing output files: results/1HSG/summary/ad4_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+localrule collect_metal_scores:
+    input: results/3BH4/docking/metal/EDTA, results/3BH4/docking/metal/EGTA, results/3BH4/docking/metal/ascorbic_acid, results/3BH4/docking/metal/aspirin, results/3BH4/docking/metal/caffeine, results/3BH4/docking/metal/citric_acid, results/3BH4/docking/metal/glycine, results/3BH4/docking/metal/malonic_acid, results/3BH4/docking/metal/oxalic_acid, results/3BH4/docking/metal/salicylic_acid, results/3BH4/docking/metal/tartaric_acid
+    output: results/3BH4/summary/metal_site_scores.tsv
+    jobid: 96
+    reason: Set of input files has changed since last execution
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+localrule collect_scores:
+    input: results/1HSG/docking/vina/EDTA_log.txt, results/1HSG/docking/vina/EGTA_log.txt, results/1HSG/docking/vina/ascorbic_acid_log.txt, results/1HSG/docking/vina/aspirin_log.txt, results/1HSG/docking/vina/caffeine_log.txt, results/1HSG/docking/vina/citric_acid_log.txt, results/1HSG/docking/vina/glycine_log.txt, results/1HSG/docking/vina/malonic_acid_log.txt, results/1HSG/docking/vina/oxalic_acid_log.txt, results/1HSG/docking/vina/salicylic_acid_log.txt, results/1HSG/docking/vina/tartaric_acid_log.txt
+    output: results/1HSG/summary/all_scores.tsv
+    jobid: 6
+    reason: Missing output files: results/1HSG/summary/all_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+Finished jobid: 96 (Rule: collect_metal_scores)
+1 of 46 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 12:58:55 2026]
+localrule collect_smina_scores:
+    input: results/1HSG/docking/smina/EDTA_log.txt, results/1HSG/docking/smina/EGTA_log.txt, results/1HSG/docking/smina/ascorbic_acid_log.txt, results/1HSG/docking/smina/aspirin_log.txt, results/1HSG/docking/smina/caffeine_log.txt, results/1HSG/docking/smina/citric_acid_log.txt, results/1HSG/docking/smina/glycine_log.txt, results/1HSG/docking/smina/malonic_acid_log.txt, results/1HSG/docking/smina/oxalic_acid_log.txt, results/1HSG/docking/smina/salicylic_acid_log.txt, results/1HSG/docking/smina/tartaric_acid_log.txt
+    output: results/1HSG/summary/smina_scores.tsv
+    jobid: 31
+    reason: Missing output files: results/1HSG/summary/smina_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+Finished jobid: 6 (Rule: collect_scores)
+2 of 46 steps (4%) done
+[Sun Sep  6 12:58:55 2026]
+Finished jobid: 43 (Rule: collect_ad4_scores)
+3 of 46 steps (7%) done
+[Sun Sep  6 12:58:55 2026]
+Finished jobid: 31 (Rule: collect_smina_scores)
+4 of 46 steps (9%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 12:58:55 2026]
+localrule merge_engine_scores:
+    input: results/1HSG/summary/all_scores.tsv, results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv
+    output: results/1HSG/summary/merged_all_engines.tsv
+    jobid: 5
+    reason: Missing output files: results/1HSG/summary/merged_all_engines.tsv; Input files updated by another job: results/1HSG/summary/smina_scores.tsv, results/1HSG/summary/ad4_scores.tsv, results/1HSG/summary/all_scores.tsv
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Sun Sep  6 12:58:55 2026]
+Finished jobid: 5 (Rule: merge_engine_scores)
+5 of 46 steps (11%) done
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 268:
+Command 'set -euo pipefail;  
+        mkdir -p results/3BH4/receptor logs
+        mk_prepare_receptor.py --read_pdb results/3BH4/receptor/receptor_clean.pdb -p results/3BH4/receptor/receptor.pdbqt > logs/3BH4_prep_receptor.log 2>&1' returned non-zero exit status 1.
+[Sun Sep  6 12:58:59 2026]
+Error in rule prep_receptor:
+    message: None
+    jobid: 59
+    input: results/3BH4/receptor/receptor_clean.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/3BH4/receptor logs
+        mk_prepare_receptor.py --read_pdb results/3BH4/receptor/receptor_clean.pdb -p results/3BH4/receptor/receptor.pdbqt > logs/3BH4_prep_receptor.log 2>&1
+        
+        (command exited with non-zero exit code)
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-06T125854.353511.snakemake.log
+Elapsed time: 0:00:04.691455
+WorkflowError:
+At least one job did not complete successfully.

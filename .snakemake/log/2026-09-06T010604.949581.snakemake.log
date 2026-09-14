@@ -1,0 +1,138 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-06 01:06:04
+  Workflow ID: 066c1c5e-d955-4977-b75e-b3f4832f1e9d
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                            count
+---------------------------  -------
+ad4_prep_grids                     2
+dock_metal_site                   12
+dock_smina                        24
+dock_vina                         22
+collect_metal_scores               1
+collect_scores                     2
+collect_smina_scores               2
+dock_ad4                          24
+collect_ad4_scores                 2
+merge_engine_scores                2
+build_protein_ligand_matrix        1
+all                                1
+total                             95
+
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep  6 01:06:05 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/1HSG/docking/vina/citric_acid_out.pdbqt, results/1HSG/docking/vina/citric_acid_log.txt
+    jobid: 18
+    reason: Missing output files: results/1HSG/docking/vina/citric_acid_log.txt
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 01:06:05 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/caffeine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/caffeine
+    log: logs/3BH4_dock_metal_caffeine.log
+    jobid: 107
+    reason: Missing output files: results/3BH4/docking/metal/caffeine
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+[Sun Sep  6 01:06:05 2026]
+localrule dock_smina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/1HSG/docking/smina/citric_acid_out.pdbqt, results/1HSG/docking/smina/citric_acid_log.txt
+    jobid: 38
+    reason: Missing output files: results/1HSG/docking/smina/citric_acid_log.txt
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 01:06:05 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/3BH4/docking/smina/malonic_acid_out.pdbqt, results/3BH4/docking/smina/malonic_acid_log.txt
+    jobid: 82
+    reason: Missing output files: results/3BH4/docking/smina/malonic_acid_log.txt
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 01:06:05 2026]
+Finished jobid: 82 (Rule: dock_smina)
+1 of 95 steps (1%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 01:06:05 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/3BH4/docking/smina/glycine_out.pdbqt, results/3BH4/docking/smina/glycine_log.txt
+    jobid: 81
+    reason: Missing output files: results/3BH4/docking/smina/glycine_log.txt
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+[Sun Sep  6 01:06:06 2026]
+Finished jobid: 81 (Rule: dock_smina)
+2 of 95 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 01:06:06 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/1HSG/docking/vina/oxalic_acid_out.pdbqt, results/1HSG/docking/vina/oxalic_acid_log.txt
+    jobid: 24
+    reason: Missing output files: results/1HSG/docking/vina/oxalic_acid_log.txt
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 509:
+Command 'set -euo pipefail;  
+        mkdir -p results/3BH4/docking/metal/caffeine logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/caffeine.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/caffeine > logs/3BH4_dock_metal_caffeine.log 2>&1' returned non-zero exit status 2.
+[Sun Sep  6 01:06:07 2026]
+Error in rule dock_metal_site:
+    message: None
+    jobid: 107
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/caffeine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/caffeine
+    log: logs/3BH4_dock_metal_caffeine.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/3BH4/docking/metal/caffeine logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/caffeine.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/caffeine > logs/3BH4_dock_metal_caffeine.log 2>&1
+        
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_metal_site since they might be corrupted:
+results/3BH4/docking/metal/caffeine
+[Sun Sep  6 01:06:11 2026]
+Finished jobid: 38 (Rule: dock_smina)
+3 of 95 steps (3%) done
+[Sun Sep  6 01:06:12 2026]
+Finished jobid: 24 (Rule: dock_vina)
+4 of 95 steps (4%) done
+[Sun Sep  6 01:06:17 2026]
+Finished jobid: 18 (Rule: dock_vina)
+5 of 95 steps (5%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-06T010604.949581.snakemake.log
+Elapsed time: 0:00:12.999384
+WorkflowError:
+At least one job did not complete successfully.

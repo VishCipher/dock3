@@ -1,0 +1,44 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-13 01:03:37
+  Workflow ID: d12d964a-cdf8-482c-a2e4-728f80a8a191
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 results/3BH4/plip_complexes/EDTA_complex.pdb
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+prepare_plip_complex        1
+total                       1
+
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 01:03:38 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/EDTA_out.pdbqt
+    output: results/3BH4/plip_complexes/EDTA_complex.pdb
+    jobid: 0
+    reason: Missing output files: results/3BH4/plip_complexes/EDTA_complex.pdb
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+[Sun Sep 13 01:03:39 2026]
+Finished jobid: 0 (Rule: prepare_plip_complex)
+1 of 1 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-13T010337.881885.snakemake.log
+Elapsed time: 0:00:01.147574

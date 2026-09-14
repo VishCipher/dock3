@@ -1,0 +1,778 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-09 14:18:20
+  Workflow ID: 8b31ec51-b4d9-49db-aef0-ea989cbeba12
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 --keep-going
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: f3bcde3658145eea02004c611bb751cd
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+detect_cofactors        1
+all                     1
+total                   2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:18:20 2026]
+localcheckpoint detect_cofactors:
+    input: data/3BH4_receptor.pdb
+    output: results/3BH4/cofactors/cofactor_report.json
+    jobid: 3
+    reason: Missing output files: results/3BH4/cofactors/cofactor_report.json
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+DAG of jobs will be updated after completion.
+[Wed Sep  9 14:18:20 2026]
+Finished jobid: 3 (Rule: detect_cofactors)
+1 of 2 steps (50%) done
+Updating checkpoint dependencies.
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:18:20 2026]
+localrule prep_receptor_clean:
+    input: data/3BH4_receptor.pdb
+    output: results/3BH4/receptor/receptor_clean.pdb
+    jobid: 62
+    reason: Missing output files: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:18:21 2026]
+Finished jobid: 62 (Rule: prep_receptor_clean)
+2 of 57 steps (4%) done
+Select jobs to execute...
+Execute 4 jobs...
+[Wed Sep  9 14:18:21 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/salicylic_acid
+    log: logs/3BH4_dock_metal_salicylic_acid.log
+    jobid: 108
+    reason: Missing output files: results/3BH4/docking/metal/salicylic_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:18:21 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/ascorbic_acid
+    log: logs/3BH4_dock_metal_ascorbic_acid.log
+    jobid: 101
+    reason: Missing output files: results/3BH4/docking/metal/ascorbic_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:18:21 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/citric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/citric_acid
+    log: logs/3BH4_dock_metal_citric_acid.log
+    jobid: 104
+    reason: Missing output files: results/3BH4/docking/metal/citric_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:18:21 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/malonic_acid
+    log: logs/3BH4_dock_metal_malonic_acid.log
+    jobid: 106
+    reason: Missing output files: results/3BH4/docking/metal/malonic_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:20:09 2026]
+Finished jobid: 108 (Rule: dock_metal_site)
+3 of 57 steps (5%) done
+Execute 1 jobs...
+[Wed Sep  9 14:20:09 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/aspirin.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/aspirin
+    log: logs/3BH4_dock_metal_aspirin.log
+    jobid: 102
+    reason: Missing output files: results/3BH4/docking/metal/aspirin; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:21:16 2026]
+Finished jobid: 101 (Rule: dock_metal_site)
+4 of 57 steps (7%) done
+Execute 1 jobs...
+[Wed Sep  9 14:21:16 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/tartaric_acid
+    log: logs/3BH4_dock_metal_tartaric_acid.log
+    jobid: 109
+    reason: Missing output files: results/3BH4/docking/metal/tartaric_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:23:06 2026]
+Finished jobid: 106 (Rule: dock_metal_site)
+5 of 57 steps (9%) done
+Execute 1 jobs...
+[Wed Sep  9 14:23:06 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EDTA.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/EDTA
+    log: logs/3BH4_dock_metal_EDTA.log
+    jobid: 99
+    reason: Missing output files: results/3BH4/docking/metal/EDTA; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:25:01 2026]
+Finished jobid: 109 (Rule: dock_metal_site)
+6 of 57 steps (11%) done
+Execute 1 jobs...
+[Wed Sep  9 14:25:01 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EGTA.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/EGTA
+    log: logs/3BH4_dock_metal_EGTA.log
+    jobid: 100
+    reason: Missing output files: results/3BH4/docking/metal/EGTA; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:26:05 2026]
+Finished jobid: 104 (Rule: dock_metal_site)
+7 of 57 steps (12%) done
+Execute 1 jobs...
+[Wed Sep  9 14:26:05 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/glycine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/glycine
+    log: logs/3BH4_dock_metal_glycine.log
+    jobid: 105
+    reason: Missing output files: results/3BH4/docking/metal/glycine; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:26:23 2026]
+Finished jobid: 102 (Rule: dock_metal_site)
+8 of 57 steps (14%) done
+Execute 1 jobs...
+[Wed Sep  9 14:26:23 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/caffeine.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/caffeine
+    log: logs/3BH4_dock_metal_caffeine.log
+    jobid: 103
+    reason: Missing output files: results/3BH4/docking/metal/caffeine; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:27:51 2026]
+Finished jobid: 103 (Rule: dock_metal_site)
+9 of 57 steps (16%) done
+Execute 1 jobs...
+[Wed Sep  9 14:27:51 2026]
+localrule prep_receptor:
+    input: results/3BH4/receptor/receptor_clean.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log
+    jobid: 61
+    reason: Missing output files: results/3BH4/receptor/receptor.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:27:58 2026]
+Finished jobid: 61 (Rule: prep_receptor)
+10 of 57 steps (18%) done
+Execute 1 jobs...
+[Wed Sep  9 14:27:58 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    output: results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/caffeine_log.txt
+    jobid: 66
+    reason: Missing output files: results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/caffeine_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:02 2026]
+Finished jobid: 66 (Rule: dock_vina)
+11 of 57 steps (19%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:02 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/3BH4/docking/smina/citric_acid_out.pdbqt, results/3BH4/docking/smina/citric_acid_log.txt
+    jobid: 79
+    reason: Missing output files: results/3BH4/docking/smina/citric_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:06 2026]
+Finished jobid: 79 (Rule: dock_smina)
+12 of 57 steps (21%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:06 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/citric_acid_log.txt
+    jobid: 67
+    reason: Missing output files: results/3BH4/docking/vina/citric_acid_log.txt, results/3BH4/docking/vina/citric_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:20 2026]
+Finished jobid: 67 (Rule: dock_vina)
+13 of 57 steps (23%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:20 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/3BH4/docking/smina/glycine_out.pdbqt, results/3BH4/docking/smina/glycine_log.txt
+    jobid: 80
+    reason: Missing output files: results/3BH4/docking/smina/glycine_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:21 2026]
+Finished jobid: 80 (Rule: dock_smina)
+14 of 57 steps (25%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:21 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    output: results/3BH4/docking/smina/EDTA_out.pdbqt, results/3BH4/docking/smina/EDTA_log.txt
+    jobid: 74
+    reason: Missing output files: results/3BH4/docking/smina/EDTA_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:36 2026]
+Finished jobid: 74 (Rule: dock_smina)
+15 of 57 steps (26%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:36 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/glycine_log.txt
+    jobid: 68
+    reason: Missing output files: results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/glycine_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:40 2026]
+Finished jobid: 105 (Rule: dock_metal_site)
+16 of 57 steps (28%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:40 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    output: results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/EDTA_log.txt
+    jobid: 60
+    reason: Missing output files: results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/EDTA_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:40 2026]
+Finished jobid: 68 (Rule: dock_vina)
+17 of 57 steps (30%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:40 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    output: results/3BH4/docking/smina/aspirin_out.pdbqt, results/3BH4/docking/smina/aspirin_log.txt
+    jobid: 77
+    reason: Missing output files: results/3BH4/docking/smina/aspirin_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:44 2026]
+Finished jobid: 77 (Rule: dock_smina)
+18 of 57 steps (32%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:44 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    output: results/3BH4/docking/smina/caffeine_out.pdbqt, results/3BH4/docking/smina/caffeine_log.txt
+    jobid: 78
+    reason: Missing output files: results/3BH4/docking/smina/caffeine_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:28:46 2026]
+Finished jobid: 78 (Rule: dock_smina)
+19 of 57 steps (33%) done
+Execute 1 jobs...
+[Wed Sep  9 14:28:46 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/3BH4/docking/vina/EGTA_out.pdbqt, results/3BH4/docking/vina/EGTA_log.txt
+    jobid: 63
+    reason: Missing output files: results/3BH4/docking/vina/EGTA_out.pdbqt, results/3BH4/docking/vina/EGTA_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:29:31 2026]
+Finished jobid: 60 (Rule: dock_vina)
+20 of 57 steps (35%) done
+Execute 1 jobs...
+[Wed Sep  9 14:29:31 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    output: results/3BH4/docking/vina/tartaric_acid_out.pdbqt, results/3BH4/docking/vina/tartaric_acid_log.txt
+    jobid: 72
+    reason: Missing output files: results/3BH4/docking/vina/tartaric_acid_log.txt, results/3BH4/docking/vina/tartaric_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:29:48 2026]
+Finished jobid: 72 (Rule: dock_vina)
+21 of 57 steps (37%) done
+Execute 1 jobs...
+[Wed Sep  9 14:29:48 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    output: results/3BH4/docking/vina/aspirin_out.pdbqt, results/3BH4/docking/vina/aspirin_log.txt
+    jobid: 65
+    reason: Missing output files: results/3BH4/docking/vina/aspirin_log.txt, results/3BH4/docking/vina/aspirin_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:02 2026]
+Finished jobid: 65 (Rule: dock_vina)
+22 of 57 steps (39%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:02 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/3BH4/docking/smina/malonic_acid_out.pdbqt, results/3BH4/docking/smina/malonic_acid_log.txt
+    jobid: 81
+    reason: Missing output files: results/3BH4/docking/smina/malonic_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:04 2026]
+Finished jobid: 81 (Rule: dock_smina)
+23 of 57 steps (40%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:04 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    output: results/3BH4/docking/smina/salicylic_acid_out.pdbqt, results/3BH4/docking/smina/salicylic_acid_log.txt
+    jobid: 83
+    reason: Missing output files: results/3BH4/docking/smina/salicylic_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:07 2026]
+Finished jobid: 83 (Rule: dock_smina)
+24 of 57 steps (42%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:07 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/3BH4/docking/smina/EGTA_out.pdbqt, results/3BH4/docking/smina/EGTA_log.txt
+    jobid: 75
+    reason: Missing output files: results/3BH4/docking/smina/EGTA_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:44 2026]
+Finished jobid: 75 (Rule: dock_smina)
+25 of 57 steps (44%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:44 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    output: results/3BH4/docking/smina/tartaric_acid_out.pdbqt, results/3BH4/docking/smina/tartaric_acid_log.txt
+    jobid: 84
+    reason: Missing output files: results/3BH4/docking/smina/tartaric_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:48 2026]
+Finished jobid: 84 (Rule: dock_smina)
+26 of 57 steps (46%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:48 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/3BH4/docking/vina/oxalic_acid_out.pdbqt, results/3BH4/docking/vina/oxalic_acid_log.txt
+    jobid: 70
+    reason: Missing output files: results/3BH4/docking/vina/oxalic_acid_log.txt, results/3BH4/docking/vina/oxalic_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:56 2026]
+Finished jobid: 70 (Rule: dock_vina)
+27 of 57 steps (47%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:56 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    output: results/3BH4/docking/smina/ascorbic_acid_out.pdbqt, results/3BH4/docking/smina/ascorbic_acid_log.txt
+    jobid: 76
+    reason: Missing output files: results/3BH4/docking/smina/ascorbic_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:58 2026]
+Finished jobid: 63 (Rule: dock_vina)
+28 of 57 steps (49%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:58 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/oxalic_acid
+    log: logs/3BH4_dock_metal_oxalic_acid.log
+    jobid: 107
+    reason: Missing output files: results/3BH4/docking/metal/oxalic_acid; Input files updated by another job: results/3BH4/receptor/receptor_clean.pdb; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:30:59 2026]
+Finished jobid: 76 (Rule: dock_smina)
+29 of 57 steps (51%) done
+Execute 1 jobs...
+[Wed Sep  9 14:30:59 2026]
+localrule dock_smina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/3BH4/docking/smina/oxalic_acid_out.pdbqt, results/3BH4/docking/smina/oxalic_acid_log.txt
+    jobid: 82
+    reason: Missing output files: results/3BH4/docking/smina/oxalic_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:31:00 2026]
+Finished jobid: 82 (Rule: dock_smina)
+30 of 57 steps (53%) done
+Execute 1 jobs...
+[Wed Sep  9 14:31:00 2026]
+localrule collect_smina_scores:
+    input: results/3BH4/docking/smina/EDTA_log.txt, results/3BH4/docking/smina/EGTA_log.txt, results/3BH4/docking/smina/ascorbic_acid_log.txt, results/3BH4/docking/smina/aspirin_log.txt, results/3BH4/docking/smina/caffeine_log.txt, results/3BH4/docking/smina/citric_acid_log.txt, results/3BH4/docking/smina/glycine_log.txt, results/3BH4/docking/smina/malonic_acid_log.txt, results/3BH4/docking/smina/oxalic_acid_log.txt, results/3BH4/docking/smina/salicylic_acid_log.txt, results/3BH4/docking/smina/tartaric_acid_log.txt
+    output: results/3BH4/summary/smina_scores.tsv
+    jobid: 73
+    reason: Missing output files: results/3BH4/summary/smina_scores.tsv; Input files updated by another job: results/3BH4/docking/smina/caffeine_log.txt, results/3BH4/docking/smina/malonic_acid_log.txt, results/3BH4/docking/smina/citric_acid_log.txt, results/3BH4/docking/smina/oxalic_acid_log.txt, results/3BH4/docking/smina/ascorbic_acid_log.txt, results/3BH4/docking/smina/glycine_log.txt, results/3BH4/docking/smina/aspirin_log.txt, results/3BH4/docking/smina/salicylic_acid_log.txt, results/3BH4/docking/smina/EGTA_log.txt, results/3BH4/docking/smina/tartaric_acid_log.txt, results/3BH4/docking/smina/EDTA_log.txt
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:31:00 2026]
+Finished jobid: 73 (Rule: collect_smina_scores)
+31 of 57 steps (54%) done
+Execute 1 jobs...
+[Wed Sep  9 14:31:00 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    output: results/3BH4/docking/vina/ascorbic_acid_out.pdbqt, results/3BH4/docking/vina/ascorbic_acid_log.txt
+    jobid: 64
+    reason: Missing output files: results/3BH4/docking/vina/ascorbic_acid_log.txt, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:31:09 2026]
+Finished jobid: 64 (Rule: dock_vina)
+32 of 57 steps (56%) done
+Execute 1 jobs...
+[Wed Sep  9 14:31:09 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    output: results/3BH4/docking/vina/salicylic_acid_out.pdbqt, results/3BH4/docking/vina/salicylic_acid_log.txt
+    jobid: 71
+    reason: Missing output files: results/3BH4/docking/vina/salicylic_acid_log.txt, results/3BH4/docking/vina/salicylic_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:31:13 2026]
+Finished jobid: 71 (Rule: dock_vina)
+33 of 57 steps (58%) done
+Execute 1 jobs...
+[Wed Sep  9 14:31:13 2026]
+localrule ad4_prep_grids:
+    input: results/3BH4/receptor/receptor.pdbqt
+    output: results/3BH4/ad4_grids/receptor.gpf, results/3BH4/ad4_grids/receptor.glg, results/3BH4/ad4_grids/.grids_done
+    jobid: 87
+    reason: Missing output files: results/3BH4/ad4_grids/.grids_done; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:31:18 2026]
+Finished jobid: 87 (Rule: ad4_prep_grids)
+34 of 57 steps (60%) done
+Execute 1 jobs...
+[Wed Sep  9 14:31:18 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/tartaric_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/tartaric_acid.dlg
+    jobid: 97
+    reason: Missing output files: results/3BH4/docking/ad4/tartaric_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:32:49 2026]
+Finished jobid: 97 (Rule: dock_ad4)
+35 of 57 steps (61%) done
+Execute 1 jobs...
+[Wed Sep  9 14:32:49 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/aspirin.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/aspirin.dlg
+    jobid: 90
+    reason: Missing output files: results/3BH4/docking/ad4/aspirin.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:33:28 2026]
+Finished jobid: 107 (Rule: dock_metal_site)
+36 of 57 steps (63%) done
+Execute 1 jobs...
+[Wed Sep  9 14:33:28 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/citric_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/citric_acid.dlg
+    jobid: 92
+    reason: Missing output files: results/3BH4/docking/ad4/citric_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:33:46 2026]
+Finished jobid: 90 (Rule: dock_ad4)
+37 of 57 steps (65%) done
+Execute 1 jobs...
+[Wed Sep  9 14:33:46 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/EGTA.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/EGTA.dlg
+    jobid: 88
+    reason: Missing output files: results/3BH4/docking/ad4/EGTA.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:34:50 2026]
+Finished jobid: 92 (Rule: dock_ad4)
+38 of 57 steps (67%) done
+Execute 1 jobs...
+[Wed Sep  9 14:34:50 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/oxalic_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/oxalic_acid.dlg
+    jobid: 95
+    reason: Missing output files: results/3BH4/docking/ad4/oxalic_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:35:39 2026]
+Finished jobid: 95 (Rule: dock_ad4)
+39 of 57 steps (68%) done
+Execute 1 jobs...
+[Wed Sep  9 14:35:39 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/glycine.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/glycine.dlg
+    jobid: 93
+    reason: Missing output files: results/3BH4/docking/ad4/glycine.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:36:36 2026]
+Finished jobid: 88 (Rule: dock_ad4)
+40 of 57 steps (70%) done
+Execute 1 jobs...
+[Wed Sep  9 14:36:36 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/caffeine.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/caffeine.dlg
+    jobid: 91
+    reason: Missing output files: results/3BH4/docking/ad4/caffeine.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:36:52 2026]
+Finished jobid: 93 (Rule: dock_ad4)
+41 of 57 steps (72%) done
+Execute 1 jobs...
+[Wed Sep  9 14:36:52 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/ascorbic_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/ascorbic_acid.dlg
+    jobid: 89
+    reason: Missing output files: results/3BH4/docking/ad4/ascorbic_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:37:26 2026]
+Finished jobid: 91 (Rule: dock_ad4)
+42 of 57 steps (74%) done
+Execute 1 jobs...
+[Wed Sep  9 14:37:26 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/salicylic_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/salicylic_acid.dlg
+    jobid: 96
+    reason: Missing output files: results/3BH4/docking/ad4/salicylic_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:38:18 2026]
+Finished jobid: 89 (Rule: dock_ad4)
+43 of 57 steps (75%) done
+Execute 1 jobs...
+[Wed Sep  9 14:38:18 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/EDTA.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/EDTA.dlg
+    jobid: 86
+    reason: Missing output files: results/3BH4/docking/ad4/EDTA.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:38:19 2026]
+Finished jobid: 96 (Rule: dock_ad4)
+44 of 57 steps (77%) done
+Execute 1 jobs...
+[Wed Sep  9 14:38:19 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/3BH4/docking/vina/malonic_acid_out.pdbqt, results/3BH4/docking/vina/malonic_acid_log.txt
+    jobid: 69
+    reason: Missing output files: results/3BH4/docking/vina/malonic_acid_log.txt, results/3BH4/docking/vina/malonic_acid_out.pdbqt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt; Params have changed since last execution: Union of exclusive params before and now across all output: before: 0.0 now: 11.958,13.914,53.838 
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:38:25 2026]
+Finished jobid: 69 (Rule: dock_vina)
+45 of 57 steps (79%) done
+Execute 1 jobs...
+[Wed Sep  9 14:38:25 2026]
+localrule validate_metal_geometry:
+    input: results/3BH4/cofactors/cofactor_report.json, results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/EGTA_out.pdbqt, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt, results/3BH4/docking/vina/aspirin_out.pdbqt, results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/malonic_acid_out.pdbqt, results/3BH4/docking/vina/oxalic_acid_out.pdbqt, results/3BH4/docking/vina/salicylic_acid_out.pdbqt, results/3BH4/docking/vina/tartaric_acid_out.pdbqt
+    output: results/3BH4/summary/metal_geometry_validation.tsv
+    jobid: 110
+    reason: Missing output files: results/3BH4/summary/metal_geometry_validation.tsv; Input files updated by another job: results/3BH4/docking/vina/tartaric_acid_out.pdbqt, results/3BH4/docking/vina/glycine_out.pdbqt, results/3BH4/docking/vina/malonic_acid_out.pdbqt, results/3BH4/docking/vina/salicylic_acid_out.pdbqt, results/3BH4/docking/vina/aspirin_out.pdbqt, results/3BH4/docking/vina/EDTA_out.pdbqt, results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/oxalic_acid_out.pdbqt, results/3BH4/docking/vina/caffeine_out.pdbqt, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt, results/3BH4/docking/vina/EGTA_out.pdbqt
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:38:25 2026]
+Finished jobid: 110 (Rule: validate_metal_geometry)
+46 of 57 steps (81%) done
+Execute 1 jobs...
+[Wed Sep  9 14:38:25 2026]
+localrule dock_ad4:
+    input: results/ligands_pdbqt/malonic_acid.pdbqt, results/3BH4/ad4_grids/.grids_done
+    output: results/3BH4/docking/ad4/malonic_acid.dlg
+    jobid: 94
+    reason: Missing output files: results/3BH4/docking/ad4/malonic_acid.dlg; Input files updated by another job: results/3BH4/ad4_grids/.grids_done
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Wed Sep  9 14:39:12 2026]
+Finished jobid: 94 (Rule: dock_ad4)
+47 of 57 steps (82%) done
+Execute 1 jobs...
+[Wed Sep  9 14:39:12 2026]
+localrule collect_scores:
+    input: results/3BH4/docking/vina/EDTA_log.txt, results/3BH4/docking/vina/EGTA_log.txt, results/3BH4/docking/vina/ascorbic_acid_log.txt, results/3BH4/docking/vina/aspirin_log.txt, results/3BH4/docking/vina/caffeine_log.txt, results/3BH4/docking/vina/citric_acid_log.txt, results/3BH4/docking/vina/glycine_log.txt, results/3BH4/docking/vina/malonic_acid_log.txt, results/3BH4/docking/vina/oxalic_acid_log.txt, results/3BH4/docking/vina/salicylic_acid_log.txt, results/3BH4/docking/vina/tartaric_acid_log.txt
+    output: results/3BH4/summary/all_scores.tsv
+    jobid: 59
+    reason: Missing output files: results/3BH4/summary/all_scores.tsv; Input files updated by another job: results/3BH4/docking/vina/tartaric_acid_log.txt, results/3BH4/docking/vina/salicylic_acid_log.txt, results/3BH4/docking/vina/citric_acid_log.txt, results/3BH4/docking/vina/glycine_log.txt, results/3BH4/docking/vina/EDTA_log.txt, results/3BH4/docking/vina/ascorbic_acid_log.txt, results/3BH4/docking/vina/malonic_acid_log.txt, results/3BH4/docking/vina/oxalic_acid_log.txt, results/3BH4/docking/vina/aspirin_log.txt, results/3BH4/docking/vina/EGTA_log.txt, results/3BH4/docking/vina/caffeine_log.txt
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:39:12 2026]
+Finished jobid: 59 (Rule: collect_scores)
+48 of 57 steps (84%) done
+[Wed Sep  9 14:40:17 2026]
+Finished jobid: 86 (Rule: dock_ad4)
+49 of 57 steps (86%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:40:17 2026]
+localrule collect_ad4_scores:
+    input: results/3BH4/docking/ad4/EDTA.dlg, results/3BH4/docking/ad4/EGTA.dlg, results/3BH4/docking/ad4/ascorbic_acid.dlg, results/3BH4/docking/ad4/aspirin.dlg, results/3BH4/docking/ad4/caffeine.dlg, results/3BH4/docking/ad4/citric_acid.dlg, results/3BH4/docking/ad4/glycine.dlg, results/3BH4/docking/ad4/malonic_acid.dlg, results/3BH4/docking/ad4/oxalic_acid.dlg, results/3BH4/docking/ad4/salicylic_acid.dlg, results/3BH4/docking/ad4/tartaric_acid.dlg
+    output: results/3BH4/summary/ad4_scores.tsv
+    jobid: 85
+    reason: Missing output files: results/3BH4/summary/ad4_scores.tsv; Input files updated by another job: results/3BH4/docking/ad4/aspirin.dlg, results/3BH4/docking/ad4/tartaric_acid.dlg, results/3BH4/docking/ad4/malonic_acid.dlg, results/3BH4/docking/ad4/EGTA.dlg, results/3BH4/docking/ad4/EDTA.dlg, results/3BH4/docking/ad4/citric_acid.dlg, results/3BH4/docking/ad4/salicylic_acid.dlg, results/3BH4/docking/ad4/glycine.dlg, results/3BH4/docking/ad4/ascorbic_acid.dlg, results/3BH4/docking/ad4/oxalic_acid.dlg, results/3BH4/docking/ad4/caffeine.dlg
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:40:17 2026]
+Finished jobid: 85 (Rule: collect_ad4_scores)
+50 of 57 steps (88%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:40:17 2026]
+localrule merge_engine_scores:
+    input: results/3BH4/summary/all_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/ad4_scores.tsv
+    output: results/3BH4/summary/merged_all_engines.tsv
+    jobid: 58
+    reason: Missing output files: results/3BH4/summary/merged_all_engines.tsv; Input files updated by another job: results/3BH4/summary/ad4_scores.tsv, results/3BH4/summary/smina_scores.tsv, results/3BH4/summary/all_scores.tsv
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:40:18 2026]
+Finished jobid: 58 (Rule: merge_engine_scores)
+51 of 57 steps (89%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:40:18 2026]
+localrule build_protein_ligand_matrix:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/3BH4/summary/merged_all_engines.tsv
+    output: results/summary/protein_ligand_matrix.tsv
+    jobid: 111
+    reason: Input files updated by another job: results/3BH4/summary/merged_all_engines.tsv
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:40:18 2026]
+Finished jobid: 111 (Rule: build_protein_ligand_matrix)
+52 of 57 steps (91%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 14:40:18 2026]
+localrule write_run_provenance:
+    input: results/summary/protein_ligand_matrix.tsv
+    output: results/summary/run_provenance.json
+    jobid: 113
+    reason: Input files updated by another job: results/summary/protein_ligand_matrix.tsv
+    resources: tmpdir=/tmp
+[Wed Sep  9 14:40:18 2026]
+Finished jobid: 113 (Rule: write_run_provenance)
+53 of 57 steps (93%) done
+[Wed Sep  9 14:52:28 2026]
+Finished jobid: 99 (Rule: dock_metal_site)
+54 of 57 steps (95%) done
+[Wed Sep  9 15:06:08 2026]
+Finished jobid: 100 (Rule: dock_metal_site)
+55 of 57 steps (96%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 15:06:08 2026]
+localrule collect_metal_scores:
+    input: results/3BH4/docking/metal/EDTA, results/3BH4/docking/metal/EGTA, results/3BH4/docking/metal/ascorbic_acid, results/3BH4/docking/metal/aspirin, results/3BH4/docking/metal/caffeine, results/3BH4/docking/metal/citric_acid, results/3BH4/docking/metal/glycine, results/3BH4/docking/metal/malonic_acid, results/3BH4/docking/metal/oxalic_acid, results/3BH4/docking/metal/salicylic_acid, results/3BH4/docking/metal/tartaric_acid
+    output: results/3BH4/summary/metal_site_scores.tsv
+    jobid: 98
+    reason: Missing output files: results/3BH4/summary/metal_site_scores.tsv; Input files updated by another job: results/3BH4/docking/metal/aspirin, results/3BH4/docking/metal/malonic_acid, results/3BH4/docking/metal/ascorbic_acid, results/3BH4/docking/metal/oxalic_acid, results/3BH4/docking/metal/EDTA, results/3BH4/docking/metal/citric_acid, results/3BH4/docking/metal/caffeine, results/3BH4/docking/metal/salicylic_acid, results/3BH4/docking/metal/glycine, results/3BH4/docking/metal/tartaric_acid, results/3BH4/docking/metal/EGTA
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Wed Sep  9 15:06:08 2026]
+Finished jobid: 98 (Rule: collect_metal_scores)
+56 of 57 steps (98%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Sep  9 15:06:08 2026]
+localrule all:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv, results/summary/protein_ligand_matrix.tsv, results/summary/admet_properties.tsv, results/summary/run_provenance.json
+    jobid: 0
+    reason: Input files updated by another job: results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/metal_site_scores.tsv, results/3BH4/summary/metal_geometry_validation.tsv, results/summary/run_provenance.json, results/summary/protein_ligand_matrix.tsv
+    resources: tmpdir=/tmp
+[Wed Sep  9 15:06:08 2026]
+Finished jobid: 0 (Rule: all)
+57 of 57 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-09T141820.477721.snakemake.log
+Elapsed time: 0:47:48.131948

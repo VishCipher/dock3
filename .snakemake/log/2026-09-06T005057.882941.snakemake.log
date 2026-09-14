@@ -1,0 +1,173 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-06 00:50:57
+  Workflow ID: 095f2f4b-79db-46ea-ba5b-5711304c347c
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                            count
+---------------------------  -------
+prep_receptor                      2
+prep_receptor_metal                1
+ad4_prep_grids                     2
+dock_metal_site                   12
+dock_smina                        24
+dock_vina                         24
+collect_metal_scores               1
+collect_scores                     2
+collect_smina_scores               2
+dock_ad4                          24
+collect_ad4_scores                 2
+merge_engine_scores                2
+build_protein_ligand_matrix        1
+all                                1
+total                            100
+
+Select jobs to execute...
+Execute 3 jobs...
+[Sun Sep  6 00:50:58 2026]
+localrule prep_receptor:
+    input: data/3BH4_receptor.pdb
+    output: results/3BH4/receptor/receptor.pdbqt
+    log: logs/3BH4_prep_receptor.log
+    jobid: 62
+    reason: Missing output files: results/3BH4/receptor/receptor.pdbqt
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep  6 00:50:58 2026]
+localrule prep_receptor:
+    input: data/1HSG_receptor.pdb
+    output: results/1HSG/receptor/receptor.pdbqt
+    log: logs/1HSG_prep_receptor.log
+    jobid: 8
+    reason: Missing output files: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG
+    resources: tmpdir=/tmp
+[Sun Sep  6 00:50:58 2026]
+localrule prep_receptor_metal:
+    input: data/3BH4_receptor.pdb, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/receptor/receptor_with_metal.pdb
+    jobid: 103
+    reason: Missing output files: results/3BH4/receptor/receptor_with_metal.pdb
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep  6 00:50:58 2026]
+Finished jobid: 103 (Rule: prep_receptor_metal)
+1 of 100 steps (1%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep  6 00:50:58 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/ascorbic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/ascorbic_acid
+    log: logs/3BH4_dock_metal_ascorbic_acid.log
+    jobid: 105
+    reason: Missing output files: results/3BH4/docking/metal/ascorbic_acid; Input files updated by another job: results/3BH4/receptor/receptor_with_metal.pdb
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 00:50:58 2026]
+localrule dock_metal_site:
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/tartaric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/tartaric_acid
+    log: logs/3BH4_dock_metal_tartaric_acid.log
+    jobid: 114
+    reason: Missing output files: results/3BH4/docking/metal/tartaric_acid; Input files updated by another job: results/3BH4/receptor/receptor_with_metal.pdb
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+[Sun Sep  6 00:50:58 2026]
+Finished jobid: 8 (Rule: prep_receptor)
+2 of 100 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep  6 00:50:58 2026]
+localrule dock_vina:
+    input: results/1HSG/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/1HSG/docking/vina/EGTA_out.pdbqt, results/1HSG/docking/vina/EGTA_log.txt
+    jobid: 10
+    reason: Missing output files: results/1HSG/docking/vina/EGTA_log.txt; Input files updated by another job: results/1HSG/receptor/receptor.pdbqt
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep  6 00:51:02 2026]
+Finished jobid: 62 (Rule: prep_receptor)
+3 of 100 steps (3%) done
+Execute 1 jobs...
+[Sun Sep  6 00:51:02 2026]
+localrule dock_vina:
+    input: results/3BH4/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/3BH4/docking/vina/citric_acid_out.pdbqt, results/3BH4/docking/vina/citric_acid_log.txt
+    jobid: 67
+    reason: Missing output files: results/3BH4/docking/vina/citric_acid_log.txt; Input files updated by another job: results/3BH4/receptor/receptor.pdbqt
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 509:
+Command 'set -euo pipefail;  
+        mkdir -p results/3BH4/docking/metal/tartaric_acid logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/tartaric_acid.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/tartaric_acid > logs/3BH4_dock_metal_tartaric_acid.log 2>&1' returned non-zero exit status 2.
+[Sun Sep  6 00:51:05 2026]
+Error in rule dock_metal_site:
+    message: None
+    jobid: 114
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/tartaric_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/tartaric_acid
+    log: logs/3BH4_dock_metal_tartaric_acid.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/3BH4/docking/metal/tartaric_acid logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/tartaric_acid.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/tartaric_acid > logs/3BH4_dock_metal_tartaric_acid.log 2>&1
+        
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 509:
+Command 'set -euo pipefail;  
+        mkdir -p results/3BH4/docking/metal/ascorbic_acid logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/ascorbic_acid.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/ascorbic_acid > logs/3BH4_dock_metal_ascorbic_acid.log 2>&1' returned non-zero exit status 2.
+[Sun Sep  6 00:51:05 2026]
+Error in rule dock_metal_site:
+    message: None
+    jobid: 105
+    input: results/3BH4/receptor/receptor_with_metal.pdb, ligands/ascorbic_acid.sdf, results/3BH4/cofactors/cofactor_report.json
+    output: results/3BH4/docking/metal/ascorbic_acid
+    log: logs/3BH4_dock_metal_ascorbic_acid.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p results/3BH4/docking/metal/ascorbic_acid logs
+        pandadock-metal             --receptor results/3BH4/receptor/receptor_with_metal.pdb             --ligand ligands/ascorbic_acid.sdf             --metal-type Ca             --metal-residue A:485             --center 0.0 0.0 0.0             --box 20 20 20             --coordination-geometry irregular             --output-dir results/3BH4/docking/metal/ascorbic_acid > logs/3BH4_dock_metal_ascorbic_acid.log 2>&1
+        
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_metal_site since they might be corrupted:
+results/3BH4/docking/metal/tartaric_acid
+Removing output files of failed job dock_metal_site since they might be corrupted:
+results/3BH4/docking/metal/ascorbic_acid
+[Sun Sep  6 00:51:18 2026]
+Finished jobid: 67 (Rule: dock_vina)
+4 of 100 steps (4%) done
+[Sun Sep  6 00:52:14 2026]
+Finished jobid: 10 (Rule: dock_vina)
+5 of 100 steps (5%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-06T005057.882941.snakemake.log
+Elapsed time: 0:01:16.600302
+WorkflowError:
+At least one job did not complete successfully.

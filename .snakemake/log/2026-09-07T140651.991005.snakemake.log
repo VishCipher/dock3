@@ -1,0 +1,803 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-07 14:06:52
+  Workflow ID: 8083f4d7-01fa-4d7b-a01e-a5de809dd8dc
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 --keep-going
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: 4e7dc044e91ac20f6ebd901a9245c7a7
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                            count
+---------------------------  -------
+compute_admet                      1
+dock_diffdock                     22
+collect_diffdock_scores            2
+build_protein_ligand_matrix        1
+write_run_provenance               1
+all                                1
+total                             28
+
+Select jobs to execute...
+Execute 4 jobs...
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf
+    output: results/3BH4/docking/diffdock/oxalic_acid
+    log: logs/3BH4_dock_diffdock_oxalic_acid.log
+    jobid: 129
+    reason: Missing output files: results/3BH4/docking/diffdock/oxalic_acid
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf
+    output: results/3BH4/docking/diffdock/ascorbic_acid
+    log: logs/3BH4_dock_diffdock_ascorbic_acid.log
+    jobid: 123
+    reason: Missing output files: results/3BH4/docking/diffdock/ascorbic_acid
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/caffeine.sdf
+    output: results/1HSG/docking/diffdock/caffeine
+    log: logs/1HSG_dock_diffdock_caffeine.log
+    jobid: 61
+    reason: Missing output files: results/1HSG/docking/diffdock/caffeine
+    wildcards: target=1HSG, ligand=caffeine
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/EDTA.sdf
+    output: results/1HSG/docking/diffdock/EDTA
+    log: logs/1HSG_dock_diffdock_EDTA.log
+    jobid: 57
+    reason: Missing output files: results/1HSG/docking/diffdock/EDTA
+    wildcards: target=1HSG, ligand=EDTA
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/caffeine logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_caffeine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/caffeine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/caffeine > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 61
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/caffeine.sdf
+    output: results/1HSG/docking/diffdock/caffeine
+    log: logs/1HSG_dock_diffdock_caffeine.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/caffeine logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_caffeine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/caffeine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/caffeine > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/oxalic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_oxalic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/oxalic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/oxalic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 129
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf
+    output: results/3BH4/docking/diffdock/oxalic_acid
+    log: logs/3BH4_dock_diffdock_oxalic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/oxalic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_oxalic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/oxalic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/oxalic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/ascorbic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_ascorbic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/ascorbic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/ascorbic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 123
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf
+    output: results/3BH4/docking/diffdock/ascorbic_acid
+    log: logs/3BH4_dock_diffdock_ascorbic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/ascorbic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_ascorbic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/ascorbic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/ascorbic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/EDTA logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_EDTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EDTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/EDTA > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 57
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/EDTA.sdf
+    output: results/1HSG/docking/diffdock/EDTA
+    log: logs/1HSG_dock_diffdock_EDTA.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/EDTA logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_EDTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EDTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/EDTA > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/caffeine
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EDTA.sdf
+    output: results/3BH4/docking/diffdock/EDTA
+    log: logs/3BH4_dock_diffdock_EDTA.log
+    jobid: 121
+    reason: Missing output files: results/3BH4/docking/diffdock/EDTA
+    wildcards: target=3BH4, ligand=EDTA
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/oxalic_acid
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/EDTA logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_EDTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EDTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/EDTA > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 121
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EDTA.sdf
+    output: results/3BH4/docking/diffdock/EDTA
+    log: logs/3BH4_dock_diffdock_EDTA.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/EDTA logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_EDTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EDTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/EDTA > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/ascorbic_acid
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/EDTA
+Select jobs to execute...
+Execute 3 jobs...
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf
+    output: results/3BH4/docking/diffdock/tartaric_acid
+    log: logs/3BH4_dock_diffdock_tartaric_acid.log
+    jobid: 131
+    reason: Missing output files: results/3BH4/docking/diffdock/tartaric_acid
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/caffeine.sdf
+    output: results/3BH4/docking/diffdock/caffeine
+    log: logs/3BH4_dock_diffdock_caffeine.log
+    jobid: 125
+    reason: Missing output files: results/3BH4/docking/diffdock/caffeine
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:52 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/aspirin.sdf
+    output: results/1HSG/docking/diffdock/aspirin
+    log: logs/1HSG_dock_diffdock_aspirin.log
+    jobid: 60
+    reason: Missing output files: results/1HSG/docking/diffdock/aspirin
+    wildcards: target=1HSG, ligand=aspirin
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/tartaric_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_tartaric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/tartaric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/tartaric_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 131
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf
+    output: results/3BH4/docking/diffdock/tartaric_acid
+    log: logs/3BH4_dock_diffdock_tartaric_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/tartaric_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_tartaric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/tartaric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/tartaric_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/aspirin logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_aspirin.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/aspirin.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/aspirin > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 60
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/aspirin.sdf
+    output: results/1HSG/docking/diffdock/aspirin
+    log: logs/1HSG_dock_diffdock_aspirin.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/aspirin logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_aspirin.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/aspirin.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/aspirin > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/caffeine logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_caffeine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/caffeine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/caffeine > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:52 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 125
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/caffeine.sdf
+    output: results/3BH4/docking/diffdock/caffeine
+    log: logs/3BH4_dock_diffdock_caffeine.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/caffeine logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_caffeine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/caffeine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/caffeine > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/EDTA
+Select jobs to execute...
+Execute 1 jobs...
+[Mon Sep  7 14:06:52 2026]
+localrule compute_admet:
+    input: ligands/EDTA.sdf, ligands/EGTA.sdf, ligands/ascorbic_acid.sdf, ligands/aspirin.sdf, ligands/caffeine.sdf, ligands/citric_acid.sdf, ligands/glycine.sdf, ligands/malonic_acid.sdf, ligands/oxalic_acid.sdf, ligands/salicylic_acid.sdf, ligands/tartaric_acid.sdf
+    output: results/summary/admet_properties.tsv
+    jobid: 133
+    reason: Missing output files: results/summary/admet_properties.tsv
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/tartaric_acid
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/aspirin
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/caffeine
+Select jobs to execute...
+Execute 3 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/citric_acid.sdf
+    output: results/1HSG/docking/diffdock/citric_acid
+    log: logs/1HSG_dock_diffdock_citric_acid.log
+    jobid: 62
+    reason: Missing output files: results/1HSG/docking/diffdock/citric_acid
+    wildcards: target=1HSG, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/citric_acid.sdf
+    output: results/3BH4/docking/diffdock/citric_acid
+    log: logs/3BH4_dock_diffdock_citric_acid.log
+    jobid: 126
+    reason: Missing output files: results/3BH4/docking/diffdock/citric_acid
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf
+    output: results/1HSG/docking/diffdock/oxalic_acid
+    log: logs/1HSG_dock_diffdock_oxalic_acid.log
+    jobid: 65
+    reason: Missing output files: results/1HSG/docking/diffdock/oxalic_acid
+    wildcards: target=1HSG, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/citric_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_citric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/citric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/citric_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 62
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/citric_acid.sdf
+    output: results/1HSG/docking/diffdock/citric_acid
+    log: logs/1HSG_dock_diffdock_citric_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/citric_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_citric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/citric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/citric_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/citric_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_citric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/citric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/citric_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/oxalic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_oxalic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/oxalic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/oxalic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 126
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/citric_acid.sdf
+    output: results/3BH4/docking/diffdock/citric_acid
+    log: logs/3BH4_dock_diffdock_citric_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/citric_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_citric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/citric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/citric_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 65
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/oxalic_acid.sdf
+    output: results/1HSG/docking/diffdock/oxalic_acid
+    log: logs/1HSG_dock_diffdock_oxalic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/oxalic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_oxalic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/oxalic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/oxalic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/citric_acid
+Execute 1 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf
+    output: results/1HSG/docking/diffdock/tartaric_acid
+    log: logs/1HSG_dock_diffdock_tartaric_acid.log
+    jobid: 67
+    reason: Missing output files: results/1HSG/docking/diffdock/tartaric_acid
+    wildcards: target=1HSG, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/citric_acid
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/oxalic_acid
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/tartaric_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_tartaric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/tartaric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/tartaric_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 67
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/tartaric_acid.sdf
+    output: results/1HSG/docking/diffdock/tartaric_acid
+    log: logs/1HSG_dock_diffdock_tartaric_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/tartaric_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_tartaric_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/tartaric_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/tartaric_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 2 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/glycine.sdf
+    output: results/3BH4/docking/diffdock/glycine
+    log: logs/3BH4_dock_diffdock_glycine.log
+    jobid: 127
+    reason: Missing output files: results/3BH4/docking/diffdock/glycine
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf
+    output: results/1HSG/docking/diffdock/malonic_acid
+    log: logs/1HSG_dock_diffdock_malonic_acid.log
+    jobid: 64
+    reason: Missing output files: results/1HSG/docking/diffdock/malonic_acid
+    wildcards: target=1HSG, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/tartaric_acid
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/glycine logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_glycine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/glycine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/glycine > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 127
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/glycine.sdf
+    output: results/3BH4/docking/diffdock/glycine
+    log: logs/3BH4_dock_diffdock_glycine.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/glycine logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_glycine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/glycine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/glycine > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/malonic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_malonic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/malonic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/malonic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 64
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf
+    output: results/1HSG/docking/diffdock/malonic_acid
+    log: logs/1HSG_dock_diffdock_malonic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/malonic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_malonic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/malonic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/malonic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 1 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/aspirin.sdf
+    output: results/3BH4/docking/diffdock/aspirin
+    log: logs/3BH4_dock_diffdock_aspirin.log
+    jobid: 124
+    reason: Missing output files: results/3BH4/docking/diffdock/aspirin
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/glycine
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/malonic_acid
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/aspirin logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_aspirin.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/aspirin.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/aspirin > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 124
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/aspirin.sdf
+    output: results/3BH4/docking/diffdock/aspirin
+    log: logs/3BH4_dock_diffdock_aspirin.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/aspirin logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_aspirin.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/aspirin.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/aspirin > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 2 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EGTA.sdf
+    output: results/3BH4/docking/diffdock/EGTA
+    log: logs/3BH4_dock_diffdock_EGTA.log
+    jobid: 122
+    reason: Missing output files: results/3BH4/docking/diffdock/EGTA
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf
+    output: results/1HSG/docking/diffdock/salicylic_acid
+    log: logs/1HSG_dock_diffdock_salicylic_acid.log
+    jobid: 66
+    reason: Missing output files: results/1HSG/docking/diffdock/salicylic_acid
+    wildcards: target=1HSG, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/aspirin
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/EGTA logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_EGTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EGTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/EGTA > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 122
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/EGTA.sdf
+    output: results/3BH4/docking/diffdock/EGTA
+    log: logs/3BH4_dock_diffdock_EGTA.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/EGTA logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_EGTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EGTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/EGTA > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/salicylic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_salicylic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/salicylic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/salicylic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 66
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf
+    output: results/1HSG/docking/diffdock/salicylic_acid
+    log: logs/1HSG_dock_diffdock_salicylic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/salicylic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_salicylic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/salicylic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/salicylic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 1 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf
+    output: results/3BH4/docking/diffdock/salicylic_acid
+    log: logs/3BH4_dock_diffdock_salicylic_acid.log
+    jobid: 130
+    reason: Missing output files: results/3BH4/docking/diffdock/salicylic_acid
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/EGTA
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/salicylic_acid
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/salicylic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_salicylic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/salicylic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/salicylic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 130
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/salicylic_acid.sdf
+    output: results/3BH4/docking/diffdock/salicylic_acid
+    log: logs/3BH4_dock_diffdock_salicylic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/salicylic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_salicylic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/salicylic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/salicylic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 2 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/glycine.sdf
+    output: results/1HSG/docking/diffdock/glycine
+    log: logs/1HSG_dock_diffdock_glycine.log
+    jobid: 63
+    reason: Missing output files: results/1HSG/docking/diffdock/glycine
+    wildcards: target=1HSG, ligand=glycine
+    resources: tmpdir=/tmp
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/EGTA.sdf
+    output: results/1HSG/docking/diffdock/EGTA
+    log: logs/1HSG_dock_diffdock_EGTA.log
+    jobid: 58
+    reason: Missing output files: results/1HSG/docking/diffdock/EGTA
+    wildcards: target=1HSG, ligand=EGTA
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/salicylic_acid
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/glycine logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_glycine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/glycine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/glycine > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 63
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/glycine.sdf
+    output: results/1HSG/docking/diffdock/glycine
+    log: logs/1HSG_dock_diffdock_glycine.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/glycine logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_glycine.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/glycine.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/glycine > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/EGTA logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_EGTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EGTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/EGTA > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 58
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/EGTA.sdf
+    output: results/1HSG/docking/diffdock/EGTA
+    log: logs/1HSG_dock_diffdock_EGTA.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/EGTA logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_EGTA.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/EGTA.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/EGTA > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 1 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf
+    output: results/1HSG/docking/diffdock/ascorbic_acid
+    log: logs/1HSG_dock_diffdock_ascorbic_acid.log
+    jobid: 59
+    reason: Missing output files: results/1HSG/docking/diffdock/ascorbic_acid
+    wildcards: target=1HSG, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/glycine
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/EGTA
+Select jobs to execute...
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/1HSG/docking/diffdock/ascorbic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_ascorbic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/ascorbic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/ascorbic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 59
+    input: results/1HSG/receptor/receptor_clean.pdb, ligands/ascorbic_acid.sdf
+    output: results/1HSG/docking/diffdock/ascorbic_acid
+    log: logs/1HSG_dock_diffdock_ascorbic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/1HSG/docking/diffdock/ascorbic_acid logs
+            LOGFILE=$(pwd)/logs/1HSG_dock_diffdock_ascorbic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/ascorbic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/1HSG/docking/diffdock/ascorbic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Execute 1 jobs...
+[Mon Sep  7 14:06:53 2026]
+localrule dock_diffdock:
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf
+    output: results/3BH4/docking/diffdock/malonic_acid
+    log: logs/3BH4_dock_diffdock_malonic_acid.log
+    jobid: 128
+    reason: Missing output files: results/3BH4/docking/diffdock/malonic_acid
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/1HSG/docking/diffdock/ascorbic_acid
+RuleException:
+CalledProcessError in file "/home/vishishtaapandit28/docking-pipeline-project/Snakefile", line 616:
+Command 'set -euo pipefail;  
+            mkdir -p results/3BH4/docking/diffdock/malonic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_malonic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/malonic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/malonic_acid > $LOGFILE 2>&1' returned non-zero exit status 127.
+[Mon Sep  7 14:06:53 2026]
+Error in rule dock_diffdock:
+    message: None
+    jobid: 128
+    input: results/3BH4/receptor/receptor_clean.pdb, ligands/malonic_acid.sdf
+    output: results/3BH4/docking/diffdock/malonic_acid
+    log: logs/3BH4_dock_diffdock_malonic_acid.log (check log file(s) for error details)
+    shell:
+        
+            mkdir -p results/3BH4/docking/diffdock/malonic_acid logs
+            LOGFILE=$(pwd)/logs/3BH4_dock_diffdock_malonic_acid.log
+            cd /home/vishishtaapandit28/DiffDock
+            python -m inference                 --config default_inference_args.yaml                 --protein_path /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/receptor/receptor_clean.pdb                 --ligand /home/vishishtaapandit28/docking-pipeline-project/ligands/malonic_acid.sdf                 --out_dir /home/vishishtaapandit28/docking-pipeline-project/results/3BH4/docking/diffdock/malonic_acid > $LOGFILE 2>&1
+            
+        (command exited with non-zero exit code)
+Removing output files of failed job dock_diffdock since they might be corrupted:
+results/3BH4/docking/diffdock/malonic_acid
+[Mon Sep  7 14:06:53 2026]
+Finished jobid: 133 (Rule: compute_admet)
+1 of 28 steps (4%) done
+Exiting because a job execution failed. Look above for error messages
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-07T140651.991005.snakemake.log
+Elapsed time: 0:00:01.817059
+WorkflowError:
+At least one job did not complete successfully.

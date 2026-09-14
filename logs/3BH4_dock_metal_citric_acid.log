@@ -1,0 +1,51 @@
+🧬 PandaDock Metal-Aware Molecular Docking
+==================================================
+Receptor: results/3BH4/receptor/receptor_clean.pdb
+Ligand: ligands/citric_acid.sdf
+Algorithm: pandadock
+Scoring: metal_aware
+Grid center: (53.8, 12.0, 13.9) Å
+Grid dimensions: (20.0, 20.0, 20.0) Å
+Output directory: results/3BH4/docking/metal/citric_acid
+
+INFO:pandadock.metal_docking.metal_parameters:Loaded parameters for 10 metal types
+📥 Loading ligand...
+✅ Validating metal ligand preparation...
+⚠️  Validation warnings:
+   • No metal atoms found in ligand
+🚀 Starting metal-aware docking...
+INFO:pandadock.metal_docking.metal_core:Starting metal-aware docking...
+INFO:pandadock.metal_docking.metal_preparation:Identified 8 metal sites
+INFO:pandadock.metal_docking.metal_core:Found 8 metal sites in receptor
+INFO:pandadock.docking.engine:Starting docking with pandadock algorithm and physics_based scoring
+INFO:pandadock.docking.pandadock:Exhaustiveness not specified; using 18 for 5 torsional DOF
+INFO:pandadock.docking.pandadock:Ligand: 13 atoms (13 heavy), 5 torsional DOF, 11 total DOF
+INFO:pandadock.docking.pandadock:Search is driven by the grid-accelerated Vina function; 'PhysicsBasedScoring' will be applied as a rescoring pass over the final poses.
+INFO:pandadock.docking.search.grid_maps:Building 4 affinity grid(s) at 0.375 A spacing: 76 x 76 x 76 = 438976 points
+INFO:pandadock.docking.search.grid_maps:Affinity grids built (7.0 MB)
+INFO:pandadock.docking.pandadock:Grid construction took 10.52 s
+INFO:pandadock.docking.search.monte_carlo:Search complete: 18 runs, 4968 local minima, 610346 energy evaluations, best -7.448 kcal/mol
+INFO:pandadock.docking.pandadock:Docking finished in 393.90 s: 40 binding modes, best -7.448 kcal/mol
+INFO:pandadock.docking.engine:Docking completed in 393.90 seconds
+INFO:pandadock.docking.engine:Generated 40 poses
+INFO:pandadock.metal_docking.metal_core:Rescoring 40 poses with metal-aware scoring
+INFO:pandadock.metal_docking.metal_core:Metal-aware docking completed with 20 poses
+✅ Docking completed in 395.74 seconds
+📊 Generated 20 poses
+💾 Saving results...
+🔬 Performing metal interaction analysis...
+
+📈 Top 5 poses:
+  1. Energy: 271.586 kcal/mol, Confidence: 0.386, Metal Score: 0.000, Violations: 1
+  2. Energy: 271.756 kcal/mol, Confidence: 0.419, Metal Score: 0.000, Violations: 1
+  3. Energy: 271.804 kcal/mol, Confidence: 0.437, Metal Score: 0.000, Violations: 1
+  4. Energy: 271.860 kcal/mol, Confidence: 0.387, Metal Score: 0.000, Violations: 1
+  5. Energy: 271.971 kcal/mol, Confidence: 0.482, Metal Score: 0.000, Violations: 1
+
+🎯 Metal Docking Summary:
+   Average coordination score: 0.000
+   Average metal binding score: 0.000
+   Poses with violations: 20
+   Violation rate: 100.00%
+
+🎉 Metal docking complete! Results saved to: results/3BH4/docking/metal/citric_acid

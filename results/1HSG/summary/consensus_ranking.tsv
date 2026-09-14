@@ -1,0 +1,12 @@
+overall_rank	ligand_id	avg_generic_rank	vina_rank	smina_rank	ad4_rank	plip_rank
+1	aspirin	2.25	2	2	4	1
+2	salicylic_acid	2.75	5	3	1	2
+3	EGTA	3.50	1	1	9	3
+4	EDTA	4.50	3	4	7	4
+5	ascorbic_acid	5.00	6	5	3	6
+6	caffeine	5.25	4	6	2	9
+7	citric_acid	6.50	7	7	5	7
+8	malonic_acid	7.25	9	9	6	5
+9	tartaric_acid	8.00	8	8	8	8
+10	oxalic_acid	10.25	10	10	10	11
+11	glycine	10.75	11	11	11	10

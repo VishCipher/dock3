@@ -1,0 +1,1055 @@
+"""
+Docking pipeline (Snakemake)
+-----------------------------
+Stages:
+  1. prep_receptor  -> convert receptor PDB to a common PDBQT (OpenBabel)
+  2. prep_ligand    -> convert each ligand SDF to PDBQT (OpenBabel)
+  3. dock_vina      -> optional Vina docking
+  4. dock_smina     -> optional smina docking
+  5. make_ad4_gpf   -> build one AutoGrid4 GPF from the actual receptor/ligand types
+  6. autogrid4      -> generate AutoDock4 grid maps
+  7. make_ad4_dpf   -> make one AutoDock4 DPF per ligand
+  8. dock_ad4       -> AutoDock4 docking; native .dlg is retained
+  9. collect_scores -> merge Vina, smina, and AutoDock4 results into one TSV
+
+Engine selection:
+  Put this in config.yaml to choose which engines are active:
+
+    engines:
+      - vina
+      - smina
+      - autodock4
+
+  Or use only the engines you want, for example:
+
+    engines:
+      - smina
+      - autodock4
+
+Each engine has its own result folder:
+  results/docking/vina/
+  results/docking/smina/
+  results/docking/autodock4/
+
+AutoDock4 also has a shared grid folder:
+  results/docking/autodock4/grid/
+
+The core receptor/ligand preparation files remain shared.
+"""
+
+
+configfile: "config.yaml"
+
+
+import glob
+import os
+import re
+from pathlib import Path
+
+
+# -----------------------------------------------------------------------------
+# Ligands
+# -----------------------------------------------------------------------------
+
+LIGAND_DIR = config["ligand_dir"]
+
+LIGAND_IDS = sorted(
+    os.path.splitext(
+        os.path.basename(f)
+    )[0]
+    for f in glob.glob(
+        f"{LIGAND_DIR}/*.sdf"
+    )
+)
+
+if not LIGAND_IDS:
+    raise ValueError(
+        f"No .sdf files found in '{LIGAND_DIR}'. "
+        "Add ligand SDFs there or update ligand_dir in config.yaml."
+    )
+
+
+# -----------------------------------------------------------------------------
+# Active engines
+# -----------------------------------------------------------------------------
+
+ACTIVE_ENGINES = config.get(
+    "engines",
+    ["vina", "smina", "autodock4"]
+)
+
+VALID_ENGINES = {
+    "vina",
+    "smina",
+    "autodock4"
+}
+
+unknown_engines = set(
+    ACTIVE_ENGINES
+) - VALID_ENGINES
+
+if unknown_engines:
+    raise ValueError(
+        "Unknown docking engine(s): "
+        + ", ".join(
+            sorted(unknown_engines)
+        )
+        + ". Valid engines are: vina, smina, autodock4."
+    )
+
+
+# -----------------------------------------------------------------------------
+# Executables
+# -----------------------------------------------------------------------------
+
+VINA = config.get(
+    "vina_executable",
+    "vina"
+)
+
+SMINA = config.get(
+    "smina_executable",
+    "smina"
+)
+
+AUTODOCK4 = config.get(
+    "autodock4_executable",
+    "autodock4"
+)
+
+AUTOGRID4 = config.get(
+    "autogrid4_executable",
+    "autogrid4"
+)
+
+
+# -----------------------------------------------------------------------------
+# Common docking-box parameters
+# -----------------------------------------------------------------------------
+
+CX = config["box"]["center_x"]
+CY = config["box"]["center_y"]
+CZ = config["box"]["center_z"]
+
+SX = config["box"]["size_x"]
+SY = config["box"]["size_y"]
+SZ = config["box"]["size_z"]
+
+EXHAUSTIVENESS = config.get(
+    "exhaustiveness",
+    8
+)
+
+
+# -----------------------------------------------------------------------------
+# AutoDock4 grid settings
+# -----------------------------------------------------------------------------
+
+AD4_SPACING = config.get(
+    "autodock4",
+    {}
+).get(
+    "spacing",
+    0.375
+)
+
+AD4_NPTS = config.get(
+    "autodock4",
+    {}
+).get(
+    "npts",
+    [54, 54, 54]
+)
+
+
+# -----------------------------------------------------------------------------
+# Shared receptor/ligand files
+# -----------------------------------------------------------------------------
+
+RECEPTOR_PDBQT = (
+    "results/receptor/receptor.pdbqt"
+)
+
+
+# -----------------------------------------------------------------------------
+# AutoDock4 grid files
+# -----------------------------------------------------------------------------
+
+AD4_GRID_DIR = (
+    "results/docking/autodock4/grid"
+)
+
+AD4_GPF = (
+    f"{AD4_GRID_DIR}/receptor.gpf"
+)
+
+AD4_FLD = (
+    f"{AD4_GRID_DIR}/receptor.maps.fld"
+)
+
+AD4_GRID_PREFIX = (
+    f"{AD4_GRID_DIR}/receptor"
+)
+
+
+# -----------------------------------------------------------------------------
+# Final score table
+# -----------------------------------------------------------------------------
+
+rule all:
+    input:
+        "results/summary/all_scores.tsv"
+
+
+# -----------------------------------------------------------------------------
+# Receptor preparation
+# -----------------------------------------------------------------------------
+
+rule prep_receptor:
+    """Convert receptor PDB -> shared PDBQT."""
+    input:
+        receptor=config["receptor_pdb"]
+    output:
+        pdbqt=RECEPTOR_PDBQT
+    log:
+        "logs/prep_receptor.log"
+    shell:
+        """
+        set -euo pipefail
+
+        mkdir -p \
+            results/receptor \
+            logs
+
+        obabel \
+            {input.receptor} \
+            -O {output.pdbqt} \
+            -xr \
+            > {log} \
+            2>&1
+
+        test -s {output.pdbqt}
+        """
+
+
+# -----------------------------------------------------------------------------
+# Ligand preparation
+# -----------------------------------------------------------------------------
+
+rule prep_ligand:
+    """Convert one ligand SDF -> shared PDBQT."""
+    input:
+        sdf=os.path.join(
+            LIGAND_DIR,
+            "{ligand}.sdf"
+        )
+    output:
+        pdbqt=(
+            "results/ligands_pdbqt/"
+            "{ligand}.pdbqt"
+        )
+    log:
+        "logs/prep_ligand_{ligand}.log"
+    shell:
+        """
+        set -euo pipefail
+
+        mkdir -p \
+            results/ligands_pdbqt \
+            logs
+
+        obabel \
+            {input.sdf} \
+            -O {output.pdbqt} \
+            --gen3d \
+            -p 7.4 \
+            > {log} \
+            2>&1
+
+        test -s {output.pdbqt}
+        """
+
+
+# -----------------------------------------------------------------------------
+# Vina
+# -----------------------------------------------------------------------------
+
+if "vina" in ACTIVE_ENGINES:
+
+    rule dock_vina:
+        """Dock one ligand with AutoDock Vina."""
+        input:
+            receptor=RECEPTOR_PDBQT,
+            ligand="results/ligands_pdbqt/{ligand}.pdbqt"
+        output:
+            pose=(
+                "results/docking/vina/"
+                "{ligand}_out.pdbqt"
+            ),
+            log=(
+                "results/docking/vina/"
+                "{ligand}_log.txt"
+            )
+        params:
+            cx=CX,
+            cy=CY,
+            cz=CZ,
+            sx=SX,
+            sy=SY,
+            sz=SZ,
+            exhaustiveness=EXHAUSTIVENESS
+        shell:
+            """
+            set -euo pipefail
+
+            mkdir -p \
+                results/docking/vina
+
+            {VINA} \
+                --receptor {input.receptor} \
+                --ligand {input.ligand} \
+                --center_x {params.cx} \
+                --center_y {params.cy} \
+                --center_z {params.cz} \
+                --size_x {params.sx} \
+                --size_y {params.sy} \
+                --size_z {params.sz} \
+                --exhaustiveness {params.exhaustiveness} \
+                --out {output.pose} \
+                --log {output.log}
+
+            test -s {output.pose}
+            test -s {output.log}
+            """
+
+
+# -----------------------------------------------------------------------------
+# smina
+# -----------------------------------------------------------------------------
+
+if "smina" in ACTIVE_ENGINES:
+
+    rule dock_smina:
+        """Dock one ligand with smina."""
+        input:
+            receptor=RECEPTOR_PDBQT,
+            ligand="results/ligands_pdbqt/{ligand}.pdbqt"
+        output:
+            pose=(
+                "results/docking/smina/"
+                "{ligand}_out.pdbqt"
+            ),
+            log=(
+                "results/docking/smina/"
+                "{ligand}_log.txt"
+            )
+        params:
+            cx=CX,
+            cy=CY,
+            cz=CZ,
+            sx=SX,
+            sy=SY,
+            sz=SZ,
+            exhaustiveness=EXHAUSTIVENESS
+        shell:
+            """
+            set -euo pipefail
+
+            mkdir -p \
+                results/docking/smina
+
+            {SMINA} \
+                --receptor {input.receptor} \
+                --ligand {input.ligand} \
+                --center_x {params.cx} \
+                --center_y {params.cy} \
+                --center_z {params.cz} \
+                --size_x {params.sx} \
+                --size_y {params.sy} \
+                --size_z {params.sz} \
+                --exhaustiveness {params.exhaustiveness} \
+                --out {output.pose} \
+                --log {output.log}
+
+            test -s {output.pose}
+            test -s {output.log}
+            """
+
+
+# -----------------------------------------------------------------------------
+# AutoDock4 GPF generation
+# -----------------------------------------------------------------------------
+
+if "autodock4" in ACTIVE_ENGINES:
+
+    rule make_ad4_gpf:
+        """Create one AutoGrid4 GPF from the actual receptor/ligand atom types."""
+        input:
+            receptor=RECEPTOR_PDBQT,
+            ligands=expand(
+                "results/ligands_pdbqt/{ligand}.pdbqt",
+                ligand=LIGAND_IDS
+            )
+        output:
+            gpf=AD4_GPF
+        run:
+            receptor_types = []
+            ligand_types = []
+
+            receptor_seen = set()
+            ligand_seen = set()
+
+            for filename in [
+                input.receptor
+            ]:
+
+                with open(filename) as fh:
+
+                    for line in fh:
+
+                        if not line.startswith(
+                            (
+                                "ATOM",
+                                "HETATM"
+                            )
+                        ):
+                            continue
+
+                        fields = line.split()
+
+                        if not fields:
+                            continue
+
+                        atom_type = fields[-1]
+
+                        if atom_type not in receptor_seen:
+
+                            receptor_seen.add(
+                                atom_type
+                            )
+
+                            receptor_types.append(
+                                atom_type
+                            )
+
+
+            for filename in input.ligands:
+
+                with open(filename) as fh:
+
+                    for line in fh:
+
+                        if not line.startswith(
+                            (
+                                "ATOM",
+                                "HETATM"
+                            )
+                        ):
+                            continue
+
+                        fields = line.split()
+
+                        if not fields:
+                            continue
+
+                        atom_type = fields[-1]
+
+                        if atom_type not in ligand_seen:
+
+                            ligand_seen.add(
+                                atom_type
+                            )
+
+                            ligand_types.append(
+                                atom_type
+                            )
+
+
+            if not receptor_types:
+
+                raise ValueError(
+                    "No receptor atom types found "
+                    "in receptor PDBQT."
+                )
+
+            if not ligand_types:
+
+                raise ValueError(
+                    "No ligand atom types found "
+                    "in ligand PDBQT files."
+                )
+
+
+            map_lines = []
+
+            for atom_type in ligand_types:
+
+                map_lines.append(
+                    "map "
+                    f"{AD4_GRID_PREFIX}."
+                    f"{atom_type}.map"
+                )
+
+
+            gpf_lines = []
+
+            gpf_lines.append(
+                f"npts "
+                f"{AD4_NPTS[0]} "
+                f"{AD4_NPTS[1]} "
+                f"{AD4_NPTS[2]}"
+            )
+
+            gpf_lines.append(
+                f"gridfld {AD4_FLD}"
+            )
+
+            gpf_lines.append(
+                f"spacing {AD4_SPACING}"
+            )
+
+            gpf_lines.append(
+                "receptor_types "
+                + " ".join(
+                    receptor_types
+                )
+            )
+
+            gpf_lines.append(
+                "ligand_types "
+                + " ".join(
+                    ligand_types
+                )
+            )
+
+            gpf_lines.append(
+                f"receptor {RECEPTOR_PDBQT}"
+            )
+
+            gpf_lines.append(
+                f"gridcenter "
+                f"{CX} {CY} {CZ}"
+            )
+
+            gpf_lines.append(
+                "smooth 0.5"
+            )
+
+            gpf_lines.extend(
+                map_lines
+            )
+
+            gpf_lines.append(
+                f"elecmap "
+                f"{AD4_GRID_PREFIX}.e.map"
+            )
+
+            gpf_lines.append(
+                f"dsolvmap "
+                f"{AD4_GRID_PREFIX}.d.map"
+            )
+
+            gpf_lines.append(
+                "dielectric -0.1465"
+            )
+
+            Path(
+                output.gpf
+            ).parent.mkdir(
+                parents=True,
+                exist_ok=True
+            )
+
+            Path(
+                output.gpf
+            ).write_text(
+                "\n".join(
+                    gpf_lines
+                )
+                + "\n"
+            )
+
+            print(
+                "AutoGrid4 receptor atom types:"
+            )
+
+            print(
+                " ".join(
+                    receptor_types
+                )
+            )
+
+            print(
+                "AutoGrid4 ligand atom types:"
+            )
+
+            print(
+                " ".join(
+                    ligand_types
+                )
+            )
+
+
+    # -------------------------------------------------------------------------
+    # AutoGrid4
+    # -------------------------------------------------------------------------
+
+    rule run_autogrid4:
+        """Generate AutoDock4 grid maps."""
+        input:
+            gpf=AD4_GPF,
+            receptor=RECEPTOR_PDBQT
+        output:
+            fld=AD4_FLD
+        log:
+            "logs/autogrid4.log"
+        shell:
+            """
+            set -euo pipefail
+
+            mkdir -p \
+                results/docking/autodock4/grid \
+                logs
+
+            {AUTOGRID4} \
+                -p {input.gpf} \
+                -l {log}
+
+            test -s {output.fld}
+            """
+
+
+    # -------------------------------------------------------------------------
+    # AutoDock4 DPF generation
+    # -------------------------------------------------------------------------
+
+    rule make_ad4_dpf:
+        """Create an AutoDock4 DPF for one ligand."""
+        input:
+            ligand=(
+                "results/ligands_pdbqt/"
+                "{ligand}.pdbqt"
+            ),
+            fld=AD4_FLD
+        output:
+            dpf=(
+                "results/docking/autodock4/"
+                "{ligand}.dpf"
+            )
+        run:
+            ligand_types = []
+            seen = set()
+
+            with open(input.ligand) as fh:
+
+                for line in fh:
+
+                    if not line.startswith(
+                        (
+                            "ATOM",
+                            "HETATM"
+                        )
+                    ):
+                        continue
+
+                    fields = line.split()
+
+                    if not fields:
+                        continue
+
+                    atom_type = fields[-1]
+
+                    if atom_type not in seen:
+
+                        seen.add(
+                            atom_type
+                        )
+
+                        ligand_types.append(
+                            atom_type
+                        )
+
+
+            if not ligand_types:
+
+                raise ValueError(
+                    f"No ligand atom types found in "
+                    f"{input.ligand}"
+                )
+
+
+            dpf_lines = []
+
+            dpf_lines.append(
+                "autodock_parameter_version 4.2"
+            )
+
+            dpf_lines.append(
+                "outlev 1"
+            )
+
+            dpf_lines.append(
+                "intelec"
+            )
+
+            dpf_lines.append(
+                "seed pid time"
+            )
+
+            dpf_lines.append(
+                "ligand_types "
+                + " ".join(
+                    ligand_types
+                )
+            )
+
+            dpf_lines.append(
+                f"fld {AD4_FLD}"
+            )
+
+            for atom_type in ligand_types:
+
+                dpf_lines.append(
+                    "map "
+                    f"{AD4_GRID_PREFIX}."
+                    f"{atom_type}.map"
+                )
+
+            dpf_lines.append(
+                f"elecmap "
+                f"{AD4_GRID_PREFIX}.e.map"
+            )
+
+            dpf_lines.append(
+                f"desolvmap "
+                f"{AD4_GRID_PREFIX}.d.map"
+            )
+
+            dpf_lines.append(
+                f"move "
+                f"results/ligands_pdbqt/"
+                f"{wildcards.ligand}.pdbqt"
+            )
+
+            dpf_lines.append(
+                "tran0 random"
+            )
+
+            dpf_lines.append(
+                "quaternion0 random"
+            )
+
+            dpf_lines.append(
+                "dihe0 random"
+            )
+
+            dpf_lines.append(
+                "ga_pop_size "
+                f"{config.get('autodock4', {}).get('ga_pop_size', 150)}"
+            )
+
+            dpf_lines.append(
+                "ga_num_evals "
+                f"{config.get('autodock4', {}).get('ga_num_evals', 2500000)}"
+            )
+
+            dpf_lines.append(
+                "ga_num_generations "
+                f"{config.get('autodock4', {}).get('ga_num_generations', 27000)}"
+            )
+
+            dpf_lines.append(
+                "ga_run "
+                f"{config.get('autodock4', {}).get('ga_run', 10)}"
+            )
+
+            dpf_lines.append(
+                f"rmstol {config.get('autodock4', {}).get('rmstol', 2.0)}"
+            )
+
+            dpf_lines.append(
+                "analysis"
+            )
+
+            Path(
+                output.dpf
+            ).parent.mkdir(
+                parents=True,
+                exist_ok=True
+            )
+
+            Path(
+                output.dpf
+            ).write_text(
+                "\n".join(
+                    dpf_lines
+                )
+                + "\n"
+            )
+
+
+    # -------------------------------------------------------------------------
+    # AutoDock4 docking
+    # -------------------------------------------------------------------------
+
+    rule dock_ad4:
+        """Dock one ligand with AutoDock4; retain the native DLG."""
+        input:
+            dpf=(
+                "results/docking/autodock4/"
+                "{ligand}.dpf"
+            )
+        output:
+            dlg=(
+                "results/docking/autodock4/"
+                "{ligand}_docking.dlg"
+            ),
+            log=(
+                "results/docking/autodock4/"
+                "{ligand}_log.txt"
+            )
+        shell:
+            """
+            set -euo pipefail
+
+            mkdir -p \
+                results/docking/autodock4
+
+            {AUTODOCK4} \
+                -p {input.dpf} \
+                -l {output.dlg} \
+                > {output.log} \
+                2>&1
+
+            test -s {output.dlg}
+            test -s {output.log}
+            """
+
+
+# -----------------------------------------------------------------------------
+# Score collection
+# -----------------------------------------------------------------------------
+#
+# This replaces the starter file's Vina-only collect_scores.py dependency.
+# It creates a long-format table:
+#   ligand_id, engine, best_affinity_kcal_mol, pose_path
+#
+# For AutoDock4, pose_path points to the native DLG because the DLG is the
+# authoritative docking result. A separate pose-export rule can be added later
+# once a preferred AD4 pose-export method is chosen.
+# -----------------------------------------------------------------------------
+
+COLLECT_INPUTS = []
+
+
+if "vina" in ACTIVE_ENGINES:
+
+    COLLECT_INPUTS.extend(
+        expand(
+            "results/docking/vina/{ligand}_log.txt",
+            ligand=LIGAND_IDS
+        )
+    )
+
+
+if "smina" in ACTIVE_ENGINES:
+
+    COLLECT_INPUTS.extend(
+        expand(
+            "results/docking/smina/{ligand}_log.txt",
+            ligand=LIGAND_IDS
+        )
+    )
+
+
+if "autodock4" in ACTIVE_ENGINES:
+
+    COLLECT_INPUTS.extend(
+        expand(
+            "results/docking/autodock4/{ligand}_docking.dlg",
+            ligand=LIGAND_IDS
+        )
+    )
+
+
+rule collect_scores:
+    """Merge best affinity values from all active docking engines."""
+    input:
+        COLLECT_INPUTS
+    output:
+        "results/summary/all_scores.tsv"
+    run:
+        rows = []
+
+        for filename in input:
+
+            path = str(filename)
+
+            ligand = Path(
+                path
+            ).name.split("_")[0]
+
+
+            if "/vina/" in path:
+
+                engine = "vina"
+
+                pose_path = (
+                    f"results/docking/vina/"
+                    f"{ligand}_out.pdbqt"
+                )
+
+                text = Path(
+                    path
+                ).read_text(
+                    errors="replace"
+                )
+
+                energies = []
+
+                for line in text.splitlines():
+
+                    match = re.match(
+                        r"^\s*\d+\s+"
+                        r"(-?\d+(?:\.\d+)?)",
+                        line
+                    )
+
+                    if match:
+
+                        energies.append(
+                            float(
+                                match.group(1)
+                            )
+                        )
+
+
+            elif "/smina/" in path:
+
+                engine = "smina"
+
+                pose_path = (
+                    f"results/docking/smina/"
+                    f"{ligand}_out.pdbqt"
+                )
+
+                text = Path(
+                    path
+                ).read_text(
+                    errors="replace"
+                )
+
+                energies = []
+
+                for line in text.splitlines():
+
+                    match = re.match(
+                        r"^\s*\d+\s+"
+                        r"(-?\d+(?:\.\d+)?)",
+                        line
+                    )
+
+                    if match:
+
+                        energies.append(
+                            float(
+                                match.group(1)
+                            )
+                        )
+
+
+            elif "/autodock4/" in path:
+
+                engine = "autodock4"
+
+                pose_path = (
+                    f"results/docking/autodock4/"
+                    f"{ligand}_docking.dlg"
+                )
+
+                text = Path(
+                    path
+                ).read_text(
+                    errors="replace"
+                )
+
+                energies = []
+
+                for line in text.splitlines():
+
+                    if (
+                        "Estimated Free Energy of Binding"
+                        in line
+                        and
+                        "Torsional"
+                        not in line
+                    ):
+
+                        match = re.search(
+                            r"=\s*"
+                            r"(-?\d+(?:\.\d+)?)"
+                            r"\s*kcal",
+                            line
+                        )
+
+                        if match:
+
+                            energies.append(
+                                float(
+                                    match.group(1)
+                                )
+                            )
+
+            else:
+
+                continue
+
+
+            best = (
+                min(energies)
+                if energies
+                else None
+            )
+
+            rows.append(
+                (
+                    ligand,
+                    engine,
+                    best,
+                    pose_path
+                )
+            )
+
+
+        Path(
+            output[0]
+        ).parent.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        with open(
+            output[0],
+            "w"
+        ) as out:
+
+            out.write(
+                "ligand_id\t"
+                "engine\t"
+                "best_affinity_kcal_mol\t"
+                "pose_path\n"
+            )
+
+            for (
+                ligand,
+                engine,
+                best,
+                pose_path
+            ) in sorted(rows):
+
+                out.write(
+                    f"{ligand}\t"
+                    f"{engine}\t"
+                    f"{best if best is not None else 'NOT_PARSED'}\t"
+                    f"{pose_path}\n"
+                )

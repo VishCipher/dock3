@@ -1,0 +1,51 @@
+🧬 PandaDock Metal-Aware Molecular Docking
+==================================================
+Receptor: results/1HSG/receptor/receptor_clean.pdb
+Ligand: ligands/EGTA.sdf
+Algorithm: pandadock
+Scoring: metal_aware
+Grid center: (53.8, 12.0, 13.9) Å
+Grid dimensions: (20.0, 20.0, 20.0) Å
+Output directory: results/1HSG/docking/metal/EGTA
+
+WARNING:pandadock.metal_docking.metal_parameters:Metal parameter file not found at /home/vishishtaapandit28/docking-pipeline-project/PandaDock/Metal_ions_parameter.txt; using built-in fallback parameters. These are approximate and are adequate for identifying coordination geometry, but for quantitative metal binding energies supply an AutoDock-format parameter file via MetalParameterManager(parameter_file=...).
+📥 Loading ligand...
+✅ Validating metal ligand preparation...
+⚠️  Validation warnings:
+   • No metal atoms found in ligand
+🚀 Starting metal-aware docking...
+INFO:pandadock.metal_docking.metal_core:Starting metal-aware docking...
+INFO:pandadock.metal_docking.metal_preparation:Identified 8 metal sites
+INFO:pandadock.metal_docking.metal_core:Found 8 metal sites in receptor
+INFO:pandadock.docking.engine:Starting docking with pandadock algorithm and physics_based scoring
+INFO:pandadock.docking.pandadock:Exhaustiveness not specified; using 32 for 17 torsional DOF
+INFO:pandadock.docking.pandadock:Ligand: 26 atoms (26 heavy), 17 torsional DOF, 23 total DOF
+INFO:pandadock.docking.pandadock:Search is driven by the grid-accelerated Vina function; 'PhysicsBasedScoring' will be applied as a rescoring pass over the final poses.
+INFO:pandadock.docking.search.grid_maps:Building 4 affinity grid(s) at 0.375 A spacing: 76 x 76 x 76 = 438976 points
+INFO:pandadock.docking.search.grid_maps:Affinity grids built (7.0 MB)
+INFO:pandadock.docking.pandadock:Grid construction took 14.10 s
+INFO:pandadock.docking.search.monte_carlo:Search complete: 32 runs, 18432 local minima, 2068260 energy evaluations, best -11.251 kcal/mol
+INFO:pandadock.docking.pandadock:Docking finished in 2361.18 s: 40 binding modes, best -11.251 kcal/mol
+INFO:pandadock.docking.engine:Docking completed in 2361.20 seconds
+INFO:pandadock.docking.engine:Generated 40 poses
+INFO:pandadock.metal_docking.metal_core:Rescoring 40 poses with metal-aware scoring
+INFO:pandadock.metal_docking.metal_core:Metal-aware docking completed with 20 poses
+✅ Docking completed in 2362.77 seconds
+📊 Generated 20 poses
+💾 Saving results...
+🔬 Performing metal interaction analysis...
+
+📈 Top 5 poses:
+  1. Energy: 468.920 kcal/mol, Confidence: 0.596, Metal Score: 0.000, Violations: 1
+  2. Energy: 469.294 kcal/mol, Confidence: 0.366, Metal Score: 0.000, Violations: 1
+  3. Energy: 469.394 kcal/mol, Confidence: 0.397, Metal Score: 0.000, Violations: 1
+  4. Energy: 469.518 kcal/mol, Confidence: 1.000, Metal Score: 0.000, Violations: 1
+  5. Energy: 469.565 kcal/mol, Confidence: 0.664, Metal Score: 0.000, Violations: 1
+
+🎯 Metal Docking Summary:
+   Average coordination score: 0.000
+   Average metal binding score: 0.000
+   Poses with violations: 20
+   Violation rate: 100.00%
+
+🎉 Metal docking complete! Results saved to: results/1HSG/docking/metal/EGTA

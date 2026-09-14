@@ -1,0 +1,12 @@
+rank	ligand_id	total_interactions	hydrogen_bonds	salt_bridges	hydrophobic_interactions	direct_metal_coordination	contacted_residues
+1	EDTA	6	3	3	0	0	ASP408;GLY301;HIS406;PRO407
+2	aspirin	4	1	0	1	0	GLY300
+3	citric_acid	4	3	0	1	0	ASP431;GLY300;GLY476
+4	salicylic_acid	4	2	0	1	0	ASP431;GLN341
+5	tartaric_acid	4	2	2	0	0	HIS406;LYS437;SER436
+6	EGTA	3	2	1	0	0	ASP408;ASP431;GLY301
+7	malonic_acid	3	2	0	1	0	GLY301
+8	glycine	2	2	0	0	0	ASP408
+9	oxalic_acid	2	2	0	0	0	GLY301;PRO407
+10	ascorbic_acid	1	1	0	0	0	ASP408
+11	caffeine	0	0	0	0	0	

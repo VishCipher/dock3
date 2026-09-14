@@ -1,0 +1,306 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-13 12:00:58
+  Workflow ID: cd96c8b2-1cbc-40df-ac09-13cc58580e75
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4 results/3BH4/summary/plip_interactions.tsv
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: ea9fa553cd93a0e2f37764c842a80021
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                          count
+-------------------------  -------
+prepare_plip_complex            10
+run_plip                        10
+collect_plip_interactions        1
+total                           21
+
+Select jobs to execute...
+Execute 4 jobs...
+[Sun Sep 13 12:00:58 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/caffeine_out.pdbqt
+    output: results/3BH4/plip_complexes/caffeine_complex.pdb
+    jobid: 20
+    reason: Missing output files: results/3BH4/plip_complexes/caffeine_complex.pdb
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:58 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/oxalic_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/oxalic_acid_complex.pdb
+    jobid: 36
+    reason: Missing output files: results/3BH4/plip_complexes/oxalic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:58 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/ascorbic_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/ascorbic_acid_complex.pdb
+    jobid: 12
+    reason: Missing output files: results/3BH4/plip_complexes/ascorbic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:58 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/malonic_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/malonic_acid_complex.pdb
+    jobid: 32
+    reason: Missing output files: results/3BH4/plip_complexes/malonic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 36 (Rule: prepare_plip_complex)
+1 of 21 steps (5%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:00:59 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/aspirin_out.pdbqt
+    output: results/3BH4/plip_complexes/aspirin_complex.pdb
+    jobid: 16
+    reason: Missing output files: results/3BH4/plip_complexes/aspirin_complex.pdb
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 12 (Rule: prepare_plip_complex)
+2 of 21 steps (10%) done
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 20 (Rule: prepare_plip_complex)
+3 of 21 steps (14%) done
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 32 (Rule: prepare_plip_complex)
+4 of 21 steps (19%) done
+Select jobs to execute...
+Execute 3 jobs...
+[Sun Sep 13 12:00:59 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/caffeine_complex.pdb
+    output: results/3BH4/plip/caffeine
+    log: logs/3BH4_plip_caffeine.log
+    jobid: 19
+    reason: Missing output files: results/3BH4/plip/caffeine; Input files updated by another job: results/3BH4/plip_complexes/caffeine_complex.pdb
+    wildcards: target=3BH4, ligand=caffeine
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/EGTA_out.pdbqt
+    output: results/3BH4/plip_complexes/EGTA_complex.pdb
+    jobid: 8
+    reason: Missing output files: results/3BH4/plip_complexes/EGTA_complex.pdb
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/oxalic_acid_complex.pdb
+    output: results/3BH4/plip/oxalic_acid
+    log: logs/3BH4_plip_oxalic_acid.log
+    jobid: 35
+    reason: Missing output files: results/3BH4/plip/oxalic_acid; Input files updated by another job: results/3BH4/plip_complexes/oxalic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=oxalic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 16 (Rule: prepare_plip_complex)
+5 of 21 steps (24%) done
+Execute 1 jobs...
+[Sun Sep 13 12:00:59 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/malonic_acid_complex.pdb
+    output: results/3BH4/plip/malonic_acid
+    log: logs/3BH4_plip_malonic_acid.log
+    jobid: 31
+    reason: Missing output files: results/3BH4/plip/malonic_acid; Input files updated by another job: results/3BH4/plip_complexes/malonic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 8 (Rule: prepare_plip_complex)
+6 of 21 steps (29%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:00:59 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/tartaric_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/tartaric_acid_complex.pdb
+    jobid: 44
+    reason: Missing output files: results/3BH4/plip_complexes/tartaric_acid_complex.pdb
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:00:59 2026]
+Finished jobid: 44 (Rule: prepare_plip_complex)
+7 of 21 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:00:59 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/tartaric_acid_complex.pdb
+    output: results/3BH4/plip/tartaric_acid
+    log: logs/3BH4_plip_tartaric_acid.log
+    jobid: 43
+    reason: Missing output files: results/3BH4/plip/tartaric_acid; Input files updated by another job: results/3BH4/plip_complexes/tartaric_acid_complex.pdb
+    wildcards: target=3BH4, ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:00 2026]
+Finished jobid: 19 (Rule: run_plip)
+8 of 21 steps (38%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:00 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/citric_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/citric_acid_complex.pdb
+    jobid: 24
+    reason: Missing output files: results/3BH4/plip_complexes/citric_acid_complex.pdb
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:01:00 2026]
+Finished jobid: 31 (Rule: run_plip)
+9 of 21 steps (43%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:01:00 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/salicylic_acid_out.pdbqt
+    output: results/3BH4/plip_complexes/salicylic_acid_complex.pdb
+    jobid: 40
+    reason: Missing output files: results/3BH4/plip_complexes/salicylic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:01:00 2026]
+Finished jobid: 24 (Rule: prepare_plip_complex)
+10 of 21 steps (48%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:01:00 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/aspirin_complex.pdb
+    output: results/3BH4/plip/aspirin
+    log: logs/3BH4_plip_aspirin.log
+    jobid: 15
+    reason: Missing output files: results/3BH4/plip/aspirin; Input files updated by another job: results/3BH4/plip_complexes/aspirin_complex.pdb
+    wildcards: target=3BH4, ligand=aspirin
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:01:00 2026]
+Finished jobid: 40 (Rule: prepare_plip_complex)
+11 of 21 steps (52%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:01:00 2026]
+localrule prepare_plip_complex:
+    input: results/3BH4/receptor/receptor_clean.pdb, results/3BH4/docking/vina/glycine_out.pdbqt
+    output: results/3BH4/plip_complexes/glycine_complex.pdb
+    jobid: 28
+    reason: Missing output files: results/3BH4/plip_complexes/glycine_complex.pdb
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:01 2026]
+Finished jobid: 28 (Rule: prepare_plip_complex)
+12 of 21 steps (57%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:01 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/ascorbic_acid_complex.pdb
+    output: results/3BH4/plip/ascorbic_acid
+    log: logs/3BH4_plip_ascorbic_acid.log
+    jobid: 11
+    reason: Missing output files: results/3BH4/plip/ascorbic_acid; Input files updated by another job: results/3BH4/plip_complexes/ascorbic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:01 2026]
+Finished jobid: 43 (Rule: run_plip)
+13 of 21 steps (62%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:01 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/glycine_complex.pdb
+    output: results/3BH4/plip/glycine
+    log: logs/3BH4_plip_glycine.log
+    jobid: 27
+    reason: Missing output files: results/3BH4/plip/glycine; Input files updated by another job: results/3BH4/plip_complexes/glycine_complex.pdb
+    wildcards: target=3BH4, ligand=glycine
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:01 2026]
+Finished jobid: 35 (Rule: run_plip)
+14 of 21 steps (67%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:01 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/citric_acid_complex.pdb
+    output: results/3BH4/plip/citric_acid
+    log: logs/3BH4_plip_citric_acid.log
+    jobid: 23
+    reason: Missing output files: results/3BH4/plip/citric_acid; Input files updated by another job: results/3BH4/plip_complexes/citric_acid_complex.pdb
+    wildcards: target=3BH4, ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:02 2026]
+Finished jobid: 11 (Rule: run_plip)
+15 of 21 steps (71%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:02 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/EGTA_complex.pdb
+    output: results/3BH4/plip/EGTA
+    log: logs/3BH4_plip_EGTA.log
+    jobid: 7
+    reason: Missing output files: results/3BH4/plip/EGTA; Input files updated by another job: results/3BH4/plip_complexes/EGTA_complex.pdb
+    wildcards: target=3BH4, ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sun Sep 13 12:01:02 2026]
+Finished jobid: 27 (Rule: run_plip)
+16 of 21 steps (76%) done
+Execute 1 jobs...
+[Sun Sep 13 12:01:02 2026]
+localrule run_plip:
+    input: results/3BH4/plip_complexes/salicylic_acid_complex.pdb
+    output: results/3BH4/plip/salicylic_acid
+    log: logs/3BH4_plip_salicylic_acid.log
+    jobid: 39
+    reason: Missing output files: results/3BH4/plip/salicylic_acid; Input files updated by another job: results/3BH4/plip_complexes/salicylic_acid_complex.pdb
+    wildcards: target=3BH4, ligand=salicylic_acid
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:01:03 2026]
+Finished jobid: 15 (Rule: run_plip)
+17 of 21 steps (81%) done
+[Sun Sep 13 12:01:03 2026]
+Finished jobid: 23 (Rule: run_plip)
+18 of 21 steps (86%) done
+[Sun Sep 13 12:01:04 2026]
+Finished jobid: 7 (Rule: run_plip)
+19 of 21 steps (90%) done
+[Sun Sep 13 12:01:04 2026]
+Finished jobid: 39 (Rule: run_plip)
+20 of 21 steps (95%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 13 12:01:04 2026]
+localrule collect_plip_interactions:
+    input: results/3BH4/plip/EDTA, results/3BH4/plip/EGTA, results/3BH4/plip/ascorbic_acid, results/3BH4/plip/aspirin, results/3BH4/plip/caffeine, results/3BH4/plip/citric_acid, results/3BH4/plip/glycine, results/3BH4/plip/malonic_acid, results/3BH4/plip/oxalic_acid, results/3BH4/plip/salicylic_acid, results/3BH4/plip/tartaric_acid
+    output: results/3BH4/summary/plip_interactions.tsv
+    jobid: 0
+    reason: Missing output files: results/3BH4/summary/plip_interactions.tsv; Input files updated by another job: results/3BH4/plip/oxalic_acid, results/3BH4/plip/caffeine, results/3BH4/plip/glycine, results/3BH4/plip/ascorbic_acid, results/3BH4/plip/salicylic_acid, results/3BH4/plip/citric_acid, results/3BH4/plip/malonic_acid, results/3BH4/plip/EGTA, results/3BH4/plip/aspirin, results/3BH4/plip/tartaric_acid
+    wildcards: target=3BH4
+    resources: tmpdir=/tmp
+[Sun Sep 13 12:01:04 2026]
+Finished jobid: 0 (Rule: collect_plip_interactions)
+21 of 21 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-13T120058.382465.snakemake.log
+Elapsed time: 0:00:06.106453

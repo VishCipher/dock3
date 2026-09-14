@@ -1,0 +1,22 @@
+{
+  "ligand_name": "unknown",
+  "receptor_file": "",
+  "grid_center": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "grid_dimensions": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "algorithm_used": "metal_aware",
+  "scoring_function": "metal_aware",
+  "ensemble_binding_energy": 0.0,
+  "ensemble_confidence": 0.0,
+  "num_poses": 20,
+  "runtime_seconds": 0.0,
+  "parameters": {},
+  "best_pose_energy": 113.11820421144381
+}

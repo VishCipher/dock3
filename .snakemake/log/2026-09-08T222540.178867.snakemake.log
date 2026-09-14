@@ -1,0 +1,56 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-08 22:25:40
+  Workflow ID: 3efaaefa-baf9-41a4-bdda-3416f201bdf3
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 5 --rerun-incomplete
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+write_run_provenance        1
+all                         1
+total                       2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Tue Sep  8 22:25:40 2026]
+localrule write_run_provenance:
+    input: results/summary/protein_ligand_matrix.tsv
+    output: results/summary/run_provenance.json
+    jobid: 110
+    reason: Missing output files: results/summary/run_provenance.json; Params have changed since last execution: Union of exclusive params before and now across all output: before: <nothing exclusive> now: False 
+    resources: tmpdir=/tmp
+[Tue Sep  8 22:25:40 2026]
+Finished jobid: 110 (Rule: write_run_provenance)
+1 of 2 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Tue Sep  8 22:25:41 2026]
+localrule all:
+    input: results/1HSG/summary/merged_all_engines.tsv, results/3BH4/summary/merged_all_engines.tsv, results/3BH4/summary/metal_site_scores.tsv, results/summary/protein_ligand_matrix.tsv, results/summary/admet_properties.tsv, results/summary/run_provenance.json
+    jobid: 0
+    reason: Input files updated by another job: results/summary/run_provenance.json
+    resources: tmpdir=/tmp
+[Tue Sep  8 22:25:41 2026]
+Finished jobid: 0 (Rule: all)
+2 of 2 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-08T222540.178867.snakemake.log
+Elapsed time: 0:00:00.836411

@@ -1,0 +1,84 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-06 00:45:17
+  Workflow ID: 5a4fd171-ebc0-4e2d-b20e-c0cfe3dbe1d0
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 4
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: d1f7f4e28b17535c3859be07be5f7faa
+
+Building DAG of jobs...
+Updating checkpoint dependencies.
+Traceback (most recent call last):
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/cli.py", line 2310, in args_to_api
+    dag_api.execute_workflow(
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/api.py", line 645, in execute_workflow
+    workflow.execute(
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/workflow.py", line 1340, in execute
+    self._build_dag()
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/workflow.py", line 1277, in _build_dag
+    self.async_run(self.dag.update_checkpoint_dependencies())
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/workflow.py", line 268, in async_run
+    return runner.run(coro)
+           ^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/dag.py", line 2296, in update_checkpoint_dependencies
+    await self.postprocess_after_update()
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/dag.py", line 2301, in postprocess_after_update
+    await self.postprocess()
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/dag.py", line 2007, in postprocess
+    processor.process()
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/dag.py", line 3476, in process
+    self.process_job(job)
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/dag.py", line 3519, in process_job
+    script_sourcefile, _, _, _, _ = script.get_source(
+                                    ^^^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/script/__init__.py", line 1378, in get_source
+    with sourcecache.open(source_file) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/sourcecache.py", line 809, in open
+    cache_entry = self._cache(source_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/sourcecache.py", line 846, in _cache
+    self._do_cache(source_file, cache_entry)
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/sourcecache.py", line 850, in _do_cache
+    mtime = source_file.mtime()
+            ^^^^^^^^^^^^^^^^^^^
+
+  File "/home/vishishtaapandit28/anaconda3/envs/docking/lib/python3.11/site-packages/snakemake/sourcecache.py", line 213, in mtime
+    return os.stat(self.path).st_mtime
+           ^^^^^^^^^^^^^^^^^^
+
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vishishtaapandit28/docking-pipeline-project/workflow/scripts/build_protein_ligand_matrix.py'
+

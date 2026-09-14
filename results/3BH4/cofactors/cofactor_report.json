@@ -1,0 +1,77 @@
+{
+  "has_metal": true,
+  "metals_found": [
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "A",
+      "resnum": "485",
+      "x": 53.838,
+      "y": 11.958,
+      "z": 13.914
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "A",
+      "resnum": "486",
+      "x": 74.926,
+      "y": 24.361,
+      "z": 45.366
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "A",
+      "resnum": "487",
+      "x": 50.384,
+      "y": 40.934,
+      "z": 2.852
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "A",
+      "resnum": "488",
+      "x": 74.457,
+      "y": 26.083,
+      "z": 53.588
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "B",
+      "resnum": "1",
+      "x": 72.88,
+      "y": 69.04,
+      "z": 77.756
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "B",
+      "resnum": "485",
+      "x": 76.84,
+      "y": 85.035,
+      "z": 41.767
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "B",
+      "resnum": "486",
+      "x": 76.74,
+      "y": 67.614,
+      "z": 85.019
+    },
+    {
+      "resname": "CA",
+      "symbol": "Ca",
+      "chain": "B",
+      "resnum": "487",
+      "x": 82.676,
+      "y": 57.237,
+      "z": 28.623
+    }
+  ]
+}

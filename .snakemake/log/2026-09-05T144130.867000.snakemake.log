@@ -1,0 +1,373 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-09-05 14:41:30
+  Workflow ID: ea720edc-a1cb-4db5-a9cb-ed93a3f6322c
+  Platform: Linux-7.0.0-31-generic-x86_64-with-glibc2.39
+  Host: VP
+  User: vishishtaapandit28
+  Snakemake version: 9.26.1
+  Python version: 3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]
+  Command: /home/vishishtaapandit28/anaconda3/envs/docking/bin/snakemake --cores 8
+  Snakefile: /home/vishishtaapandit28/docking-pipeline-project/Snakefile
+  Base directory: /home/vishishtaapandit28/docking-pipeline-project
+  Run directory: /home/vishishtaapandit28/docking-pipeline-project
+  Working directory: /home/vishishtaapandit28/docking-pipeline-project
+  Config file(s): ['config.yaml']
+  Config MD5: e384efbcd753f47e5277c009b1015321
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+prep_ligand          12
+prep_receptor         1
+dock_vina            12
+collect_scores        1
+all                   1
+total                27
+
+Select jobs to execute...
+Execute 8 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/caffeine.sdf
+    output: results/ligands_pdbqt/caffeine.pdbqt
+    log: logs/prep_ligand_caffeine.log
+    jobid: 12
+    reason: Missing output files: results/ligands_pdbqt/caffeine.pdbqt
+    wildcards: ligand=caffeine
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/glycine.sdf
+    output: results/ligands_pdbqt/glycine.pdbqt
+    log: logs/prep_ligand_glycine.log
+    jobid: 16
+    reason: Missing output files: results/ligands_pdbqt/glycine.pdbqt
+    wildcards: ligand=glycine
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/ascorbic_acid.sdf
+    output: results/ligands_pdbqt/ascorbic_acid.pdbqt
+    log: logs/prep_ligand_ascorbic_acid.log
+    jobid: 8
+    reason: Missing output files: results/ligands_pdbqt/ascorbic_acid.pdbqt
+    wildcards: ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/malonic_acid.sdf
+    output: results/ligands_pdbqt/malonic_acid.pdbqt
+    log: logs/prep_ligand_malonic_acid.log
+    jobid: 18
+    reason: Missing output files: results/ligands_pdbqt/malonic_acid.pdbqt
+    wildcards: ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_receptor:
+    input: data/receptor.pdb
+    output: results/receptor/receptor.pdbqt
+    log: logs/prep_receptor.log
+    jobid: 3
+    reason: Missing output files: results/receptor/receptor.pdbqt
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/aspirin.sdf
+    output: results/ligands_pdbqt/aspirin.pdbqt
+    log: logs/prep_ligand_aspirin.log
+    jobid: 10
+    reason: Missing output files: results/ligands_pdbqt/aspirin.pdbqt
+    wildcards: ligand=aspirin
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/tartaric_acid.sdf
+    output: results/ligands_pdbqt/tartaric_acid.pdbqt
+    log: logs/prep_ligand_tartaric_acid.log
+    jobid: 26
+    reason: Missing output files: results/ligands_pdbqt/tartaric_acid.pdbqt
+    wildcards: ligand=tartaric_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/EDTA.sdf
+    output: results/ligands_pdbqt/EDTA.pdbqt
+    log: logs/prep_ligand_EDTA.log
+    jobid: 4
+    reason: Missing output files: results/ligands_pdbqt/EDTA.pdbqt
+    wildcards: ligand=EDTA
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 16 (Rule: prep_ligand)
+1 of 27 steps (4%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/phosphoric_acid.sdf
+    output: results/ligands_pdbqt/phosphoric_acid.pdbqt
+    log: logs/prep_ligand_phosphoric_acid.log
+    jobid: 22
+    reason: Missing output files: results/ligands_pdbqt/phosphoric_acid.pdbqt
+    wildcards: ligand=phosphoric_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 18 (Rule: prep_ligand)
+2 of 27 steps (7%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/salicylic_acid.sdf
+    output: results/ligands_pdbqt/salicylic_acid.pdbqt
+    log: logs/prep_ligand_salicylic_acid.log
+    jobid: 24
+    reason: Missing output files: results/ligands_pdbqt/salicylic_acid.pdbqt
+    wildcards: ligand=salicylic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 26 (Rule: prep_ligand)
+3 of 27 steps (11%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/citric_acid.sdf
+    output: results/ligands_pdbqt/citric_acid.pdbqt
+    log: logs/prep_ligand_citric_acid.log
+    jobid: 14
+    reason: Missing output files: results/ligands_pdbqt/citric_acid.pdbqt
+    wildcards: ligand=citric_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 10 (Rule: prep_ligand)
+4 of 27 steps (15%) done
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 3 (Rule: prep_receptor)
+5 of 27 steps (19%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    output: results/docking/vina/malonic_acid_out.pdbqt, results/docking/vina/malonic_acid_log.txt
+    jobid: 17
+    reason: Missing output files: results/docking/vina/malonic_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/malonic_acid.pdbqt
+    wildcards: ligand=malonic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/oxalic_acid.sdf
+    output: results/ligands_pdbqt/oxalic_acid.pdbqt
+    log: logs/prep_ligand_oxalic_acid.log
+    jobid: 20
+    reason: Missing output files: results/ligands_pdbqt/oxalic_acid.pdbqt
+    wildcards: ligand=oxalic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 8 (Rule: prep_ligand)
+6 of 27 steps (22%) done
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 22 (Rule: prep_ligand)
+7 of 27 steps (26%) done
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 12 (Rule: prep_ligand)
+8 of 27 steps (30%) done
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 4 (Rule: prep_ligand)
+9 of 27 steps (33%) done
+Select jobs to execute...
+Execute 4 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/phosphoric_acid.pdbqt
+    output: results/docking/vina/phosphoric_acid_out.pdbqt, results/docking/vina/phosphoric_acid_log.txt
+    jobid: 21
+    reason: Missing output files: results/docking/vina/phosphoric_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/phosphoric_acid.pdbqt
+    wildcards: ligand=phosphoric_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    output: results/docking/vina/glycine_out.pdbqt, results/docking/vina/glycine_log.txt
+    jobid: 15
+    reason: Missing output files: results/docking/vina/glycine_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/glycine.pdbqt
+    wildcards: ligand=glycine
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    output: results/docking/vina/EDTA_out.pdbqt, results/docking/vina/EDTA_log.txt
+    jobid: 2
+    reason: Missing output files: results/docking/vina/EDTA_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/EDTA.pdbqt
+    wildcards: ligand=EDTA
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+localrule prep_ligand:
+    input: ligands/EGTA.sdf
+    output: results/ligands_pdbqt/EGTA.pdbqt
+    log: logs/prep_ligand_EGTA.log
+    jobid: 6
+    reason: Missing output files: results/ligands_pdbqt/EGTA.pdbqt
+    wildcards: ligand=EGTA
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 20 (Rule: prep_ligand)
+10 of 27 steps (37%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    output: results/docking/vina/caffeine_out.pdbqt, results/docking/vina/caffeine_log.txt
+    jobid: 11
+    reason: Missing output files: results/docking/vina/caffeine_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/caffeine.pdbqt
+    wildcards: ligand=caffeine
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 14 (Rule: prep_ligand)
+11 of 27 steps (41%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    output: results/docking/vina/aspirin_out.pdbqt, results/docking/vina/aspirin_log.txt
+    jobid: 9
+    reason: Missing output files: results/docking/vina/aspirin_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/aspirin.pdbqt
+    wildcards: ligand=aspirin
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 24 (Rule: prep_ligand)
+12 of 27 steps (44%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    output: results/docking/vina/tartaric_acid_out.pdbqt, results/docking/vina/tartaric_acid_log.txt
+    jobid: 25
+    reason: Missing output files: results/docking/vina/tartaric_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/tartaric_acid.pdbqt
+    wildcards: ligand=tartaric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sat Sep  5 14:41:31 2026]
+Finished jobid: 6 (Rule: prep_ligand)
+13 of 27 steps (48%) done
+Execute 1 jobs...
+[Sat Sep  5 14:41:31 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    output: results/docking/vina/ascorbic_acid_out.pdbqt, results/docking/vina/ascorbic_acid_log.txt
+    jobid: 7
+    reason: Missing output files: results/docking/vina/ascorbic_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/ascorbic_acid.pdbqt
+    wildcards: ligand=ascorbic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sat Sep  5 14:41:49 2026]
+Finished jobid: 17 (Rule: dock_vina)
+14 of 27 steps (52%) done
+Execute 1 jobs...
+[Sat Sep  5 14:41:49 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    output: results/docking/vina/salicylic_acid_out.pdbqt, results/docking/vina/salicylic_acid_log.txt
+    jobid: 23
+    reason: Missing output files: results/docking/vina/salicylic_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/salicylic_acid.pdbqt
+    wildcards: ligand=salicylic_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sat Sep  5 14:41:50 2026]
+Finished jobid: 15 (Rule: dock_vina)
+15 of 27 steps (56%) done
+Execute 1 jobs...
+[Sat Sep  5 14:41:50 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    output: results/docking/vina/EGTA_out.pdbqt, results/docking/vina/EGTA_log.txt
+    jobid: 5
+    reason: Missing output files: results/docking/vina/EGTA_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/EGTA.pdbqt
+    wildcards: ligand=EGTA
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sat Sep  5 14:41:50 2026]
+Finished jobid: 11 (Rule: dock_vina)
+16 of 27 steps (59%) done
+Execute 1 jobs...
+[Sat Sep  5 14:41:51 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/citric_acid.pdbqt
+    output: results/docking/vina/citric_acid_out.pdbqt, results/docking/vina/citric_acid_log.txt
+    jobid: 13
+    reason: Missing output files: results/docking/vina/citric_acid_log.txt; Input files updated by another job: results/ligands_pdbqt/citric_acid.pdbqt, results/receptor/receptor.pdbqt
+    wildcards: ligand=citric_acid
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Sat Sep  5 14:41:55 2026]
+Finished jobid: 21 (Rule: dock_vina)
+17 of 27 steps (63%) done
+Execute 1 jobs...
+[Sat Sep  5 14:41:55 2026]
+localrule dock_vina:
+    input: results/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    output: results/docking/vina/oxalic_acid_out.pdbqt, results/docking/vina/oxalic_acid_log.txt
+    jobid: 19
+    reason: Missing output files: results/docking/vina/oxalic_acid_log.txt; Input files updated by another job: results/receptor/receptor.pdbqt, results/ligands_pdbqt/oxalic_acid.pdbqt
+    wildcards: ligand=oxalic_acid
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:42:02 2026]
+Finished jobid: 9 (Rule: dock_vina)
+18 of 27 steps (67%) done
+[Sat Sep  5 14:42:09 2026]
+Finished jobid: 19 (Rule: dock_vina)
+19 of 27 steps (70%) done
+[Sat Sep  5 14:42:10 2026]
+Finished jobid: 25 (Rule: dock_vina)
+20 of 27 steps (74%) done
+[Sat Sep  5 14:42:15 2026]
+Finished jobid: 23 (Rule: dock_vina)
+21 of 27 steps (78%) done
+[Sat Sep  5 14:42:18 2026]
+Finished jobid: 7 (Rule: dock_vina)
+22 of 27 steps (81%) done
+[Sat Sep  5 14:42:23 2026]
+Finished jobid: 2 (Rule: dock_vina)
+23 of 27 steps (85%) done
+[Sat Sep  5 14:42:26 2026]
+Finished jobid: 13 (Rule: dock_vina)
+24 of 27 steps (89%) done
+[Sat Sep  5 14:42:40 2026]
+Finished jobid: 5 (Rule: dock_vina)
+25 of 27 steps (93%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:42:40 2026]
+localrule collect_scores:
+    input: results/docking/vina/EDTA_log.txt, results/docking/vina/EGTA_log.txt, results/docking/vina/ascorbic_acid_log.txt, results/docking/vina/aspirin_log.txt, results/docking/vina/caffeine_log.txt, results/docking/vina/citric_acid_log.txt, results/docking/vina/glycine_log.txt, results/docking/vina/malonic_acid_log.txt, results/docking/vina/oxalic_acid_log.txt, results/docking/vina/phosphoric_acid_log.txt, results/docking/vina/salicylic_acid_log.txt, results/docking/vina/tartaric_acid_log.txt
+    output: results/summary/all_scores.tsv
+    jobid: 1
+    reason: Missing output files: results/summary/all_scores.tsv; Input files updated by another job: results/docking/vina/citric_acid_log.txt, results/docking/vina/aspirin_log.txt, results/docking/vina/EDTA_log.txt, results/docking/vina/phosphoric_acid_log.txt, results/docking/vina/glycine_log.txt, results/docking/vina/salicylic_acid_log.txt, results/docking/vina/tartaric_acid_log.txt, results/docking/vina/malonic_acid_log.txt, results/docking/vina/oxalic_acid_log.txt, results/docking/vina/caffeine_log.txt, results/docking/vina/EGTA_log.txt, results/docking/vina/ascorbic_acid_log.txt
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:42:40 2026]
+Finished jobid: 1 (Rule: collect_scores)
+26 of 27 steps (96%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sat Sep  5 14:42:40 2026]
+localrule all:
+    input: results/summary/all_scores.tsv
+    jobid: 0
+    reason: Input files updated by another job: results/summary/all_scores.tsv
+    resources: tmpdir=/tmp
+[Sat Sep  5 14:42:40 2026]
+Finished jobid: 0 (Rule: all)
+27 of 27 steps (100%) done
+Complete log(s): /home/vishishtaapandit28/docking-pipeline-project/.snakemake/log/2026-09-05T144130.867000.snakemake.log
+Elapsed time: 0:01:10.089122
