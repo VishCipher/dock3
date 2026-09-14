@@ -1,0 +1,3 @@
+[submodule "PandaDock"]
+	path = PandaDock
+	url = https://github.com/pritampanda15/PandaDock.git
